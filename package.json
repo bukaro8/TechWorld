@@ -8,7 +8,7 @@
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon api/server",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon api/server"
   },
-  "author": "ft-12",
+  "author": "Vic",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
