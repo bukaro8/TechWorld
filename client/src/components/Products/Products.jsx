@@ -4,11 +4,9 @@ import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { getAllProducts } from "../../Redux/actions";
 
-export default function Home(){
+export default function Products(){
     let products = useSelector((state) => state.filteredProducts)
     let dispatch = useDispatch()
-
-    let latestProducts = products.slice(-3)
 
     useEffect(() => {
         if(!products.length)dispatch(getAllProducts());
@@ -17,15 +15,13 @@ export default function Home(){
     return (
         <div>
             <div>
-                <h1>Latest articles</h1>
-            </div>
-            <div>
-                {latestProducts.map(e => {
+                {products.map(e => {
                     return (
                         <Product
                             image={e.images[0].url}
                             name={e.name}
                             price={e.price}
+                            ratings={e.ratings}
                         />
                     )
                 })}
