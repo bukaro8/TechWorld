@@ -15,15 +15,15 @@ export default function Home(){
     return (
         <div>
             <div>
-              {/*   {products.map(e => {
+                {products.map(e => {
                     return (
                         <Product
-                            image={e.image}
+                            image={e.images[0].url}
                             name={e.name}
                             price={e.price}
                         />
                     )
-                })} */}
+                })}
             </div>
         </div>
     )
