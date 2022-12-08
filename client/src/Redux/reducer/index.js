@@ -1,14 +1,14 @@
 import { GET_PRODUCTS } from "../actions/index"
 
-const initialState={
+const initialState = {
     products: [],
     filteredProducts: [],
     productDetails: []
 }
 
 
-const rootReducer = (state = initialState, action) => {
-    switch (action.type){
+function rootReducer(state = initialState, action) {
+    switch(action.type){
         case GET_PRODUCTS:
             return{
                 ...state,
