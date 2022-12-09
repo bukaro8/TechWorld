@@ -17,3 +17,19 @@ exports.getProducts = async (req, res, next) => {
     products,
   });
 };
+// products/findbyname
+exports.productfindName = async (req, res) => {
+  const { name } = req.body;
+  const product = await Product.find();
+  const result = product.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
+  if (result.length) {
+    res.status(201).send({
+      success: true,
+      result });
+  } else {
+    res.status(
+      404
+      // (error) => {error: error.message}
+    ).send("producto no encontrado")
+  }
+};

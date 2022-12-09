@@ -1,10 +1,13 @@
 import React from "react";
 import logo from "./logo.jpg";
 import { NavLink } from "react-router-dom"
+import Search from '../Search/Search'
 
 export default function NavBar() {
     return (
         <header>
+            <Search />
+
             <NavLink to="/home">
                 <li>
                     <img src={logo} alt="" />
