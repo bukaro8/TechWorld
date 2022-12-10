@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 
+import gif from '../assets/gif.png'
+
 export default function Home() {
   let products = useSelector((state) => state.filteredProducts);
   let dispatch = useDispatch();
@@ -18,7 +20,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <h1>Latest articles</h1>
+        <img src={gif} className="flex flex-wrap mx-auto w-11/12  py-7 mt-2 " />
       </div>
       <div>
         {latestProducts.map((e) => {

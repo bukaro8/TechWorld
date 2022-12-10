@@ -15,18 +15,18 @@ export default function Products() {
 
   return (
     <div>
-      <div>
-        {products.map((e) => {
-          return (
-            <Product
-              image={e.images[0].url}
-              name={e.name}
-              price={e.price}
-              ratings={e.ratings}
-            />
-          );
-        })}
-      </div>
+      {products.map((e) => {
+        return (
+          <Product
+            image={e.images[0].url}
+            name={e.name}
+            price={e.price}
+            ratings={e.ratings}
+          />
+        );
+      })}
     </div>
+    //   </div>
+    // </div>
   );
 }
