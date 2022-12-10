@@ -14,19 +14,20 @@ export default function Products() {
   }, []);
 
   return (
-    <div>
-      {products.map((e) => {
-        return (
-          <Product
-            image={e.images[0].url}
-            name={e.name}
-            price={e.price}
-            ratings={e.ratings}
-          />
-        );
-      })}
+    <div className="">
+      <div className=''>
+        {products.map((e) => {
+          return (
+            <Product
+              image={e.images[0].url}
+              name={e.name}
+              price={e.price}
+              ratings={e.ratings}
+            />
+          );
+        })}
+      </div>
     </div>
-    //   </div>
     // </div>
   );
 }

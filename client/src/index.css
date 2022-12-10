@@ -3,3 +3,6 @@
 @tailwind utilities;
 
 
+.link{
+    @apply text-white block p-5 font-bold hover:text-red-700
+}

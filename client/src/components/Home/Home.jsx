@@ -11,19 +11,19 @@ export default function Home() {
   let products = useSelector((state) => state.filteredProducts);
   let dispatch = useDispatch();
 
-  let latestProducts = products.slice(-3);
+  let latestProducts = products?.slice(-3);
 
   useEffect(() => {
     if (!products.length) dispatch(getAllProducts());
   }, []);
 
   return (
-    <div>
+    <div class="">
       <div>
         <img src={gif} className="flex flex-wrap mx-auto w-11/12  py-7 mt-2 " />
       </div>
-      <div>
-        {latestProducts.map((e) => {
+      <div class="flex items-stretch  -mx-4">
+        {latestProducts?.map((e) => {
           return (
             <Product image={e.images[0].url} name={e.name} price={e.price} />
           );

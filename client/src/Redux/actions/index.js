@@ -18,15 +18,15 @@ export function getAllProducts() {
     }
 }
 
-export const getByName = (name) => {
-    return async function (dispatch) {
-        var response = await back_call.get(
-            `products/findbyname?name=${name}`
-        );
-        const result = response.data
-        return dispatch({
-            type: SEARCH_BY_NAME,
-            payload: result,
-        });
-    };
-};
+// export const getByName = (name) => {
+//     return async function (dispatch) {
+//         var response = await back_call.get(
+//             `products?name=${name}`
+//         );
+//         const result = response.data
+//         return dispatch({
+//             type: SEARCH_BY_NAME,
+//             payload: result,
+//         });
+//     };
+// };

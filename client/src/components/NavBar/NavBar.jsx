@@ -12,56 +12,35 @@ export default function NavBar() {
         <div>
             <nav className="bg-white border-gray-200 ">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-full px-4 md:px-6 py-6 mt-2 bg-violet-600">
-                    <a href="/" className="flex items-center">
+
+                    <Link to="/" class="flex items-center">
                         <img src={logos} className="mr-3 h-9 sm:h-16 rounded-full" alt="nada" />
-                        <span className="self-center text-xl font-semibold whitespace-nowrap ">
+                        <span className="self-center text-xl font-semibold whitespace-nowrap hover:text-red-700">
                             TechWorld
                         </span>
-                    </a>
-                    <div className="flex items-center">
-                        <ul className="flex flex-row mt-0 mr-6 space-x-10 text-sm font-medium items-center">
-                            <li>
-                                <Link to="/">
-                                    <a
-                                        href="#"
-                                        className="text-gray-900 hover:underline text-lg"
-                                        aria-current="page"
-                                    >
-                                        Home
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="">
-                                    <a href="#" className="text-gray-900 hover:underline text-lg">
-                                        Save
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="">
-                                    <a href="#" className="text-gray-900  hover:underline text-lg">
-                                        Basket
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/about">
-                                    <a href="#" className="text-gray-900  hover:underline text-lg">
-                                        Account
-                                    </a>
-                                </Link>
+                    </Link>
 
-                            </li>
-                            <li>
-                                <Link to="#">
-                                    <a
-                                        href="#"
-                                        className="text-gray-900 dark:text-white m-0 inline-flex text-lg"
-                                    >
-                                    </a>
-                                </Link>
-                            </li>
+
+                    <div class="links lg:block hidden w-1/6 md:w-4/6">
+                        <ul class="menu flex items center justify-end gap-5 text-xl font-bold ">
+                            <Link to="/" className="hover:text-red-600">Home</Link>
+                            <Link to="/" className="hover:text-red-600">Save</Link>
+                            <Link to="/" className="hover:text-red-600">Basket</Link>
+                            <Link to="/" className="hover:text-red-600">Account</Link>
+                            <Link to="/" className=""></Link>
+
+                        </ul>
+                    </div>
+
+                    <div class="block lg:hidden w-1/6 lg:w-4/6">
+                        <a href="#" class="link" id="mobile-menu">Menu</a>
+                        <ul class="mobile-links hidden w-full absolute z-50 left-0 text-center bg-gray-800">
+                            <Link to="/" className="hover:text-red-600">Home </Link>
+                            <Link to="/" className="hover:text-red-600">Save </Link>
+                            <Link to="/" className="hover:text-red-600">Basket </Link>
+                            <Link to="/" className="hover:text-red-600">Account </Link>
+                            <Link to="/" className="hover:text-red-600"></Link>
+
                         </ul>
                     </div>
                 </div>
@@ -74,4 +53,13 @@ export default function NavBar() {
         </div>
 
     )
-} 
+}
+
+<div>
+    const menuButton = document.querySelector('#mobile-menu');
+    menuButton.addEventListener('click', e =&gt; {'{'}
+    const menu = document.querySelector('.mobile-links');
+    menu.classList.toggle('hidden');
+    {'}'});
+</div>
+

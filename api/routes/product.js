@@ -10,7 +10,7 @@ const {
 
 router.get('/products', getProducts);
 router.post('/product/new', newProduct);
-router.get('/products/findbyname', productfindName);
+// router.get('/products/findbyname', productfindName);
 
 
 module.exports = router;
