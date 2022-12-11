@@ -1,21 +1,88 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { filterByCategory, filterByPrice, filterByRating, orderByName} from '../../Redux/actions';
 
 const Filtros = () => {
+  let dispatch = useDispatch();
+  //const [orden, setOrden] = useState('')
+  //const [currentPage, setCurrentPage] = useState(1);
+  
+  let categories = [
+    'Electronics',
+    'Cameras',
+    'Laptops',
+    'Accessories',
+    'Headphones',
+    'Consoles',
+    'Television',
+    'VideoGames',
+    'Home'
+  ]
+
+  const handleCategoryFilter = (e) =>{
+    e.preventDefault();
+    dispatch(filterByCategory(e.target.value))
+    // SETEAR CURRENT PAGE A 1
+  }
+
+  const handleRatingFilter = (e) =>{
+    e.preventDefault();
+    dispatch(filterByRating(e.target.value))
+    // SETEAR CURRENT PAGE A 1
+  }
+
+  const handlePriceFilter = (e) =>{
+    e.preventDefault();
+    dispatch(filterByPrice(e.target.value))
+    // SETEAR CURRENT PAGE A 1
+  }
+
+  const handleNameOrder = (e) =>{
+    e.preventDefault();
+    dispatch(orderByName(e.target.value))
+    // SETEAR CURRENT PAGE A 1
+    //setCurrentPage(1);
+    //setOrden(`Ordenado ${e.target.value}`)
+  }
+  
   return (
     <div className="flex justify-around flex-wrap m-2">
-      <select className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
-        <option>algo</option>
-      </select>
-      <select className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
-        <option>algo</option>
-      </select>
-      <select className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
-        <option>algo</option>
-      </select>
-      <select className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
-        <option>algo</option>
-      </select>
+    
+    <select onChange={e => {handleCategoryFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
+        <option value="all" key="all">Categories</option>
+        {
+        categories.map(c =>{
+              return(
+            <option value={c} key={c}>{c}</option>
+                        )
+            })
+        }
+    </select>
+
+    <select onChange={e => {handleRatingFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">   
+        <option value="all" key="all">Rating</option>
+        <option value="1s" key="1s">1 Star</option>
+        <option value="2s" key="2s">2 Stars</option>
+        <option value="3s" key="3s">3 Stars</option>
+        <option value="4s" key="4s">4 Stars</option>
+        <option value="5s" key="5s">5 Stars</option>
+    </select>
+
+    <select onChange={e => {handlePriceFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
+        <option value="all" key="all">Price</option>       
+        <option value="100" key="100">$0 - $100</option>  
+        <option value="500" key="500">$101 - $500</option>
+        <option value="1000" key="1000">$501 - $1000</option>
+        <option value="5000" key="5000">$1001 - $5000</option>
+    </select>
+    
+    <select onChange={e => {handleNameOrder(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">   
+        <option value="all" key="all">Name Order</option>
+        <option value="ase" key="ase">Ascending</option>
+        <option value="des" key="des">Descending</option>
+    </select>
     </div>
+
   )
 }
 
