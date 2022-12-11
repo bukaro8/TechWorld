@@ -36,7 +36,7 @@ export default function NavBar() {
                         <a href="#" class="link" id="mobile-menu">Menu</a>
                         <ul class="mobile-links hidden w-full absolute z-50 left-0 text-center bg-gray-800">
                             <Link to="/" className="hover:text-red-600">Home </Link>
-                            <Link to="/" className="hover:text-red-600">Save </Link>
+                            <Link to="/products" className="hover:text-red-600">Products </Link>
                             <Link to="/" className="hover:text-red-600">Basket </Link>
                             <Link to="/" className="hover:text-red-600">Account </Link>
                             <Link to="/" className="hover:text-red-600"></Link>

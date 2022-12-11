@@ -13,7 +13,7 @@ export function getAllProducts() {
         var json = await back_call.get("/products")
         return dispatch({
             type: "GET_PRODUCTS",
-            payload: json.data.products
+            payload: json.data.product
         })
     }
 }
