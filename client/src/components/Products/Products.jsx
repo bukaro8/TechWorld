@@ -14,8 +14,8 @@ export default function Products() {
   }, []);
 
   return (
-    <div>
-      <div>
+    <div className="">
+      <div className=''>
         {products.map((e) => {
           return (
             <Product
@@ -28,5 +28,6 @@ export default function Products() {
         })}
       </div>
     </div>
+    // </div>
   );
 }
