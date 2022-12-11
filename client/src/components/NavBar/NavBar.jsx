@@ -24,7 +24,7 @@ export default function NavBar() {
                     <div class="links lg:block hidden w-1/6 md:w-4/6">
                         <ul class="menu flex items center justify-end gap-5 text-xl font-bold ">
                             <Link to="/" className="hover:text-red-600">Home</Link>
-                            <Link to="/" className="hover:text-red-600">Save</Link>
+                            <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
                             <Link to="/" className=""></Link>
