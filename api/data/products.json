@@ -15,6 +15,7 @@
 			"reviews": []
 	},
 	{
+				
 			"name" : "CAN USB FD Adapter (GC-CAN-USB-FD)",
 			"price" : "315.00",
 			"description" : "Monitor a CAN network, write a CAN program and communicate with industrial, medical, automotive or other CAN based device. Connect CAN FD and CAN networks to a computer via USB with the CAN USB FD adapter.",
@@ -29,8 +30,8 @@
 			"numOfReviews" : 2,
 			"reviews": []
 	},
-	{
-			"name" : "CHARMOUNT Full Motion TV Wall Mount Swivel",
+	{	
+		"name" : "CHARMOUNT Full Motion TV Wall Mount Swivel",
 			"price" : "26.99 ",
 			"description" : "CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3). CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3) CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3).",
 			"ratings" : 3.5,
@@ -44,7 +45,7 @@
 			"numOfReviews" : 12,
 			"reviews": []
 	},
-	{
+	{	
 			"name" : "Bose QuietComfort 35 II Wireless Bluetooth Headphones",
 			"price" : "299.00 ",
 			"description" : "What happens when you clear away the noisy distractions of the world? Concentration goes to the next level. You get deeper into your music, your work, or whatever you want to focus on. That’s the power of Bose QuietComfort 35 wireless headphones II. Put them on and get closer to what you’re most passionate about. And that’s just the beginning. QuietComfort 35 wireless headphones II are now enabled with Bose AR",
@@ -60,6 +61,7 @@
 			"reviews": []
 	},
 	{
+	
 			"name" : "Apple AirPods with Charging Case (Wired)",
 			"price" : "126.99 ",
 			"description" : "AirPods with Charging Case: More than 24 hours listening time, up to 18 hours talk time; AirPods (single charge): Up to 5 hours listening time, up to 3 hours talk time or 15 minutes in the case equals up to 3 hours listening time or up to 2 hours talk time.",
@@ -90,6 +92,7 @@
 			"reviews": []
 	},
 	{
+			
 			"name" : "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black ",
 			"price" : "496.95",
 			"description" : "You don't need to be a photographer to know a great photo when you see one. And you don't need to be a photographer to take a great photo—you just need the D3500. It's as easy to use as a point-and-shoot, but it takes beautiful DSLR photos and videos that get noticed. It feels outstanding in your hands, sturdy and balanced with controls where you want them. It's compact, durable and versatile, ideal for travel. And it works seamlessly with compatible smartphones, making it easier than ever to share your great photos. Even if you've never picked up a DSLR camera, you can take beautiful pictures with D3500.",
@@ -104,7 +107,8 @@
 			"numOfReviews" : 222,
 			"reviews": []
 	},
-	{
+	{		
+			
 			"name" : "Apple MacBook Air (13-inch, 8GB RAM, 256GB SSD Storage) - Space Gray ",
 			"price" : "949.99",
 			"description" : "Stunning 13.3-inch Retina display with True Tone technology, Backlit Magic Keyboard and Touch ID, Tenth-generation, Intel Core i3 processor, Intel Iris Plus Graphics, Fast SSD storage, 8GB of memory, Stereo speakers with wider stereo sound",
@@ -120,6 +124,7 @@
 			"reviews": []
 	},
 	{
+			
 			"name" : "Kauffman Orchards Homegrown McIntosh Apples",
 			"price" : "2.75",
 			"description" : "McIntosh is a pretty red/green apple with white flesh Homegrown in Kauffman's orchard in healthy Lancaster County soil McIntosh apples are famous for snacking, pies, salads, and applesauce Protected with soft, high-density foam for safe shipping to your door Not for sale to California, Oregon, or Washington due to state laws governing fresh produce",
