@@ -19,6 +19,7 @@ export default function Products() {
         {products.map((e) => {
           return (
             <Product
+              key={e.id}
               image={e.images[0].url}
               name={e.name}
               price={e.price}
@@ -28,6 +29,5 @@ export default function Products() {
         })}
       </div>
     </div>
-    // </div>
   );
 }
