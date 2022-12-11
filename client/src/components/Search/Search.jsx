@@ -64,7 +64,7 @@ export default function Search() {
           onClick={(e) => handleSubmit(e)}
           type="submit"
           className="text-white absolute right-10 bottom-2.5 bg-blue-500 hover:bg-blue-600 hover:text-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "
-        >buscar
+        >Search
         </button>
       </div>
     </div>
