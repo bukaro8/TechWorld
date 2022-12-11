@@ -1,21 +1,20 @@
-import './App.css';
-import {Route, Switch} from "react-router-dom"
+import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
-import Products from "./components/Products/Products"
+import Products from './components/Products/Products';
+import './index.css'
 
 function App() {
   return (
     <div className='App'>
       <Switch>
-        <Route exact path="/">
-          <h1>TechWord BoilerPlate</h1>
+        <Route exact path='/'>
         </Route>
-        <Route exact path="/home">
+        <Route exact path='/home'>
           <NavBar />
           <Home />
         </Route>
-        <Route exact path="/products">
+        <Route exact path='/products'>
           <Products />
         </Route>
       </Switch>

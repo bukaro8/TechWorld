@@ -2,20 +2,31 @@ const Product = require('../models/product.js');
 
 //* Create new product /api/v1/product/new
 exports.newProduct = async (req, res) => {
-  //!not images here
-  const info = req.body;
-  const product = await Product.create(info);
-  res.status(201).send({
-    success: true,
-    product,
-  });
+	//!not images here
+	const info = req.body;
+	const product = await Product.create(info);
+	res.status(201).send({
+		success: true,
+		product,
+	});
 };
 exports.getProducts = async (req, res, next) => {
-  const products = await Product.find();
-  res.status(200).json({
-    success: true,
-    products,
-  });
+	const { name } = req.body;
+	const product = await Product.find();
+	if (name) {
+		const result = product.filter((e) =>
+			e.name.toLowerCase().includes(name.toLowerCase())
+		);
+		res.status(201).send({
+			success: true,
+			result,
+		});
+	} else {
+		res.status(200).json({
+			success: true,
+			product,
+		});
+	}
 };
 
 /////////////////////////////////////////////////////////////////////
@@ -38,4 +49,5 @@ if(idProduct){
     return res.status(500).send('Debe ingresar un ID valido')  // en caso de que no pueda entrar a la db
 }
 }
+
 

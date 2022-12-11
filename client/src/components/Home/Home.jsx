@@ -1,35 +1,34 @@
-import React from "react";
-import Product from "../Cards/Card";
-import {useState, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import { getAllProducts } from "../../Redux/actions";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
+import Product from '../Cards/Card';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from '../../Redux/actions';
 
-export default function Home(){
-    let products = useSelector((state) => state.filteredProducts)
-    let dispatch = useDispatch()
+import gif from '../assets/gif.png'
 
-    let latestProducts = products.slice(-3)
+export default function Home() {
+  let products = useSelector((state) => state.filteredProducts);
+  let dispatch = useDispatch();
 
-    useEffect(() => {
-        if(!products.length)dispatch(getAllProducts());
-      }, []);
+  let latestProducts = products?.slice(-3);
 
-    return (
-        <div>
-            <div>
-                <h1>Latest articles</h1>
-            </div>
-            <div>
-                {latestProducts.map(e => {
-                    return (
-                        <Product
-                            image={e.images[0].url}
-                            name={e.name}
-                            price={e.price}
-                        />
-                    )
-                })}
-            </div>
-        </div>
-    )
+  useEffect(() => {
+    if (!products.length) dispatch(getAllProducts());
+  }, []);
+
+  return (
+    <div class="">
+      <div>
+        <img src={gif} className="flex flex-wrap mx-auto w-11/12  py-7 mt-2 " />
+      </div>
+      <div class="flex items-stretch  -mx-4">
+        {latestProducts?.map((e) => {
+          return (
+            <Product image={e.images[0].url} name={e.name} price={e.price} />
+          );
+        })}
+      </div>
+    </div>
+  );
 }
