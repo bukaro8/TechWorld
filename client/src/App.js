@@ -9,8 +9,6 @@ function App() {
     <div className='App'>
       <Switch>
         <Route exact path='/'>
-        </Route>
-        <Route exact path='/home'>
           <NavBar />
           <Home />
         </Route>
