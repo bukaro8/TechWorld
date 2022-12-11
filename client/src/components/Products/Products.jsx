@@ -17,25 +17,7 @@ export default function Products() {
     const currentProducts = products.slice(indexFirst, indexLast);
     const maxPage = Math.ceil(products.length / productsPerPage)
 
-<<<<<<< HEAD
-  return (
-    <div className="">
-      <div className=''>
-        {products.map((e) => {
-          return (
-            <Product
-              key={e.id}
-              image={e.images[0].url}
-              name={e.name}
-              price={e.price}
-              ratings={e.ratings}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-=======
+
     useEffect(() => {
         if(!products.length)dispatch(getAllProducts());
       }, []);
@@ -46,6 +28,7 @@ export default function Products() {
                 {currentProducts.map((e) => {
                     return (
                         <Product
+                            key={e.id}
                             image={e.images[0].url}
                             name={e.name}
                             price={e.price}
@@ -60,5 +43,5 @@ export default function Products() {
         </div>
     // </div>
     )
->>>>>>> 2a1b360b39fb9f9d78614cfead867b1e384f3075
+
 }

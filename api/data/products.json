@@ -17,6 +17,7 @@
 		"reviews": []
 	},
 	{
+
 		"name": "CAN USB FD Adapter (GC-CAN-USB-FD)",
 		"price": "315.00",
 		"description": "Monitor a CAN network, write a CAN program and communicate with industrial, medical, automotive or other CAN based device. Connect CAN FD and CAN networks to a computer via USB with the CAN USB FD adapter.",
@@ -83,6 +84,7 @@
 		"stock": 122,
 		"numOfReviews": 2671,
 		"reviews": []
+
 	},
 	{
 		"name": "Cable Boom Microphone - Volume Control for Playstation PS4 or Xbox",
@@ -102,6 +104,7 @@
 		"reviews": []
 	},
 	{
+
 		"name": "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black ",
 		"price": "496.95",
 		"description": "You don't need to be a photographer to know a great photo when you see one. And you don't need to be a photographer to take a great photo—you just need the D3500. It's as easy to use as a point-and-shoot, but it takes beautiful DSLR photos and videos that get noticed. It feels outstanding in your hands, sturdy and balanced with controls where you want them. It's compact, durable and versatile, ideal for travel. And it works seamlessly with compatible smartphones, making it easier than ever to share your great photos. Even if you've never picked up a DSLR camera, you can take beautiful pictures with D3500.",
@@ -163,5 +166,6 @@
 		"stock": 500,
 		"numOfReviews": 1,
 		"reviews": []
+
 	}
 ]
