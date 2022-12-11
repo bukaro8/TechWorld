@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom"
 import Search from '../Search/Search'
 import { Link } from "react-router-dom";
 import logos from '../assets/logos.png'
+import Carrito from '../assets/Carrito.jsx'
 
 
 export default function NavBar() {
@@ -11,7 +12,7 @@ export default function NavBar() {
 
         <div>
             <nav className="bg-white border-gray-200 ">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-full px-4 md:px-6 py-6 mt-2 bg-violet-600">
+                <div className="flex flex-wrap justify-between items-center mx-auto max-w-full h-fit px-4 md:px-6 py-6 mt-2 bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600">
 
                     <Link to="/" class="flex items-center">
                         <img src={logos} className="mr-3 h-9 sm:h-16 rounded-full" alt="nada" />
@@ -27,6 +28,7 @@ export default function NavBar() {
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
+                            <Link to="/" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
                             <Link to="/" className=""></Link>
 
                         </ul>

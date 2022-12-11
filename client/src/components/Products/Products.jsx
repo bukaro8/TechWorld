@@ -17,6 +17,7 @@ export default function Products() {
     const currentProducts = products.slice(indexFirst, indexLast);
     const maxPage = Math.ceil(products.length / productsPerPage)
 
+
     useEffect(() => {
         if(!products.length)dispatch(getAllProducts());
       }, []);
@@ -27,6 +28,7 @@ export default function Products() {
                 {currentProducts.map((e) => {
                     return (
                         <Product
+                            key={e.id}
                             image={e.images[0].url}
                             name={e.name}
                             price={e.price}
@@ -41,4 +43,5 @@ export default function Products() {
         </div>
     // </div>
     )
+
 }
