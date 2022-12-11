@@ -10,23 +10,19 @@ export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
 
 export function getAllProducts() {
     return async function (dispatch) {
-        var json = await back_call.get("/products")
+        var json = await back_call.get('/products')
         return dispatch({
-            type: "GET_PRODUCTS",
-            payload: json.data.product
+            type: GET_PRODUCTS,
+            payload: json.data
         })
     }
 }
-
-// export const getByName = (name) => {
-//     return async function (dispatch) {
-//         var response = await back_call.get(
-//             `products?name=${name}`
-//         );
-//         const result = response.data
-//         return dispatch({
-//             type: SEARCH_BY_NAME,
-//             payload: result,
-//         });
-//     };
-// };
+export function searchByName(name) {
+    return async function (dispatch) {
+        var json = await back_call.get(`/products?name=${name}`)
+        return dispatch({
+            type: SEARCH_BY_NAME,
+            payload: json.data
+        })
+    }
+}

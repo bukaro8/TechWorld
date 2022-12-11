@@ -11,25 +11,19 @@ exports.newProduct = async (req, res) => {
 	});
 };
 exports.getProducts = async (req, res, next) => {
-	const { name } = req.body;
+	const name = req.query.name;
 	const product = await Product.find();
 	if (name) {
-		const result = product.filter((e) =>
-			e.name.toLowerCase().includes(name.toLowerCase())
-		);
-		res.status(201).send({
-			success: true,
-			result,
-		});
+	  const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
+	  result.length
+		? res.status(200).send(result)
+		: res.status(404).send("producto no encontrado")
+  
 	} else {
-		res.status(200).json({
-			success: true,
-			product,
-		});
+	  res.status(200).send(product)
 	}
-};
+  };
 
-/////////////////////////////////////////////////////////////////////
 
 exports.idProduct = async (req, res) => {
 	const idProduct = req.params.id; //Solicito el id por params

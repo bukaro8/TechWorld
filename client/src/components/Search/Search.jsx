@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllProducts } from '../../Redux/actions/index'
+import { searchByName } from '../../Redux/actions/index'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 // 
@@ -14,7 +14,7 @@ export default function Search() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getAllProducts(name));
+    dispatch(searchByName(name));
     setName("");
   }
   function handleKeyDown(e) {
@@ -24,7 +24,7 @@ export default function Search() {
   };
 
   return (
-    <div className="">
+    <div className="m-2">
       <label
         for="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only"
