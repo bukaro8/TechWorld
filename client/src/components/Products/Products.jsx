@@ -22,9 +22,9 @@ export default function Products() {
       }, []);
 
     return (
-        <div>
-            <div>
-                {currentProducts.map(e => {
+        <div className="">
+            <div className=''>
+                {currentProducts.map((e) => {
                     return (
                         <Product
                             image={e.images[0].url}
@@ -39,5 +39,6 @@ export default function Products() {
                 <Paginated page={currentPage} setPage={setCurrentPage} maxPage={maxPage} />
             </div>
         </div>
+    // </div>
     )
 }
