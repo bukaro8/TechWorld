@@ -15,7 +15,7 @@ export default function Home() {
     if (!products.length) dispatch(getAllProducts());
   }, [dispatch]);
 
-  let products = useSelector((state) => state.products);
+  let products = useSelector((state) => state.filteredProducts);
 
   let latestProducts = products.slice(-8);
 
