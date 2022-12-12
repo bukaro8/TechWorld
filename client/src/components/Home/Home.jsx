@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
-import Filtros from '../Filtros/Filtros'
+import { Filtros, applyFilters }from '../Filtros/Filtros'
 
 import gif from '../assets/gif.png'
 
@@ -14,8 +14,13 @@ export default function Home() {
   useEffect(() => {
     if (!products.length) dispatch(getAllProducts());
   }, [dispatch]);
+  let allProducts = useSelector((state) => state.allProducts);
+  let categoryFilter = useSelector((state) => state.categoryFilter);
+  let priceFilter = useSelector((state) => state.priceFilter);
+  let ratingsFilter = useSelector((state) => state.ratingsFilter);
+  let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
 
-  let products = useSelector((state) => state.products);
+  let products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
 
   let latestProducts = products.slice(-8);
 
