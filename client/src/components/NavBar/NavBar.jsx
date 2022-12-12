@@ -40,6 +40,7 @@ export default function NavBar({ cerrarModal }) {
                             </Modal>
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
+                            <Link to="/" className="hover:text-red-600">Create</Link>
                             <Link to="/" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
                             <Link to="/" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>

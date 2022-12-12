@@ -21,19 +21,12 @@ export default function Home({}) {
     if (!products.length) dispatch(getAllProducts());
   }, [dispatch]);
   let allProducts = useSelector((state) => state.allProducts);
-  let searchName = useSelector((state) => state.searchName);
   let categoryFilter = useSelector((state) => state.categoryFilter);
   let priceFilter = useSelector((state) => state.priceFilter);
   let ratingsFilter = useSelector((state) => state.ratingsFilter);
   let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
-  let products = [];
 
-  if(searchName.length){
-    products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
-  }
-  else{
-    products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
-  }
+  let products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
 
   let latestProducts = products.slice(-8);
 
