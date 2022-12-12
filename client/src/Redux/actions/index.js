@@ -7,6 +7,8 @@ import { back_call } from "../../api_connection/back_call"
 
 export const GET_PRODUCTS = "GET_PRODUCTS"
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
+export const  CREATE_PRODUCT= "CREATE_PRODUCT";
+
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -26,3 +28,11 @@ export function searchByName(name) {
         })
     }
 }
+export function newProduct(input) {
+    return async function () {
+        await back_call.post('/product/new',
+          input
+       );
+       
+    };
+ }

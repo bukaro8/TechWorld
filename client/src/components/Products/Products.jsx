@@ -31,7 +31,8 @@ export default function Products() {
                     return (
                         <Product
                             key={e.id}
-                            image={e.images[0].url}
+                            image={e.images}
+                            // image={e.images[0].url}
                             name={e.name}
                             price={e.price}
                             ratings={e.ratings}

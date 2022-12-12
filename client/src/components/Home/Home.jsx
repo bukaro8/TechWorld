@@ -7,6 +7,7 @@ import { getAllProducts } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
 import Filtros from '../Filtros/Filtros'
 import gif from '../assets/imagenes/gif.png'
+// import Formulario from '../Formulario/Create';
 // modal
 // import {useModal}from '../assets/modal/useModal'
 // import Modal from '../assets/modal/Modal'
@@ -35,11 +36,14 @@ export default function Home({}) {
 
         {latestProducts.map((e) => {
           return (
-            <Product key={e.id} image={e.images[0].url} name={e.name} price={e.price} />
+            // <Product key={e.id} image={e.images[0].url} name={e.name} price={e.price} />
+            <Product key={e.id} image={e.images} name={e.name} price={e.price} />
+
           );
         })}
 
       </div>
+      {/* <Formulario/> */}
       <Paginated />
      {/* ****************************************************************************************** */}
                                                {/* Modal */}

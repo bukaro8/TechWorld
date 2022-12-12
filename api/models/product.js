@@ -20,18 +20,21 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  images: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  images: {
+    type: String,
+    required: [true, 'Please enter product description'],
+  },
+    // {   
+    //   public_id: {
+    //     type: String,
+    //     required: false,
+    //   },
+    //   url: {
+    //     type: String,
+    //     required: false,
+    //   },
+    // },
+  // ],
   category: {
     type: String,
     required: [true, 'Please select a category '],

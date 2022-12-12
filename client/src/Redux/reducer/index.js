@@ -1,7 +1,7 @@
 import {
-    GET_PRODUCTS, 
+    GET_PRODUCTS,
     SEARCH_BY_NAME,
-    
+
 } from "../actions/index"
 
 const initialState = {
@@ -24,6 +24,10 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 products: action.payload
             }
+        case "POST_PRODUCT":
+            return {
+                ...state,
+            };
         default:
             return state;
     }
