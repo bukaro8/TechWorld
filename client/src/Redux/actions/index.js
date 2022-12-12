@@ -11,6 +11,8 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
 export const FILTER_BY_PRICE = "FILTER_BY_TYPE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const  CREATE_PRODUCT= "CREATE_PRODUCT";
+
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -30,7 +32,14 @@ export function searchByName(name) {
         })
     }
 }
-
+export function newProduct(input) {
+    return async function () {
+        await back_call.post('/product/new',
+          input
+       );
+       
+    };
+ }
 export function filterByCategory (selected){
     return {
         type: FILTER_BY_CATEGORY,

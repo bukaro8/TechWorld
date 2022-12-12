@@ -8,14 +8,16 @@ import {
 } from "../actions/index"
 
 const initialState = {
-  products: [],
+  productsFix: [],
   allProducts: [],
   categoryFilter: "all",
   priceFilter: "all",
   ratingsFilter: "all",
   alphabeticalOrder: "all",
   productDetails: [],
-  filteredProducts: []
+  filteredProducts: [],
+  searchName:[]
+
 }
 
 function rootReducer(state = initialState, action) {
@@ -24,15 +26,16 @@ function rootReducer(state = initialState, action) {
       case GET_PRODUCTS:
           return {
               ...state,
-              products: action.payload,
+              productsFix: action.payload,
               filteredProducts: action.payload,
               allProducts: action.payload,
+              searchName:action.payload
           };
 
       case SEARCH_BY_NAME:
           return {
               ...state,
-              products: action.payload
+              searchName: action.payload
           };
 
       case FILTER_BY_CATEGORY:
@@ -58,6 +61,10 @@ function rootReducer(state = initialState, action) {
               ...state,
               alphabeticalOrder: action.payload,
           };
+        case "POST_PRODUCT":
+            return {
+                ...state,
+            };
       default:
           return state;
   }
