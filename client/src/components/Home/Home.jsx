@@ -4,7 +4,7 @@ import Product from '../Cards/Card';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
-import Paginado from '../Paginado/Paginado';
+import Paginated from '../Paginated/Paginated';
 import Filtros from '../Filtros/Filtros'
 import gif from '../assets/imagenes/gif.png'
 // modal
@@ -22,7 +22,7 @@ export default function Home({}) {
 
   let products = useSelector((state) => state.products);
 
-  let latestProducts = products;
+  let latestProducts = products.slice(-8);
 
   return (
     <div>
@@ -30,7 +30,6 @@ export default function Home({}) {
       <div>
         <img src={gif} className="flex flex-wrap mx-auto w-11/12 m-8 " />
       </div>
-      <Paginado />
       {/* <div class="flex  items-stretch  -mx-4"> */}
       <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
 
@@ -41,7 +40,7 @@ export default function Home({}) {
         })}
 
       </div>
-      <Paginado />
+      <Paginated />
      {/* ****************************************************************************************** */}
                                                {/* Modal */}
       {/* <div>
@@ -52,6 +51,7 @@ export default function Home({}) {
       </div> */}
      {/* ****************************************************************************************** */}
      </div>
+    
   );
 }
    
