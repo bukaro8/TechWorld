@@ -1,8 +1,72 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { filterByCategory, filterByPrice, filterByRating, orderByName} from '../../Redux/actions';
 
-const Filtros = () => {
+export const applyFilters = (allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder) => {
+  let finalProducts = allProducts
+  if(categoryFilter !== "all"){
+      finalProducts = finalProducts.filter(p => p.category === categoryFilter)
+  }
+  if(priceFilter !== "all"){
+      if (priceFilter === "100"){
+          finalProducts = finalProducts.filter(p =>p.price<=100)
+          }
+      else if (priceFilter === "500"){
+          finalProducts = finalProducts.filter(p =>p.price>100 && p.price<=500)
+          }
+      else if (priceFilter === "1000"){
+          finalProducts = finalProducts.filter(p =>p.price>500 && p.price<=1000)
+          }
+      else if (priceFilter === "5000"){
+          finalProducts = finalProducts.filter(p =>p.price>1000 && p.price<=5000)
+          }
+  }
+  if(ratingsFilter !== "all"){
+      if (ratingsFilter === "5s"){
+          finalProducts = finalProducts.filter(p =>p.ratings===5)
+          }
+      else if (ratingsFilter === "4s"){
+          finalProducts = finalProducts.filter(p =>p.ratings>=4 && p.ratings<5)
+          }
+      else if (ratingsFilter === "3s"){
+          finalProducts = finalProducts.filter(p =>p.ratings>=3 && p.ratings<4)
+          }
+      else if (ratingsFilter === "2s"){
+          finalProducts = finalProducts.filter(p =>p.ratings>=2 && p.ratings<3)
+          }
+      else if (ratingsFilter === "1s"){
+          finalProducts = finalProducts.filter(p =>p.ratings>=1 && p.ratings<2)
+          }
+  }
+  if(alphabeticalOrder !== "all"){
+    if (alphabeticalOrder === "ase"){
+      finalProducts.sort((a, b)=>{
+        if (a.name > b.name){
+          return 1;
+        }
+        if (a.name < b.name){
+          return -1;
+        }
+        return 0
+          }
+        )
+        }
+    else if (alphabeticalOrder === "des"){
+      finalProducts.sort((a, b)=>{
+        if(a.name < b.name){
+          return 1;
+        }
+        if(a.name > b.name){
+          return -1;
+        }
+        return 0
+          }
+        )}
+}
+  return finalProducts;
+}
+
+export const Filtros = () => {
   let dispatch = useDispatch();
   //const [orden, setOrden] = useState('')
   //const [currentPage, setCurrentPage] = useState(1);
@@ -85,5 +149,3 @@ const Filtros = () => {
 
   )
 }
-
-export default Filtros
