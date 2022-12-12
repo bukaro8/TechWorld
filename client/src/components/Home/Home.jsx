@@ -6,10 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 import Paginado from '../Paginado/Paginado';
 import Filtros from '../Filtros/Filtros'
+import gif from '../assets/imagenes/gif.png'
+// modal
+// import {useModal}from '../assets/modal/useModal'
+// import Modal from '../assets/modal/Modal'
 
-import gif from '../assets/gif.png'
+export default function Home({}) {
 
-export default function Home() {
+  // const [isOpenModal, openModal, closeModal] = useModal(false);
+
   let dispatch = useDispatch();
   useEffect(() => {
     if (!products.length) dispatch(getAllProducts());
@@ -37,6 +42,16 @@ export default function Home() {
 
       </div>
       <Paginado />
-    </div>
+     {/* ****************************************************************************************** */}
+                                               {/* Modal */}
+      {/* <div>
+        <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal}>HACER MODAL</button>
+        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+          <Product closeModal={closeModal} cerrarModal={cerrarModal} />
+        </Modal>
+      </div> */}
+     {/* ****************************************************************************************** */}
+     </div>
   );
 }
+   
