@@ -12,7 +12,7 @@ export const FILTER_BY_RATING = "FILTER_BY_RATING";
 export const FILTER_BY_PRICE = "FILTER_BY_TYPE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const  CREATE_PRODUCT= "CREATE_PRODUCT";
-
+export const GET_DETAIL = 'GET_DETAIL';
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -65,5 +65,16 @@ export function orderByName (how){
     return {
         type: ORDER_BY_NAME,
         payload: how
+    }
+}
+
+export const getDetail = (id) => {
+    return async function(dispatch) {
+    var infoDetail = await back_call.get(`/products/${id}`).data;
+    return dispatch({
+        type: GET_DETAIL,
+        payload: infoDetail
+    })
+        
     }
 }
