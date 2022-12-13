@@ -4,42 +4,26 @@ import Product from '../Cards/Card';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
-import Paginated from '../Paginated/Paginated';
 import gif from '../assets/imagenes/gif.png'
 // import Formulario from '../Formulario/Create';
 // modal
 // import {useModal}from '../assets/modal/useModal'
 // import Modal from '../assets/modal/Modal'
-import { Filtros, applyFilters }from '../Filtros/Filtros'
 
 export default function Home({}) {
 
   // const [isOpenModal, openModal, closeModal] = useModal(false);
+  let products = useSelector((state) => state.allProducts);
 
   let dispatch = useDispatch();
   useEffect(() => {
     if (!products.length) dispatch(getAllProducts());
   }, [dispatch]);
-  let allProducts = useSelector((state) => state.allProducts);
-  let searchName = useSelector((state) => state.searchName);
-  let categoryFilter = useSelector((state) => state.categoryFilter);
-  let priceFilter = useSelector((state) => state.priceFilter);
-  let ratingsFilter = useSelector((state) => state.ratingsFilter);
-  let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
-  let products = [];
-
-  if(searchName.length){
-    products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
-  }
-  else{
-    products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
-  }
 
   let latestProducts = products.slice(-8);
 
   return (
     <div>
-      <Filtros />
       <div>
         <img src={gif} className="flex flex-wrap mx-auto w-11/12 m-8 " />
       </div>
@@ -56,7 +40,6 @@ export default function Home({}) {
 
       </div>
       {/* <Formulario/> */}
-      <Paginated />
      {/* ****************************************************************************************** */}
                                                {/* Modal */}
       {/* <div>
