@@ -6,15 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
 import gif from '../assets/imagenes/gif.png'
-// import Formulario from '../Formulario/Create';
-// modal
-// import {useModal}from '../assets/modal/useModal'
-// import Modal from '../assets/modal/Modal'
-import { Filtros, applyFilters }from '../Filtros/Filtros'
+import Carrusel from '../assets/Carrusel/Carrusel';
 
-export default function Home({}) {
+import { Filtros, applyFilters } from '../Filtros/Filtros'
 
-  // const [isOpenModal, openModal, closeModal] = useModal(false);
+export default function Home({ }) {
+
 
   let dispatch = useDispatch();
   useEffect(() => {
@@ -28,10 +25,10 @@ export default function Home({}) {
   let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
   let products = [];
 
-  if(searchName.length){
+  if (searchName.length) {
     products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
   }
-  else{
+  else {
     products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
   }
 
@@ -40,9 +37,8 @@ export default function Home({}) {
   return (
     <div>
       <Filtros />
-      <div>
-        <img src={gif} className="flex flex-wrap mx-auto w-11/12 m-8 " />
-      </div>
+      <Carrusel />
+      {/* <img src={gif} className="flex flex-wrap mx-auto w-11/12 m-8 " /> */}
       {/* <div class="flex  items-stretch  -mx-4"> */}
       <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
 
@@ -57,17 +53,16 @@ export default function Home({}) {
       </div>
       {/* <Formulario/> */}
       <Paginated />
-     {/* ****************************************************************************************** */}
-                                               {/* Modal */}
+      {/* ****************************************************************************************** */}
+      {/* Modal */}
       {/* <div>
         <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal}>HACER MODAL</button>
         <Modal isOpen={isOpenModal} closeModal={closeModal}>
           <Product closeModal={closeModal} cerrarModal={cerrarModal} />
         </Modal>
       </div> */}
-     {/* ****************************************************************************************** */}
-     </div>
-    
+      {/* ****************************************************************************************** */}
+    </div>
+
   );
 }
-   
