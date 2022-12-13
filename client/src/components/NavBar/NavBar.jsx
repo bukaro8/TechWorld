@@ -7,6 +7,14 @@ import logos from '../assets/logos.png'
 import Carrito from '../assets/Carrito.jsx'
 import Formulario from '../Formulario/Create'
 
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from "../Registrar/LoginButton";
+import LogoutButton from "../Registrar/LogoutButton";
+import UnloginProfile from '../Registrar/UnlogingProfile'
+import Profile from '../Registrar/Profile'
+import IsAuthenticated from "../Registrar/IsAuthenticated";
+
+
 // modal
 import { useModal } from '../assets/modal/useModal'
 import Modal from '../assets/modal/Modal'
@@ -14,6 +22,10 @@ import Modal from '../assets/modal/Modal'
 
 export default function NavBar({ cerrarModal }) {
     const [isOpenModal, openModal, closeModal] = useModal(false);
+    const { user, isAuthenticated } = useAuth0();
+    const { loginWithRedirect } = useAuth0();
+
+
 
     return (
 
@@ -48,6 +60,16 @@ export default function NavBar({ cerrarModal }) {
                         </ul>
                     </div>
 
+                    {/* <isAuthenticated /> */}
+
+                    <Profile />
+                    {isAuthenticated ?
+                        <LogoutButton />
+                        // <UnloginProfile />
+                        :
+                        <LoginButton />
+                    }
+
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>
                         <ul class="mobile-links hidden w-full absolute z-50 left-0 text-center bg-gray-800">
@@ -57,21 +79,24 @@ export default function NavBar({ cerrarModal }) {
                             <Link to="/" className="hover:text-red-600">Basket </Link>
                             <Link to="/" className="hover:text-red-600">Account </Link>
                             <Link to="/" className="hover:text-red-600"></Link>
-
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav >
+
+
+
             <nav className="bg-gray-50">
                 <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
                     <Search />
                 </div>
             </nav>
-        </div>
 
+
+
+        </div >
     )
 }
-
 <div>
     const menuButton = document.querySelector('#mobile-menu');
     menuButton.addEventListener('click', e =&gt; {'{'}
