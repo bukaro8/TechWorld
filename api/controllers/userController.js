@@ -25,20 +25,3 @@ exports.getUsers = async (req, res, next) => {
 	}
 };
 
-
-// exports.idUser = async (req, res) => {
-// 	const iduser = req.params.id; //Solicito el id por params
-// 	try {
-// 		const userTotal = await User.findOne({
-// 			_id: iduser,
-// 		}); //Llamo al modelo y me devuelve un objeto con todos los user
-// 		if (userTotal) {
-// 			res.status(200).json({
-// 				success: true,
-// 				userTotal, //ejecuta este bloque de codigo
-// 			});
-// 		}
-// 	} catch (e) {
-// 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
-// 	}
-// };

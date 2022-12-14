@@ -12,3 +12,4 @@ router.get('/product/:id', idProduct);
 router.post('/product/new', newProduct);
 
 module.exports = router;
+ 

@@ -10,3 +10,4 @@ router.post('/user/new', newUser);
 router.get('/users', getUsers);
 
 module.exports = router;
+ 

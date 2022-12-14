@@ -12,7 +12,7 @@ const admin = require('../data/admin');
 // Setting dotenv file
 dotenv.config({ path: 'api/config/config.env' });
 
-connectDatabase();
+connectDatabase(); 
 
 const addProducts = async () => {
   try {

@@ -51,7 +51,7 @@ export function newProduct(input) {
             input
         );
 
-    };
+    }; 
 }
 export function newUsers(input) {
     return async function () {

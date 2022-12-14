@@ -18,7 +18,7 @@
         "phone": "777"
     },
     {
-        "name": "yo",
+        "name": "yo", 
         "email": "yo@gmail.com",
         "password": "123",
         "isAdmin": "true",

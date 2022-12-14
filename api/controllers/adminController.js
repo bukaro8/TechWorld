@@ -11,7 +11,7 @@ exports.getAdmin = async (req, res, next) => {
             : res.status(404).send("admin no encontrado")
 
     } else {
-        res.status(200).send(admin)
+        res.status(200).send(admin) 
 
     }
 };

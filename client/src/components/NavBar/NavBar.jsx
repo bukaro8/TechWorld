@@ -52,7 +52,7 @@ export default function NavBar({ cerrarModal }) {
                         <LogoutButton />
                         :
                         <LoginButton />
-                    }
+                    } 
 
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>

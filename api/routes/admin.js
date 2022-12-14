@@ -13,3 +13,4 @@ router.delete('/admin/:id',delAdmin)
 
 
 module.exports = router;
+ 

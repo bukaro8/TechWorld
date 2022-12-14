@@ -12,7 +12,7 @@ const adminSchema = new mongoose.Schema({
   },
 
   password:{
-    type:String,
+    type:String, 
     trim:true,
   },
 
