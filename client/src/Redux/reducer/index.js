@@ -7,6 +7,8 @@ import {
     ORDER_BY_NAME,
     GET_USERS,
     CREATE_USERS,
+    GET_DETAIL
+
 } from "../actions/index"
 
 const initialState = {
@@ -19,7 +21,8 @@ const initialState = {
     alphabeticalOrder: "all",
     productDetails: [],
     filteredProducts: [],
-    searchName: []
+    searchName: [],
+    detail: [],
 
 }
 
@@ -82,5 +85,13 @@ function rootReducer(state = initialState, action) {
             return state;
     }
 
+        case GET_DETAIL:
+            return{
+                ...state,
+                detail: action.payload
+            }
+      default:
+          return state;
+  }
 }
 export default rootReducer;
