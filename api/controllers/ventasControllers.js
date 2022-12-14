@@ -10,33 +10,46 @@ const Ventas = require('../models/ventas.js');
 // 		product,
 // 	});
 // };
+
 exports.getVentas = async (req, res, next) => {
-    const name = req.query.nombreProduct;
     const ventas = await Ventas.find();
-    if (name) {
-        const result = ventas.filter((e) => e.nombreProduct.toLowerCase().includes(nombreProduct.toLowerCase()))
+    console.log(ventas)
+    if (ventas) {
+        const result = ventas.map((e) => {
+            return {
+                ventas_nombre : e.ventas_nombre,
+                cantidadVenta: e.ventas_cantidad,
+                tipoVenta: e.ventas_tipo_de_pago
+            }
+        })
         result.length
             ? res.status(200).send(result)
             : res.status(404).send("venta no encontrada")
 
     } else {
-        res.status(200).send(ventas)
+        res.status(200).send('No hay ventas registradas')
     }
 };
 
 exports.getCompras = async (req, res, next) => {
-    const { cantidadCompras, tipoCompras } = req.query;
-    const ventas = await Ventas.find();
-    if (tipoCompras) {
-        const result = ventas.filter((e) => e.tipoCompras.toLowerCase().includes(tipoCompras.toLowerCase()))
+    const compras = await Ventas.find();
+    console.log(compras)
+    if (compras) {
+        const result = compras.map((e) => {
+            return {
+                name : e.nombreProduct,
+                cantidad : e.cantidadCompras,
+                tipoCompras : e.tipoCompras
+            }
+        })
         result.length
             ? res.status(200).send(result)
-            : res.status(404).send("venta no encontrada")
+            : res.status(404).send("Compra no encontrada")
 
     } else {
-        res.status(200).send(ventas)
+        res.status(200).send('No hay compras registradas')
     }
-};
+}
 
 
 

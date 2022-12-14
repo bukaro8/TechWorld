@@ -3,7 +3,18 @@
         "nombreProduct": "televisor",
         "cantidadCompras": "1",
         "tipoCompras": "efectivo",
-        "ventas": "celulares",
+        "ventas_nombre": "celulares",
+        "ventas_cantidad":2,
+        "ventas_tipo_de_pago":"Efectivo",
         "favoritos": "algunos"
+    },
+    {
+        "nombreProduct": "celular",
+        "cantidadCompras": "3",
+        "tipoCompras": "dolares",
+        "ventas_nombre": "microfono",
+        "ventas_cantidad":2,
+        "ventas_tipo_de_pago":"tarjeta",
+        "favoritos": "otros"
     }
 ]

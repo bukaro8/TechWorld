@@ -14,7 +14,14 @@ const ventasSchema = new mongoose.Schema({
         type: String
     },
 
-    ventas: {
+    ventas_nombre: {
+        type: String
+    },
+
+    ventas_cantidad: {
+        type: Number
+    },
+    ventas_tipo_de_pago: {
         type: String
     },
 
