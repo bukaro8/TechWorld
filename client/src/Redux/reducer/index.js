@@ -5,7 +5,13 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_PRICE,
   FILTER_BY_RATING,
-  ORDER_BY_NAME 
+  ORDER_BY_NAME,
+  GET_DETAIL,
+  ADD_TO_CART,
+  REMOVE_ONE_CART,
+  DELETE_CART,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY
 } from "../actions/index"
 
 const initialState = {
