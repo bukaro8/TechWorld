@@ -12,11 +12,6 @@ export const FILTER_BY_RATING = "FILTER_BY_RATING";
 export const FILTER_BY_PRICE = "FILTER_BY_TYPE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const  CREATE_PRODUCT= "CREATE_PRODUCT";
-export const ADD_TO_CART = "ADD_TO_CART";
-export const REMOVE_ONE_CART = "REMOVE_ONE_CART";
-export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
-export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
-export const DELETE_CART = "DELETE_CART";
 
 
 export function getAllProducts() {
@@ -72,6 +67,18 @@ export function orderByName (how){
         payload: how
     }
 }
+
+export const getDetail = (id) => {
+    return async function(dispatch) {
+    var infoDetail = await back_call.get(`/products/${id}`).data;
+    return dispatch({
+        type: GET_DETAIL,
+        payload: infoDetail
+    })
+        
+    }
+}
+
 
 export function addToCart(payload) {
     return {

@@ -5,12 +5,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_PRICE,
   FILTER_BY_RATING,
-  ORDER_BY_NAME,
-  ADD_TO_CART,
-  REMOVE_ONE_CART,
-  INCREASE_QUANTITY,
-  DECREASE_QUANTITY,
-  DELETE_CART
+  ORDER_BY_NAME 
 } from "../actions/index"
 
 const initialState = {
@@ -22,9 +17,8 @@ const initialState = {
   alphabeticalOrder: "all",
   productDetails: [],
   filteredProducts: [],
-  searchName:[],
-  cartItems: JSON.parse(localStorage.getItem("items")) || [],
-  carts: JSON.parse(localStorage.getItem("cart")) || []
+  searchName:[]
+
 }
 
 function rootReducer(state = initialState, action) {
@@ -72,6 +66,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             };
+        case GET_DETAIL:
+            return{
+                ...state,
+                detail: action.payload
+            }
         case ADD_TO_CART:
           if (state.cartItems.length === 0) {
             let cart = {
