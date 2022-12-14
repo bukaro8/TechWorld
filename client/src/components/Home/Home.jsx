@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 import Carrusel from '../assets/Carrusel/Carrusel';
+import Paginated from '../Paginated/Paginated'
 
 import { Filtros, applyFilters } from '../Filtros/Filtros'
 
@@ -22,7 +23,7 @@ export default function Home({ }) {
   let priceFilter = useSelector((state) => state.priceFilter);
   let ratingsFilter = useSelector((state) => state.ratingsFilter);
   let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
-  let products = [];
+  // let products = [];
 
   if (searchName.length) {
     products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
