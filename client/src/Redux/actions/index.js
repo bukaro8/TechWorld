@@ -11,7 +11,11 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
 export const FILTER_BY_PRICE = "FILTER_BY_TYPE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export const  CREATE_PRODUCT= "CREATE_PRODUCT";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const CREATE_USERS = "CREATE_USERS";
+export const GET_USERS = "GET_USERS"
+
+
 
 
 export function getAllProducts() {
@@ -19,6 +23,15 @@ export function getAllProducts() {
         var json = await back_call.get('/products')
         return dispatch({
             type: GET_PRODUCTS,
+            payload: json.data
+        })
+    }
+}
+export function getAllUsers() {
+    return async function (dispatch) {
+        var json = await back_call.get('/users')
+        return dispatch({
+            type: GET_USERS,
             payload: json.data
         })
     }
@@ -35,33 +48,41 @@ export function searchByName(name) {
 export function newProduct(input) {
     return async function () {
         await back_call.post('/product/new',
-          input
-       );
-       
+            input
+        );
+
     };
- }
-export function filterByCategory (selected){
+}
+export function newUsers(input) {
+    return async function () {
+        await back_call.post('/user/new',
+            input
+        );
+
+    };
+}
+export function filterByCategory(selected) {
     return {
         type: FILTER_BY_CATEGORY,
         payload: selected
     }
 }
 
-export function filterByRating (selected){
+export function filterByRating(selected) {
     return {
         type: FILTER_BY_RATING,
         payload: selected
     }
 }
 
-export function filterByPrice (range){
+export function filterByPrice(range) {
     return {
         type: FILTER_BY_PRICE,
         payload: range
     }
 }
 
-export function orderByName (how){
+export function orderByName(how) {
     return {
         type: ORDER_BY_NAME,
         payload: how
