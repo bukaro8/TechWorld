@@ -6,36 +6,55 @@ const userSchema = new mongoose.Schema({
     // required: [true, 'Please enter your name'],
     trim: true,
   },
-  email:{
-    type:String,
-    trim:true,
-    
+  email: {
+    type: String,
+    trim: true,
+
   },
 
-  password:{
-    type:String,
-    trim:true,
+  password: {
+    type: String,
+    trim: true,
   },
 
-  isAdmin:{
-    type:Boolean
+  isAdmin: {
+    type: Boolean,
+    default: false
   },
 
-  isBan:{
-    type:Boolean
+  rol: {
+    type: String,
+    default: "usuario",
+    enum: {
+      values: [
+        'admin', 'usuario', 'invitado'
+      ]
+    }
   },
 
-  direction:{
-    type:String,
-    trim:true,
+  isBan: {
+    type: Boolean,
+    default: false
   },
 
-  phone:{
-    type:Number,
-    trim:true,
+  direction: {
+    type: String,
+    trim: true,
   },
 
- 
+  phone: {
+    type: Number,
+    trim: true,
+  },
+
+  misFavoritos: {
+    type: String,
+  },
+
+  misCompras: {
+    type: String,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

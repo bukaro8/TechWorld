@@ -25,6 +25,44 @@ exports.getUsers = async (req, res, next) => {
 	}
 };
 
+exports.delAdmin = async (req, res, next) => {
+	const idAdmin = req.params.id; //Solicito el id por params
+	try {
+		const usuario = await User.updateOne({
+			isBan: "true",
+		});
+
+		res.status(201).json({
+			success: true,
+			usuario,
+			MessageEven:"se actualizo"
+		});
+	} catch (e) {
+		return res.status(500).send('No se pudo borrar el usuario'); // en caso de que no pueda entrar a la db
+	}
+
+}
+
+exports.putAdmin = async (req, res) => {
+	const idAdmin = req.params.id; //Solicito el id por params
+	try {
+		const usuario = await User.updateOne({
+			isAdmin: "false",
+			isBan: "true",
+			rol: "invitado",
+			MessageEven:"algo"
+
+		});
+
+		res.status(201).json({
+			success: true,
+			usuario,
+		});
+	} catch (e) {
+		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
+	}
+};
+
 
 // exports.idUser = async (req, res) => {
 // 	const iduser = req.params.id; //Solicito el id por params
