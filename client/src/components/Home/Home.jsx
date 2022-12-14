@@ -8,9 +8,6 @@ import gif from '../assets/imagenes/gif.png'
 import Carrusel from '../assets/Carrusel/Carrusel';
 
 
-
-import { Filtros, applyFilters } from '../Filtros/Filtros'
-
 export default function Home({ }) {
 
 
@@ -22,28 +19,13 @@ export default function Home({ }) {
     if (!products.length) dispatch(getAllProducts());
   }, [dispatch]);
 
-  let allProducts = useSelector((state) => state.allProducts);
-  let searchName = useSelector((state) => state.searchName);
-  let categoryFilter = useSelector((state) => state.categoryFilter);
-  let priceFilter = useSelector((state) => state.priceFilter);
-  let ratingsFilter = useSelector((state) => state.ratingsFilter);
-  let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
-  let products = [];
 
-  if (searchName.length) {
-    products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
-  }
-  else {
-    products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
-  }
+
 
 
   let latestProducts = products.slice(-8);
-
   return (
     <div>
-
-      <Filtros />
       <Carrusel />
      
       {/* <div class="flex  items-stretch  -mx-4"> */}
@@ -52,7 +34,7 @@ export default function Home({ }) {
         {latestProducts.map((e) => {
           return (
             // <Product key={e.id} image={e.images[0].url} name={e.name} price={e.price} />
-            <Product key={e.id} image={e.images} name={e.name} price={e.price} />
+            <Product key={e._id} image={e.images} name={e.name} price={e.price} id={e._id}/>
 
           );
         })}
@@ -60,8 +42,17 @@ export default function Home({ }) {
       </div>
       {/* <Formulario/> */}
 
-      <Paginated />
-  
+
+     {/* ****************************************************************************************** */}
+                                               {/* Modal */}
+
+      {/* <div>
+        <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal}>HACER MODAL</button>
+        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+          <Product closeModal={closeModal} cerrarModal={cerrarModal} />
+        </Modal>
+      </div> */}
+      {/* ****************************************************************************************** */}
     </div>
 
   );

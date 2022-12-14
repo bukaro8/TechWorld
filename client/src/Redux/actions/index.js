@@ -14,7 +14,13 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const CREATE_USERS = "CREATE_USERS";
 export const GET_USERS = "GET_USERS"
 export const  CREATE_PRODUCT= "CREATE_PRODUCT";
-export const GET_DETAIL = 'GET_DETAIL';
+export const GET_DETAIL = "GET_DETAIL";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ONE_CART = "REMOVE_ONE_CART"
+export const DELETE_CART = "DELETE_CART";
+export const INCREASE_QUANTITY = "INCREASE_QUANTITY"
+export const DECREASE_QUANTITY = "DECREASE_QUANTITY"
+
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -95,5 +101,41 @@ export const getDetail = (id) => {
         payload: infoDetail
     })
         
+    }
+}
+
+
+export function addToCart(payload) {
+    return {
+        type: ADD_TO_CART,
+        payload
+    }
+}
+
+export function removeOneProduct(payload) {
+    return {
+        type: REMOVE_ONE_CART,
+        payload
+    }
+}
+
+export function increaseQuantity(payload) {
+    return {
+        type: INCREASE_QUANTITY,
+        payload
+    }
+}
+
+export function decreaseQuantity(payload) {
+    return {
+        type: DECREASE_QUANTITY,
+        payload
+    }
+}
+
+export function deleteCart(payload) {
+    return {
+        type: DELETE_CART,
+        payload
     }
 }
