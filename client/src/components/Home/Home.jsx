@@ -21,7 +21,6 @@ export default function Home({}) {
   }, [dispatch]);
 
   let latestProducts = products.slice(-8);
-
   return (
     <div>
       <div>
@@ -33,7 +32,7 @@ export default function Home({}) {
         {latestProducts.map((e) => {
           return (
             // <Product key={e.id} image={e.images[0].url} name={e.name} price={e.price} />
-            <Product key={e.id} image={e.images} name={e.name} price={e.price} />
+            <Product key={e._id} image={e.images} name={e.name} price={e.price} id={e._id}/>
 
           );
         })}
