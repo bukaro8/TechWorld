@@ -33,8 +33,7 @@ export default function Home({ }) {
   let priceFilter = useSelector((state) => state.priceFilter);
   let ratingsFilter = useSelector((state) => state.ratingsFilter);
   let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
-  let products = [];
-
+ 
   if (searchName.length) {
     products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
   }
