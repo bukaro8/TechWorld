@@ -24,6 +24,7 @@ const initialState = {
   productDetails: [],
   filteredProducts: [],
   searchName:[],
+  detail: [],
   cartItems: JSON.parse(localStorage.getItem("items")) || [],
   carts: JSON.parse(localStorage.getItem("cart")) || []
 
