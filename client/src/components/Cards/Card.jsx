@@ -1,5 +1,5 @@
 import React from "react";
-import { addToCart, increaseQuantity, decreaseQuantity, removeOneProduct } from "../../Redux/actions";
+import { addToCart, increaseQuantity, decreaseQuantity, removeOneProduct, deleteCart } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -30,10 +30,14 @@ export default function Product({ name, image, price, ratings, id, }) {
 
     const remove = () => {
         dispatch(removeOneProduct(payload))
-        localStorage.setItem("cart", JSON.stringify(items))
-        localStorage.setItem("items", JSON.stringify(cantidad))
     }
 
+    const cleanCart = () => {
+        dispatch(deleteCart)
+    }
+
+    localStorage.setItem("cart", JSON.stringify(items))
+    localStorage.setItem("items", JSON.stringify(cantidad))
     const payload = {
         name,
         image,
