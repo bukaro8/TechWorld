@@ -1,48 +1,9 @@
 import React from "react";
-import { addToCart, increaseQuantity, decreaseQuantity, removeOneProduct } from "../../Redux/actions";
-import { useDispatch, useSelector } from "react-redux";
 
-
-export default function Product({ name, image, price, ratings, id, }) {
-    const items = useSelector((state) => state.carts)
-    const cantidad = useSelector((state) => state.cartItems)
-    console.log(cantidad)
-    console.log(items)
-    const dispatch = useDispatch()
-
-    const handleOnClick = () => {
-            dispatch(addToCart(payload))
-            localStorage.setItem("cart", JSON.stringify(items))
-            localStorage.setItem("items", JSON.stringify(cantidad))
-    }
-
-    const suma = () => {
-        dispatch(increaseQuantity(payload))
-        localStorage.setItem("cart", JSON.stringify(items))
-        localStorage.setItem("items", JSON.stringify(cantidad))
-    }
-
-    const resta = () => {
-        dispatch(decreaseQuantity(payload))
-        localStorage.setItem("cart", JSON.stringify(items))
-        localStorage.setItem("items", JSON.stringify(cantidad))
-    }
-
-    const remove = () => {
-        dispatch(removeOneProduct(payload))
-        localStorage.setItem("cart", JSON.stringify(items))
-        localStorage.setItem("items", JSON.stringify(cantidad))
-    }
-
-    const payload = {
-        name,
-        image,
-        price,
-        id
-    }
+export default function Product({ name, image, price, ratings, id }) {
     return (
             <div class="container mx-auto  ">
-                <a key={id}>
+                <a key={id} href={id}>
                     <div className='flex items-stretch -mx-4 h-full'>
                         <div className=" m-8 w-72 max-w-sm bg-white rounded-lg shadow-md dark:bg-slate-300 dark:border-gray-700 hover:bg-blue-200 ">
                             <img class="p-8 rounded-t-lg m h-64 w-64"
@@ -63,11 +24,7 @@ export default function Product({ name, image, price, ratings, id, }) {
                                 </div>
                                 <div class="flex items-center justify-between ">
                                     <span class="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
-                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleOnClick}>Add to cart</button>
-                                    {/* <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={suma}>Add</button>
-                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={resta}>Resta</button>
-                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={remove}>Remove</button> */}
-
+                                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
                                 </div>
                                 <p class="text-gray-500 text-base">
                                     <a href="#">Details...</a>

@@ -45,7 +45,7 @@ export default function Products() {
             <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {currentProducts.map((e) => {
                     return (
-                        <Product key={e.id} image={e.images} name={e.name} price={e.price} id={e._id}/>
+                        <Product key={e.id} image={e.images} name={e.name} price={e.price} />
                     )
                 })}
             </div>

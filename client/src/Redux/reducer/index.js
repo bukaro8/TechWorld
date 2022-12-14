@@ -1,4 +1,3 @@
-import { bindActionCreators } from "redux";
 import {
   GET_PRODUCTS, 
   SEARCH_BY_NAME,
@@ -6,12 +5,7 @@ import {
   FILTER_BY_PRICE,
   FILTER_BY_RATING,
   ORDER_BY_NAME,
-  GET_DETAIL,
-  ADD_TO_CART,
-  REMOVE_ONE_CART,
-  DELETE_CART,
-  INCREASE_QUANTITY,
-  DECREASE_QUANTITY
+  GET_DETAIL
 } from "../actions/index"
 
 const initialState = {
@@ -23,7 +17,8 @@ const initialState = {
   alphabeticalOrder: "all",
   productDetails: [],
   filteredProducts: [],
-  searchName:[]
+  searchName:[],
+  detail: [],
 
 }
 
@@ -77,76 +72,6 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 detail: action.payload
             }
-        case ADD_TO_CART:
-          if (state.cartItems.length === 0) {
-            let cart = {
-                id: action.payload.id,
-                name: action.payload.name,
-                image: action.payload.image,
-                price: action.payload.price,
-                quantity: 1
-            }
-            state.carts.push(cart)
-            state.cartItems.push(1)
-
-          }
-          else{
-            let check = false;
-            state.carts.map((item,key)=>{
-                if(item.id==action.payload.id){
-                    state.carts[key].quantity++;
-                    check=true;
-                    state.cartItems[0]++
-                }
-            });
-            if(!check){
-                let _cart = {
-                    id:action.payload.id,
-                    quantity:1,
-                    name:action.payload.name,
-                    image:action.payload.image,
-                    price:action.payload.price
-                }
-                state.cartItems[0]++
-                state.carts.push(_cart);
-            }
-        }
-          return {
-            ...state
-          }
-        case INCREASE_QUANTITY:
-            state.cartItems[0]++
-            state.carts.map((item,key)=>{
-                if(item.id==action.payload.id){
-                    state.carts[key].quantity++;
-                }
-            });
-            return {
-                ...state,
-            }
-        case DECREASE_QUANTITY:
-            state.carts.map((item,key)=>{
-                if(item.id==action.payload.id){
-                    if (state.carts[key].quantity > 1){
-                        state.carts[key].quantity--
-                        state.cartItems[0]--
-                        return {
-                            ...state
-                        }
-                    }
-                }
-            });
-            return {
-                ...state
-            }
-        case REMOVE_ONE_CART:
-            return {
-                ...state,
-                carts: state.carts.filter(e => e.id != action.payload.id),
-                
-            }
-
-
       default:
           return state;
   }
