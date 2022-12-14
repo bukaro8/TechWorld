@@ -1,10 +1,12 @@
 import {
+
     GET_PRODUCTS,
     SEARCH_BY_NAME,
     FILTER_BY_CATEGORY,
     FILTER_BY_PRICE,
     FILTER_BY_RATING,
     ORDER_BY_NAME,
+    GET_DETAIL,
     GET_USERS,
     CREATE_USERS,
 } from "../actions/index"
@@ -19,9 +21,11 @@ const initialState = {
     alphabeticalOrder: "all",
     productDetails: [],
     filteredProducts: [],
-    searchName: []
-
+    searchName: [],
+    detail:[]
+    
 }
+
 
 function rootReducer(state = initialState, action) {
 
@@ -83,4 +87,14 @@ function rootReducer(state = initialState, action) {
     }
 
 } 
+        case GET_DETAIL:
+            return{
+                ...state,
+                detail: action.payload
+            }
+      default:
+          return state;
+  }
+}
+
 export default rootReducer;
