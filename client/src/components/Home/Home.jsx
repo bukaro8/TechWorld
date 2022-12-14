@@ -27,6 +27,7 @@ export default function Home({ }) {
 
 
 
+
   let latestProducts = products.slice(-8);
   return (
     <div>
