@@ -23,7 +23,10 @@ const initialState = {
   alphabeticalOrder: "all",
   productDetails: [],
   filteredProducts: [],
-  searchName:[]
+  searchName:[],
+  detail: [],
+  cartItems: JSON.parse(localStorage.getItem("items")) || [],
+  carts: JSON.parse(localStorage.getItem("cart")) || []
 
 }
 
@@ -140,11 +143,33 @@ function rootReducer(state = initialState, action) {
                 ...state
             }
         case REMOVE_ONE_CART:
+            if (state.cartItems[0] > 0) {
+                let itemsQuantity = state.carts.map((e) => {
+                    if (e.id == action.payload.id)
+                      return e.quantity
+                  })
+                let quantity = []
+                let getNum = itemsQuantity.map(e => {
+                    if (typeof(e) === "number"){
+                        quantity.push(e)
+                    }
+                })
+                state.cartItems = [state.cartItems[0] - quantity[0]]
+            }
+            else{
+                state.cartItems[0] = 0
+            }
             return {
                 ...state,
-                carts: state.carts.filter(e => e.id != action.payload.id),
-                
+                carts: state.carts.filter(e => e.id != action.payload.id), 
             }
+        case DELETE_CART: {
+            return{
+                ...state,
+                carts: [],
+                cartItems: []
+            }
+        }
 
 
       default:
