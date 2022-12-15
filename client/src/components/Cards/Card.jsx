@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 export default function Product({ name, image, price, ratings, id, }) {
     const items = useSelector((state) => state.carts)
     const cantidad = useSelector((state) => state.cartItems)
-    console.log(cantidad)
-    console.log(items)
     const dispatch = useDispatch()
 
     const handleOnClick = () => {
