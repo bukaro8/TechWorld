@@ -3,9 +3,10 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
 import Dashboard from './components/Dashboard/Dasboard';
 import Products from './components/Products/Products';
-import './index.css'
+import './index.css';
 
 function App() {
+
   return (
     <div className='App'>
       <Switch>
@@ -23,6 +24,7 @@ function App() {
       </Switch>
     </div>
   );
+
 }
 
 export default App;
