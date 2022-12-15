@@ -134,13 +134,13 @@ function rootReducer(state = initialState, action) {
                         state.carts[key].quantity--
                         state.cartItems[0]--
                         return {
-                            ...state
+                            ...state,
                         }
                     }
                 }
             });
             return {
-                ...state
+                ...state,
             }
         case REMOVE_ONE_CART:
             if (state.cartItems[0] > 0) {
