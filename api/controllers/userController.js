@@ -43,24 +43,42 @@ exports.delAdmin = async (req, res, next) => {
 
 }
 
+// exports.putAdmin = async (req, res) => {
+// 	const idAdmin = req.params.id; //Solicito el id por params
+// 	try {
+// 		const usuario = await User.updateOne({
+// 			isAdmin: "false",
+// 			isBan: "true",
+// 			rol: "invitado",
+// 			MessageEven:"algo"
+
+// 		});
+
+// 		res.status(201).json({
+// 			success: true,
+// 			usuario,
+// 		});
+// 	} catch (e) {
+// 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
+// 	}
+// };
 exports.putAdmin = async (req, res) => {
-	const idAdmin = req.params.id; //Solicito el id por params
 	try {
-		const usuario = await User.updateOne({
-			isAdmin: "false",
-			isBan: "true",
-			rol: "invitado",
-			MessageEven:"algo"
-
-		});
-
-		res.status(201).json({
+		const actUser = await User.findById(req.params.id); 
+		const isAdmin = req.body.isAdmin;
+		const isBan = req.body.isBan;
+		actUser.isAdmin = isAdmin
+		actUser.isBan = isBan
+		await actUser.save();
+		res.status(200).json({
 			success: true,
-			usuario,
+			actUser, 
 		});
+	
 	} catch (e) {
-		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
+		return res.status(500).send('Debe ingresar un ID valido'); 
 	}
+	
 };
 
 
