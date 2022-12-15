@@ -27,10 +27,10 @@ export default function CartItem({id, name, price, image, quantity}) {
         setCont(cont - 1)
     }
 
-    const remove = () => {
-        dispatch(removeOneProduct(payload))
+    const remove = async() => {
+        await dispatch(removeOneProduct(payload))
     }
-
+    
     localStorage.setItem("cart", JSON.stringify(items))
     localStorage.setItem("items", JSON.stringify(cantidad))
     const payload = {
@@ -68,7 +68,7 @@ export default function CartItem({id, name, price, image, quantity}) {
         </div>
 
         <div className=""><h3>${cont * price}</h3></div>
-        <button className=""><img id={id} onClick={remove} src="Hola" alt="Delete" /></button>
+        <button type="button"  className=""  onClick={remove}>Remove</button>
     </div>
     )
 }

@@ -13,7 +13,7 @@ export default function ShoppingCart() {
     const [total, setTotal] = useState(0)
     // const user = useSelector((state) => state.userOne); //esta viendo el usuario del que compra
 
-    /* const successAlert = () => {
+   /*  const successAlert = () => {
         Swal.fire({
             title: 'All Products Removed!',
             confirmButtonText: "Ok",
@@ -24,29 +24,26 @@ export default function ShoppingCart() {
     var totalPrice
 
     function setIndividualPrice(){
-        //FUNCION PARA VER EL PRECIO INDIVIDUAL
         totalPrice = items.map(e => {
         return e.quantity * e.price
         })
         return totalPrice
     }
 
-    const setTotalPrice = () =>{
-        //FUNCION PARA EL TOTAL DE PRECIO
-        
+    function setTotalPrice(){
         setIndividualPrice()
-        var b = totalPrice.reduce((a, b) => {return  a + b})
-        return b
-
+        var total = totalPrice.reduce((a, b) => {return a + b})
+        return total
     }
-    useEffect(() => {
-        setIndividualPrice()
+    
+    const handleOnClick = () =>{
         setTotal(setTotalPrice())
-    })
-    console.log(total)
-    //setTotal(setTotalPrice())
+    }
 
-    var a = JSON.parse(localStorage.getItem("cart"))
+    const cleanCart = () => {
+        dispatch(deleteCart())
+    }
+    
 
     /* const handleBuyNow = () => {
         if( totalCart.length > 0 ){ //que usar en vez de .length?
@@ -74,7 +71,7 @@ export default function ShoppingCart() {
     /* if (cart.length) { return <Loading /> } */
 
     return (
-        <div className="">
+        <div className="" onClick={handleOnClick}>
             <NavBar/>
             <div id=""><h2 >Shopping Cart</h2></div>
             <div className="">
@@ -92,11 +89,15 @@ export default function ShoppingCart() {
                     <p>Order Summary</p>
                     <div className="">
                         <span>Total: </span>
-                        <span className=""> $ {total}</span>
+                        {
+                            !items.length ? 
+                            <span>$ 0</span> :
+                            <span className=""> $ {total}</span>
+                        }
                     </div>
                 </div>
                 <div className="">
-                    {/* <button className=""  onClick={dispatch(deleteCart())} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button> */}
+                    <button className=""  onClick={cleanCart} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
                     <button className="" type="button" /* onClick={handleBuyNow()} */ >Buy now</button>
                 </div>
             </div>
