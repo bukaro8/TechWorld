@@ -6,22 +6,22 @@ import ShoppingCart from './containers/ShoppingCart'
 import './index.css'
 
 function App() {
-  return (
-    <div className='App'>
-      <Switch>
-        <Route exact path='/'>
-          <NavBar />
-          <Home />
-        </Route>
-        <Route exact path='/products'>
-          <Products />
-        </Route>
+	return (
+		<div className='App'>
+			<Switch>
+				<Route exact path='/'>
+					<NavBar />
+					<Home />
+				</Route>
+				<Route exact path='/products'>
+					<Products />
+				</Route>
         <Route exact path="/cart">
           <ShoppingCart />
         </Route>
-      </Switch>
-    </div>
-  );
+			</Switch>
+		</div>
+	);
 }
 
 export default App;
