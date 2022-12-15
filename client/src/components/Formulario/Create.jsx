@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { newProduct, getAllProducts } from '../../Redux/actions/index';
+import Card from '../Cards/Card'
 
 // import validate from './Validate';
 
@@ -110,22 +111,22 @@ export default function Create() {
 		}
 	}
 
-	return (
-		<div>
-			<Link
-				to='/'
-				class='text-white  bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 '
-			>
-				<button>Return home</button>
-			</Link>
+    return (
+        <div>
 
-			<div>
-				<div>
+            <Link to='/' class="text-white  bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "
+            >
+                <button>Return home</button>
+            </Link>
+
+			<div class="">
+
+				<div class='flex justify-center p-10'>
 					<h2>Create your product!</h2>
 				</div>
-				<form onSubmit={(e) => handleSubmit(e)} class='w-full max-w-lg'>
-					<section class='flex flex-wrap -mx-1 mb-1'>
-						<div class='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+				<form onSubmit={(e) => handleSubmit(e)} class=''>
+					<section class='mx-40'>
+						<div class=''>
 							<label
 								class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
 								for='grid-first-name'
@@ -159,30 +160,20 @@ export default function Create() {
                             :
                             <i></i>
                         } */}
-						</div>
-						<div>
-							<label
-								class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-								for='grid-first-name'
-							>
-								Price
-							</label>
-							<input
-								type='number'
-								value={input.price}
-								name='price'
-								onChange={(e) => handleChange(e)}
-								style={
-									input.price.length
-										? errors.price
-											? { borderColor: '#e74c3c' }
-											: { borderColor: '#2ecc71' }
-										: {}
-								}
-								className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-								id='grid-first-name'
-							/>
-							{/* {
+                        </div>
+                        <div>
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Price</label>
+                            <input
+                                type="number"
+                                value={input.price}
+                                name="price"
+                                onChange={(e) => handleChange(e)}
+                                style={input.price.length ? errors.price ? { borderColor: '#e74c3c' } :
+                                    { borderColor: '#2ecc71' } : {}}
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
+
+                            />
+                            {/* {
                             errors.price ? (
                                 <div>
                                 <i style={{color: '#e74c3c'}}></i>
@@ -194,30 +185,20 @@ export default function Create() {
                             :
                             <i></i>
                         } */}
-						</div>
-						<div>
-							<label
-								class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-								for='grid-first-name'
-							>
-								Description
-							</label>
-							<input
-								type='text'
-								value={input.description}
-								name='description'
-								onChange={(e) => handleChange(e)}
-								style={
-									input.description.length
-										? errors.description
-											? { borderColor: '#e74c3c' }
-											: { borderColor: '#2ecc71' }
-										: {}
-								}
-								className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-								id='grid-first-name'
-							/>
-							{/* {
+                        </div>
+                        <div>
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Description</label>
+                            <input
+                                type="text"
+                                value={input.description}
+                                name="description"
+                                onChange={(e) => handleChange(e)}
+                                style={input.description.length ? errors.description ? { borderColor: '#e74c3c' } :
+                                    { borderColor: '#2ecc71' } : {}}
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
+
+                            />
+                            {/* {
                             errors.description ? (
                                 <div>
                                 <i  style={{color: '#e74c3c'}}></i>
@@ -229,30 +210,20 @@ export default function Create() {
                             :
                             <i></i>
                         } */}
-						</div>
-						<div>
-							<label
-								class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-								for='grid-first-name'
-							>
-								Ratings
-							</label>
-							<input
-								type='number'
-								value={input.ratings}
-								name='ratings'
-								onChange={(e) => handleChange(e)}
-								style={
-									input.ratings.length
-										? errors.rating
-											? { borderColor: '#e74c3c' }
-											: { borderColor: '#2ecc71' }
-										: {}
-								}
-								className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-								id='grid-first-name'
-							/>
-							{/* {
+                        </div>
+                        <div>
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Ratings</label>
+                            <input
+                                type="number"
+                                value={input.ratings}
+                                name="ratings"
+                                onChange={(e) => handleChange(e)}
+                                style={input.ratings.length ? errors.rating ? { borderColor: '#e74c3c' } :
+                                    { borderColor: '#2ecc71' } : {}}
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
+
+                            />
+                            {/* {
                              errors.ratings ? (
                                 <div>
                                 <i className="fas fa-exclamation-circle" style={{color: '#e74c3c'}}></i>
@@ -264,152 +235,78 @@ export default function Create() {
                             :
                             <i></i>
                         } */}
-							{/* <div>
-								<label
-									class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-									for='grid-first-name'
-								>
-									images
-								</label>
-								<input
-									type='array'
-									value={input.images}
-									name='images'
-									onChange={(e) => handleChange(e)}
-									style={
-										input.images.length
-											? errors.images
-												? { borderColor: '#e74c3c' }
-												: { borderColor: '#2ecc71' }
-											: {}
-									}
-									className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-									id='grid-first-name'
-								/>
-							</div> */}
+                            <div>
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">images</label>
+                                <input
+                                    type="array"
+                                    value={input.images}
+                                    name="images"
+                                    onChange={(e) => handleChange(e)}
+                                    style={input.images.length ? errors.images ? { borderColor: '#e74c3c' } :
+                                        { borderColor: '#2ecc71' } : {}}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
-							{/* //*=========================================== */}
-							<div
-								{...getRootProps()}
-								className={`m-1 p-1 border border-dashed border-red-500 flex justify-center h-16 items-center rounded {${
-									isDragActive ? 'border-solid border-green-800' : null
-								}}`}
-							>
-								<input
-									name='images'
-									// value={input.images}
-									// onChange={(e) => handleChange(e)}
-									{...getInputProps()}
-								/>
-								Drop Image
-							</div>
-							{loading ? (
-								<h2>loading images</h2>
-							) : (
-								<img src={input.images} style={{ width: '300px' }} />
-							)}
-							{/* //*=========================================== */}
+                                />
+                            </div>
+                            <div>
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">category</label>
+                                <input
+                                    type="string"
+                                    value={input.category}
+                                    name="category"
+                                    onChange={(e) => handleChange(e)}
+                                    style={input.category.length ? errors.category ? { borderColor: '#e74c3c' } :
+                                        { borderColor: '#2ecc71' } : {}}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
-							<div>
-								<label
-									class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-									for='grid-first-name'
-								>
-									category
-								</label>
-								<input
-									type='string'
-									value={input.category}
-									name='category'
-									onChange={(e) => handleChange(e)}
-									style={
-										input.category.length
-											? errors.category
-												? { borderColor: '#e74c3c' }
-												: { borderColor: '#2ecc71' }
-											: {}
-									}
-									className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-									id='grid-first-name'
-								/>
-							</div>
-							<div>
-								<label
-									class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-									for='grid-first-name'
-								>
-									Seller
-								</label>
-								<input
-									type='string'
-									value={input.seller}
-									name='seller'
-									onChange={(e) => handleChange(e)}
-									style={
-										input.seller.length
-											? errors.seller
-												? { borderColor: '#e74c3c' }
-												: { borderColor: '#2ecc71' }
-											: {}
-									}
-									className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-									id='grid-first-name'
-								/>
-							</div>
-							<div>
-								<label
-									class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-									for='grid-first-name'
-								>
-									Stock
-								</label>
-								<input
-									type='number'
-									value={input.stock}
-									name='stock'
-									onChange={(e) => handleChange(e)}
-									style={
-										input.stock.length
-											? errors.stock
-												? { borderColor: '#e74c3c' }
-												: { borderColor: '#2ecc71' }
-											: {}
-									}
-									className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-									id='grid-first-name'
-								/>
-							</div>
-							<div>
-								<label
-									class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-									for='grid-first-name'
-								>
-									Reviews
-								</label>
-								<input
-									type='number'
-									value={input.numOfReviews}
-									name='numOfReviews'
-									onChange={(e) => handleChange(e)}
-									style={
-										input.numOfReviews.length
-											? errors.numOfReviews
-												? { borderColor: '#e74c3c' }
-												: { borderColor: '#2ecc71' }
-											: {}
-									}
-									className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
-									id='grid-first-name'
-								/>
-							</div>
-						</div>
-					</section>
-					<button type='submit'>CREAR PRODUCTO</button>
-					<button onClick={(e) => console.log(input)} type='button'>
-						mirar
-					</button>
-				</form>
-			</div>
-		</div>
-	);
+                                />
+                            </div>
+                            <div>
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Seller</label>
+                                <input
+                                    type="string"
+                                    value={input.seller}
+                                    name="seller"
+                                    onChange={(e) => handleChange(e)}
+                                    style={input.seller.length ? errors.seller ? { borderColor: '#e74c3c' } :
+                                        { borderColor: '#2ecc71' } : {}}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
+
+                                />
+                            </div>
+                            <div>
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Stock</label>
+                                <input
+                                    type="number"
+                                    value={input.stock}
+                                    name="stock"
+                                    onChange={(e) => handleChange(e)}
+                                    style={input.stock.length ? errors.stock ? { borderColor: '#e74c3c' } :
+                                        { borderColor: '#2ecc71' } : {}}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
+
+                                />
+                            </div>
+                            <div>
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Reviews</label>
+                                <input
+                                    type="number"
+                                    value={input.numOfReviews}
+                                    name="numOfReviews"
+                                    onChange={(e) => handleChange(e)}
+                                    style={input.numOfReviews.length ? errors.numOfReviews ? { borderColor: '#e74c3c' } :
+                                        { borderColor: '#2ecc71' } : {}}
+                                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
+
+                                />
+                            </div>
+                        </div>
+
+                    </section>
+                    <button type="submit">CREAR PRODUCTO</button>
+                </form>
+            </div>
+
+        </div>
+    )
 }

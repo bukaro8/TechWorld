@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
+import Dashboard from './components/Dashboard/Dasboard';
 import Products from './components/Products/Products';
 import './index.css';
 
@@ -15,6 +16,10 @@ function App() {
 				<Route exact path='/products'>
 					<Products />
 				</Route>
+        <Route exact path='/dashboard'>
+          <Dashboard />
+        </Route>
+
 			</Switch>
 		</div>
 	);
