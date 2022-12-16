@@ -13,13 +13,14 @@ export const FILTER_BY_PRICE = "FILTER_BY_TYPE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const CREATE_USERS = "CREATE_USERS";
 export const GET_USERS = "GET_USERS"
-export const  CREATE_PRODUCT= "CREATE_PRODUCT";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_DETAIL = "GET_DETAIL";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_CART = "REMOVE_ONE_CART"
 export const DELETE_CART = "DELETE_CART";
-export const INCREASE_QUANTITY = "INCREASE_QUANTITY"
-export const DECREASE_QUANTITY = "DECREASE_QUANTITY"
+export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
+export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
+export const GET_USER_ADMIN = "GET_USER_ADMIN";
 
 
 export function getAllProducts() {
@@ -40,6 +41,16 @@ export function getAllUsers() {
         })
     }
 }
+export function getUserAdmin() {
+    return async function (dispatch) {
+        var json = await back_call.get('/users/admin')
+        return dispatch({
+            type: GET_USER_ADMIN,
+            payload: json.data
+        })
+    }
+}
+
 export function searchByName(name) {
     return async function (dispatch) {
         var json = await back_call.get(`/products?name=${name}`)
@@ -94,13 +105,13 @@ export function orderByName(how) {
 }
 
 export const getDetail = (id) => {
-    return async function(dispatch) {
-    var infoDetail = await back_call.get(`/products/${id}`).data;
-    return dispatch({
-        type: GET_DETAIL,
-        payload: infoDetail
-    })
-        
+    return async function (dispatch) {
+        var infoDetail = await back_call.get(`/products/${id}`).data;
+        return dispatch({
+            type: GET_DETAIL,
+            payload: infoDetail
+        })
+
     }
 }
 

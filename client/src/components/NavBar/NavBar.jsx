@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 // import logo from "./logo.jpg";
 import { NavLink } from "react-router-dom"
 import Search from '../Search/Search'
@@ -10,6 +11,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Registrar/LoginButton";
 import LogoutButton from "../Registrar/LogoutButton";
 import Profile from '../Registrar/Profile'
+// import { getUserAdmin } from "../../Redux/actions";
+
 
 
 // modal
@@ -17,6 +20,22 @@ import Profile from '../Registrar/Profile'
 
 export default function NavBar({ cerrarModal }) {
     const { user, isAuthenticated } = useAuth0();
+
+
+    // let userAdmin = useSelector((state) => state.admin);
+
+    // let dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getUserAdmin());
+    // }, [dispatch]);
+
+    // const emailAdmin = userAdmin.map((e) => e.email)
+    // const userEmailAdmin = user.email;
+
+    // console.log("ADADADDA",emailAdmin);
+    // console.log("AAADMIN", userAdmin);
+    // console.log("UUSER",user.email);
 
 
 
@@ -41,7 +60,7 @@ export default function NavBar({ cerrarModal }) {
                             <Link to="/cart" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
                             <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
-                            <Link to="/" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
+                            <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
 
                         </ul>
                     </div>
@@ -53,6 +72,12 @@ export default function NavBar({ cerrarModal }) {
                         :
                         <LoginButton />
                     }
+
+                    {/* {userEmailAdmin === emailAdmin ?
+                        <LogoutButton />
+                        :
+                        <h1>sffssf</h1>
+                    } */}
 
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>
