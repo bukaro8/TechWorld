@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import logo from "./logo.jpg";
-import { NavLink } from "react-router-dom"
 import Search from '../Search/Search'
 import { Link } from "react-router-dom";
+
 import logos from '../assets/logos.png'
 import Carrito from '../assets/Carrito.jsx'
 
@@ -11,14 +9,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Registrar/LoginButton";
 import LogoutButton from "../Registrar/LogoutButton";
 import Profile from '../Registrar/Profile'
+
 // import { getUserAdmin } from "../../Redux/actions";
+// import IsAuthenticated from '../Registrar/IsAuthenticated'
+// import { useDispatch, useSelector } from "react-redux";
 
 
-
-// modal
-
-
-export default function NavBar({ cerrarModal }) {
+export default function NavBar() {
     const { user, isAuthenticated } = useAuth0();
 
 
@@ -31,13 +28,6 @@ export default function NavBar({ cerrarModal }) {
     // }, [dispatch]);
 
     // const emailAdmin = userAdmin.map((e) => e.email)
-    // const userEmailAdmin = user.email;
-
-    // console.log("ADADADDA",emailAdmin);
-    // console.log("AAADMIN", userAdmin);
-    // console.log("UUSER",user.email);
-
-
 
     return (
 
@@ -72,12 +62,6 @@ export default function NavBar({ cerrarModal }) {
                         :
                         <LoginButton />
                     }
-
-                    {/* {userEmailAdmin === emailAdmin ?
-                        <LogoutButton />
-                        :
-                        <h1>sffssf</h1>
-                    } */}
 
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>

@@ -4,31 +4,29 @@ import Home from './components/Home/Home';
 import Dashboard from './components/Dashboard/Dasboard';
 import Products from './components/Products/Products';
 import ShoppingCart from './containers/ShoppingCart';
-import {Switch} from 'react-router-dom'
+import { Switch } from 'react-router-dom'
+import Pag404 from './components/Pag404';
 import { useAuth0 } from '@auth0/auth0-react';
+
+
+import ProtectedRoute from "./ProtectedRoute";
 
 import './index.css'
 
 function App() {
-	const { user, isAuthenticated } = useAuth0();
-	console.log("USEER",user);
+
 	return (
 		<div className='App'>
+			
 			<Switch>
-				<Route exact path='/'>
-					<NavBar />
-					<Home />
-				</Route>
-				<Route exact path='/products'>
-					<Products />
-				</Route>
-				<Route exact path='/dashboard'>
-					<Dashboard />
-				</Route>
+				<Route exact path='/'>  <NavBar /><Home />  </Route>
+				<Route exact path='/products'>	<Products />  </Route>
+				<Route exact path="/cart">	<ShoppingCart />  </Route>
 
-				<Route exact path="/cart">
-					<ShoppingCart />
-				</Route>
+				<ProtectedRoute exact path="/dashboard" component={Dashboard} />
+				<Route path='*' component={Pag404} />
+
+
 			</Switch>
 		</div>
 	);

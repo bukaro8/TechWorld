@@ -19,6 +19,7 @@ import {
 } from "../actions/index"
 
 const initialState = {
+    users:[],
     productsFix: [],
     allProducts: [],
     admin:[],

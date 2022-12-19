@@ -22,7 +22,7 @@ export default function FormAdmin() {
         password: "",
         isAdmin: "",
         isBan: "",
-        direction: "",
+        address: "",
         phone: "",
         createdAt: "",
 
@@ -52,7 +52,7 @@ export default function FormAdmin() {
                 password: "",
                 isAdmin: "",
                 isBan: "",
-                direction: "",
+                address: "",
                 phone: "",
                 createdAt: "",
 
@@ -144,13 +144,13 @@ export default function FormAdmin() {
                                 />
                             </div>
                             <div>
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">direction</label>
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">address</label>
                                 <input
                                     type="string"
-                                    value={input.direction}
-                                    name="direction"
+                                    value={input.address}
+                                    name="address"
                                     onChange={(e) => handleChange(e)}
-                                    style={input.direction.length ? errors.direction ? { borderColor: '#e74c3c' } :
+                                    style={input.address.length ? errors.address ? { borderColor: '#e74c3c' } :
                                         { borderColor: '#2ecc71' } : {}}
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
