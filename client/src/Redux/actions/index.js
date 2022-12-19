@@ -106,7 +106,7 @@ export function orderByName(how) {
 
 export const getDetail = (id) => {
     return async function (dispatch) {
-        var infoDetail = await back_call.get(`/products/${id}`).data;
+        var infoDetail = await (await back_call.get(`/product/${id}`)).data.productTotal;
         return dispatch({
             type: GET_DETAIL,
             payload: infoDetail
