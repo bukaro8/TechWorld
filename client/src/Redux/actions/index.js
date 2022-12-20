@@ -21,6 +21,8 @@ export const DELETE_CART = "DELETE_CART";
 export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const GET_USER_ADMIN = "GET_USER_ADMIN";
+export const FILTER_S = 'FILTER_S';
+export const PUT_PRODUCT= 'PUT_PRODUCT';
 
 
 export function getAllProducts() {
@@ -149,4 +151,21 @@ export function deleteCart(payload) {
         type: DELETE_CART,
         payload
     }
+}
+export const putProdut = (input) => {
+    return async function() {
+     await back_call.post(`/product/editProduct`,input);
+    }
+}
+export const filState = (input) => {
+    
+    return async function (dispatch) {
+        var json = await back_call.get(`/product/filterProduct/${input}`);
+        console.log(json)
+        return dispatch({
+            type: FILTER_S,
+            payload: json.data
+        })
+    }
+    
 }

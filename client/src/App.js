@@ -8,6 +8,7 @@ import CardDetail from './components/Cards/CardDetail';
 import { Switch } from 'react-router-dom'
 import Pag404 from './components/Pag404';
 import { useAuth0 } from '@auth0/auth0-react';
+import EditarUsuario from './components/EditProduct/editProduct';
 
 
 import ProtectedRoute from "./ProtectedRoute";
@@ -26,6 +27,7 @@ function App() {
 				<Route  path="/product/:id">  <CardDetail />  </Route>
 
 				<ProtectedRoute exact path="/dashboard" component={Dashboard} />
+				<Route exact path='/edit/:id' ><EditarUsuario/> </Route>
 				{/* <Route path='*' component={Pag404} /> */}
 
 
