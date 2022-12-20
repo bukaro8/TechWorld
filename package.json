@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "SET node api/server",
-    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon api/server",
-    "prod": "SET NODE_ENV=PRODUCTION& nodemon api/server",
+    "dev": " nodemon api/server",
+    "prod": " nodemon api/server",
     "jsonToDb": "node api/utils/jsonToDb.js"
   },
   "author": "Vic",
