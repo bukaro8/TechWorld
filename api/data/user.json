@@ -1,0 +1,29 @@
+[
+    {
+        "name": "karen",
+        "email": "karen@gmail.com",
+        "password": "123",
+        "isAdmin": "true",
+        "isBan": "false",
+        "address": "porahi 321",
+        "phone": "777"
+    },
+    {
+        "name": "sneider",
+        "email": "sneider@gmail.com",
+        "password": "123",
+        "isAdmin": "true",
+        "isBan": "false",
+        "address": "porahi 232",
+        "phone": "777"
+    },
+    {
+        "name": "yo",
+        "email": "yo@gmail.com",
+        "password": "123",
+        "isAdmin": "true",
+        "isBan": "false",
+        "address": "porahi 333",
+        "phone": "999"
+    }
+]

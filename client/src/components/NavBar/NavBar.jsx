@@ -1,38 +1,37 @@
-import React from "react";
-// import logo from "./logo.jpg";
-import { NavLink } from "react-router-dom"
+import React, { useState, useEffect } from "react";
 import Search from '../Search/Search'
 import { Link } from "react-router-dom";
+
 import logos from '../assets/logos.png'
 import Carrito from '../assets/Carrito.jsx'
-import Formulario from '../Formulario/Create'
 
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Registrar/LoginButton";
 import LogoutButton from "../Registrar/LogoutButton";
-import UnloginProfile from '../Registrar/UnlogingProfile'
 import Profile from '../Registrar/Profile'
-import IsAuthenticated from "../Registrar/IsAuthenticated";
+
+// import { getUserAdmin } from "../../Redux/actions";
+// import IsAuthenticated from '../Registrar/IsAuthenticated'
+// import { useDispatch, useSelector } from "react-redux";
 
 
-// modal
-import { useModal } from '../assets/modal/useModal'
-import Modal from '../assets/modal/Modal'
-
-
-export default function NavBar({ cerrarModal }) {
-    const [isOpenModal, openModal, closeModal] = useModal(false);
+export default function NavBar() {
     const { user, isAuthenticated } = useAuth0();
-    const { loginWithRedirect } = useAuth0();
 
 
+    // let userAdmin = useSelector((state) => state.admin);
+
+    // let dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getUserAdmin());
+    // }, [dispatch]);
+
+    // const emailAdmin = userAdmin.map((e) => e.email)
 
     return (
 
         <div>
-            <div>
-
-            </div>
             <nav className="bg-white border-gray-200 ">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-full h-fit px-4 md:px-6 py-6 mt-2 bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600">
 
@@ -46,26 +45,20 @@ export default function NavBar({ cerrarModal }) {
 
                     <div class="links lg:block hidden w-1/6 md:w-4/6">
                         <ul class="menu flex items center justify-end gap-5 text-xl font-bold ">
-                            <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal}>Create Product</button>
-                            <Modal isOpen={isOpenModal} closeModal={closeModal}>
-                                <Formulario closeModal={closeModal} cerrarModal={cerrarModal} />
-                            </Modal>
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
-                            <Link to="/" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
-                            <Link to="/" className=""></Link>
+                            <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
+                            <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
 
                         </ul>
                     </div>
 
-                    {/* <isAuthenticated /> */}
 
                     <Profile />
                     {isAuthenticated ?
                         <LogoutButton />
-                        // <UnloginProfile />
                         :
                         <LoginButton />
                     }

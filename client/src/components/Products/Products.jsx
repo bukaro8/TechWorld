@@ -53,7 +53,6 @@ export default function Products() {
                 <Paginated page={currentPage} setPage={setCurrentPage} maxPage={maxPage} />
             </div>
         </div>
-    // </div>
     )
 
 }
