@@ -80,7 +80,7 @@ export default function ShoppingCart() {
                     <div>There are no products in the Cart yet!</div> :
                     items.map(e => {
                         return (
-                        <CartItem key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} quantity={e.quantity} />
+                        <CartItem key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} quantity={e.quantity} stock={e.stock}/>
                     )})
                 }
             </div>

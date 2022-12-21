@@ -110,7 +110,8 @@ function rootReducer(state = initialState, action) {
                     name: action.payload.name,
                     image: action.payload.image,
                     price: action.payload.price,
-                    quantity: 1
+                    quantity: 1,
+                    stock: action.payload.stock
                 }
                 state.carts.push(cart)
                 state.cartItems.push(1)
@@ -120,9 +121,11 @@ function rootReducer(state = initialState, action) {
                 let check = false;
                 state.carts.map((item, key) => {
                     if (item.id == action.payload.id) {
-                        state.carts[key].quantity++;
-                        check = true;
-                        state.cartItems[0]++
+                        if (state.carts[key].stock > state.carts[key].quantity) {
+                            state.carts[key].quantity++;
+                            state.cartItems[0]++
+                        }
+                        check = true
                     }
                 });
                 if (!check) {
@@ -131,7 +134,8 @@ function rootReducer(state = initialState, action) {
                         quantity: 1,
                         name: action.payload.name,
                         image: action.payload.image,
-                        price: action.payload.price
+                        price: action.payload.price,
+                        stock: action.payload.stock
                     }
                     state.cartItems[0]++
                     state.carts.push(_cart);
@@ -141,10 +145,12 @@ function rootReducer(state = initialState, action) {
                 ...state
             }
         case INCREASE_QUANTITY:
-            state.cartItems[0]++
             state.carts.map((item, key) => {
                 if (item.id == action.payload.id) {
-                    state.carts[key].quantity++;
+                    if (state.carts[key].stock > state.carts[key].quantity) {
+                        state.carts[key].quantity++;
+                        state.cartItems[0]++
+                    }
                 }
             });
             return {
