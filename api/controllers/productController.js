@@ -41,3 +41,22 @@ exports.idProduct = async (req, res) => {
 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
 	}
 };
+
+exports.putProduct = async (req, res) => {
+	try {
+		const actProduct = await Product.findById(req.params.id); 
+		const newStock = req.body.stock;
+		const newPrice = req.body.price;
+		actProduct.stock = newStock
+		actProduct.price = newPrice
+		await actProduct.save();
+		res.status(200).json({
+			success: true,
+			actProduct, 
+		});
+	
+	} catch (e) {
+		return res.status(500).send('Debe ingresar un ID valido'); 
+	}
+	
+};

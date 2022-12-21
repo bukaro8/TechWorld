@@ -7,15 +7,10 @@ import { getAllProducts } from '../../Redux/actions';
 import gif from '../assets/imagenes/gif.png'
 import Carrusel from '../assets/Carrusel/Carrusel';
 
-// import Formulario from '../Formulario/Create';
-// modal
-// import {useModal}from '../assets/modal/useModal'
-// import Modal from '../assets/modal/Modal'
 
 export default function Home({ }) {
 
 
-  // const [isOpenModal, openModal, closeModal] = useModal(false);
   let products = useSelector((state) => state.allProducts);
 
 
@@ -32,12 +27,7 @@ export default function Home({ }) {
   return (
     <div>
       <Carrusel />
-      {/* <img src={gif} className="flex flex-wrap mx-auto w-11/12 m-8 " /> */}
-
-      <div>
-        <img src={gif} className="flex flex-wrap mx-auto w-11/12 m-8 " />
-      </div>
-
+     
       {/* <div class="flex  items-stretch  -mx-4"> */}
       <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
 
@@ -52,9 +42,7 @@ export default function Home({ }) {
       </div>
       {/* <Formulario/> */}
 
-      {/* ****************************************************************************************** */}
-      {/* Modal */}
-=======
+
      {/* ****************************************************************************************** */}
                                                {/* Modal */}
 
