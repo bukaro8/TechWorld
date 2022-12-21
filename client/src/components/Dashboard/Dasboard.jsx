@@ -5,6 +5,7 @@ import Formulario from '../Formulario/Create'
 import Tablas from './Tablas'
 import { useModal } from '../assets/modal/useModal'
 import Modal from '../assets/modal/Modal'
+import  List  from "../EditProduct/listProduct";
 
 // import { getAllUsers } from "../../Redux/actions";
 
@@ -13,6 +14,7 @@ import Modal from '../assets/modal/Modal'
 const Dasboard = ({ cerrarModal }) => {
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);
+  const [isOpenModal3, openModal3, closeModal3] = useModal(false);
 
   // let userss = useSelector((state) => state.users);
 
@@ -42,6 +44,11 @@ const Dasboard = ({ cerrarModal }) => {
             <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal2}>Create Product</button>
             <Modal isOpen={isOpenModal2} closeModal={closeModal2}>
               <Formulario closeModal={closeModal} cerrarModal={cerrarModal} />
+            </Modal>
+
+            <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal3}>Edit Product</button>
+            <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
+              <List closeModal={closeModal} cerrarModal={cerrarModal} />
             </Modal>
           </div>
         </div>

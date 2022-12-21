@@ -12,7 +12,7 @@ exports.newProduct = async (req, res) => {
 };
 exports.getProducts = async (req, res, next) => {
 	const name = req.query.name;
-	const product = await Product.find();
+	const product = await Product.find({ state: true });
 	if (name) {
 	  const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
 	  result.length
@@ -44,19 +44,37 @@ exports.idProduct = async (req, res) => {
 
 exports.putProduct = async (req, res) => {
 	try {
-		const actProduct = await Product.findById(req.params.id); 
-		const newStock = req.body.stock;
-		const newPrice = req.body.price;
-		actProduct.stock = newStock
-		actProduct.price = newPrice
-		await actProduct.save();
-		res.status(200).json({
-			success: true,
-			actProduct, 
-		});
-	
+	  const actProduct = await Product.findById({ _id: req.body._id });
+	  const newStock = req.body.stock;
+	  const newPrice = req.body.price;
+	  const newState = req.body.state;
+	  actProduct.stock = newStock;
+	  actProduct.price = newPrice;
+	  actProduct.state = newState;
+	  await actProduct.save();
+	  res.status(200).json({
+		success: true,
+		actProduct,
+	  });
 	} catch (e) {
-		return res.status(500).send('Debe ingresar un ID valido'); 
+	  return res.status(500).send("Debe ingresar un ID valido");
 	}
-	
-};
+  };
+exports.filState = async (req, res) => {
+	try {
+	  const { state } = req.params;
+  
+	  
+	  if (state === "all") {
+		res.status(200).json(await Product.find());
+	  } else {
+		if (state === "true") {
+		  res.status(200).json(await Product.find({ state: true }));
+		} else {
+		  res.status(200).json(await Product.find({ state: false }));
+		}
+	  }
+	} catch (e) {
+	  return res.status(500).send("Debe ingresar");
+	}
+  };

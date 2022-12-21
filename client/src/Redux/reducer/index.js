@@ -15,7 +15,9 @@ import {
     DECREASE_QUANTITY,
     GET_USERS,
     CREATE_USERS,
-    GET_USER_ADMIN
+    GET_USER_ADMIN,
+    PUT_PRODUCT,
+    FILTER_S
 } from "../actions/index"
 
 const initialState = {
@@ -32,7 +34,8 @@ const initialState = {
     searchName: [],
     detail: [],
     cartItems: JSON.parse(localStorage.getItem("items")) || [],
-    carts: JSON.parse(localStorage.getItem("cart")) || []
+    carts: JSON.parse(localStorage.getItem("cart")) || [],
+    filterState: [],
 
 }
 
@@ -193,8 +196,16 @@ function rootReducer(state = initialState, action) {
                 cartItems: []
             }
         }
-
-
+        case PUT_PRODUCT:
+            return {
+                ...state,
+            };
+        case FILTER_S:
+            return {
+                ...state,
+                filterState: action.payload
+            };
+            
         default:
             return state;
     }
