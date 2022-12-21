@@ -12,12 +12,16 @@ import {
   REMOVE_ONE_CART,
   DELETE_CART,
   INCREASE_QUANTITY,
-  DECREASE_QUANTITY
+  DECREASE_QUANTITY,
+  GET_USERS,
+  CREATE_USERS,
+  GET_USER_ADMIN
 } from "../actions/index"
 
 const initialState = {
   productsFix: [],
   allProducts: [],
+  admin:[],
   categoryFilter: "all",
   priceFilter: "all",
   ratingsFilter: "all",
@@ -48,6 +52,11 @@ function rootReducer(state = initialState, action) {
                 users: action.payload
             };
 
+        case GET_USER_ADMIN:
+                return {
+                    ...state,
+                    admin: action.payload
+                };
         case SEARCH_BY_NAME:
             return {
                 ...state,
@@ -86,9 +95,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
             };
 
-        default:
-            return state;
-    }
+      
 
         case GET_DETAIL:
             return{

@@ -41,3 +41,5 @@ exports.idProduct = async (req, res) => {
 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
 	}
 };
+
+

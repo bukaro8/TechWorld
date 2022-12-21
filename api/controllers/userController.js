@@ -80,3 +80,12 @@ exports.putAdmin = async (req, res) => {
 // 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
 // 	}
 // };
+
+
+exports.getUserAdmin = async (req, res, next) => {
+	const userAdmin=[];
+	const result = await User.find({ isAdmin: true })
+	userAdmin.push(result)
+	// console.log(userAdmin);
+	res.status(200).send(result)
+}

@@ -20,6 +20,7 @@ export const REMOVE_ONE_CART = "REMOVE_ONE_CART"
 export const DELETE_CART = "DELETE_CART";
 export const INCREASE_QUANTITY = "INCREASE_QUANTITY"
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY"
+export const GET_USER_ADMIN = "GET_USER_ADMIN";
 
 
 export function getAllProducts() {
@@ -40,6 +41,17 @@ export function getAllUsers() {
         })
     }
 }
+
+export function getUserAdmin() {
+    return async function (dispatch) {
+        var json = await back_call.get('/users/admin')
+        return dispatch({
+            type: GET_USER_ADMIN,
+            payload: json.data
+        })
+    }
+}
+
 export function searchByName(name) {
     return async function (dispatch) {
         var json = await back_call.get(`/products?name=${name}`)

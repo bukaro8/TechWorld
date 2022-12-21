@@ -5,7 +5,7 @@ import UnloginProfile from "./UnlogingProfile";
 
 const IsAuthenticated = () => {
   const { isAuthenticated, user } = useAuth0();
-
+console.log(isAuthenticated)
   return (
     <div className="relative flex justify-around">
       {isAuthenticated ? <Profile /> : <UnloginProfile/>}
