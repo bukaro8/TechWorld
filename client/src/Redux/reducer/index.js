@@ -17,7 +17,11 @@ import {
     CREATE_USERS,
     GET_USER_ADMIN,
     PUT_PRODUCT,
-    FILTER_S
+    FILTER_S,
+    GET_TRANSACTIONS,
+    SEARCH_BY_EMAIL,
+    SEARCH_BY_STATUS,
+    GET_LAST_TRANSACTIONS
 } from "../actions/index"
 
 const initialState = {
@@ -36,7 +40,9 @@ const initialState = {
     cartItems: JSON.parse(localStorage.getItem("items")) || [],
     carts: JSON.parse(localStorage.getItem("cart")) || [],
     filterState: [],
-
+    transactions: [],
+    filteredTransactions: [],
+    searchMail: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -175,7 +181,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
             }
         case REMOVE_ONE_CART:
-            if (state.cartItems[0] > 0) {
+            if (state.carts.length > 1) {
                 let itemsQuantity = state.carts.map((e) => {
                     if (e.id == action.payload.id)
                         return e.quantity
@@ -187,19 +193,24 @@ function rootReducer(state = initialState, action) {
                     }
                 })
                 state.cartItems = [state.cartItems[0] - quantity[0]]
+                state.carts = state.carts.filter(e => e.id != action.payload.id)
             }
             else {
                 state.cartItems[0] = 0
+                state.carts = []
+                localStorage.removeItem("cart")
+                localStorage.removeItem("items")
             }
             return {
                 ...state,
-                carts: state.carts.filter(e => e.id != action.payload.id),
             }
         case DELETE_CART: {
+            state.carts = []
+            state.cartItems = []
+            localStorage.removeItem("cart")
+            localStorage.removeItem("items")
             return {
                 ...state,
-                carts: [],
-                cartItems: []
             }
         }
         case PUT_PRODUCT:
@@ -211,7 +222,22 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 filterState: action.payload
             };
-            
+        case GET_TRANSACTIONS:
+            return {
+                ...state, 
+                transactions: action.payload,
+                filteredTransactions: action.payload
+            };
+        case SEARCH_BY_EMAIL:
+            return {
+                ...state,
+                searchMail: action.payload
+            }
+        case SEARCH_BY_STATUS:
+            return {
+                ...state,
+                filteredTransactions: action.payload
+            }
         default:
             return state;
     }

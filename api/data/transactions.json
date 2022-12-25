@@ -1,0 +1,71 @@
+[
+    {
+        "price": 500,
+        "userEmail": "hola@gmail.com",
+        "itemsBought": [
+            {
+                "quantity": 2,
+                "product": "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black"
+            },
+            {
+                "quantity": 1,
+                "product": "SanDisk Ultra 128GB SDXC UHS-I Memory Card up to 80MB/s"
+            },
+            {
+                "quantity": 1,
+                "product": "CHARMOUNT Full Motion TV Wall Mount Swivel"
+            },
+            {
+                "quantity": 1,
+                "product": "Bose QuietComfort 35 II Wireless Bluetooth Headphones"
+            },
+            {
+                "quantity": 1,
+                "product": "Apple AirPods with Charging Case (Wired)"
+            }
+        ],
+        "status": "Approved"
+    },
+    {
+        "price": 8800,
+        "userEmail": "prueba@gmail.com",
+        "itemsBought": [
+            {
+                "quantity": 2,
+                "product": "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black"
+            },
+            {
+                "quantity": 1,
+                "product": "SanDisk Ultra 128GB SDXC UHS-I Memory Card up to 80MB/s"
+            },
+            {
+                "quantity": 1,
+                "product": "CHARMOUNT Full Motion TV Wall Mount Swivel"
+            },
+            {
+                "quantity": 2,
+                "product": "Bose QuietComfort 35 II Wireless Bluetooth Headphones"
+            },
+            {
+                "quantity": 4,
+                "product": "Apple AirPods with Charging Case (Wired)"
+            }
+        ],
+        "status": "Cancelled"
+    },
+    {
+        "price": 500,
+        "userEmail": "hola@gmail.com",
+        "itemsBought": [
+            {
+                "quantity": 2,
+                "product": "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black"
+            },
+            {
+                "quantity": 1,
+                "product": "Apple AirPods with Charging Case (Wired)"
+            }
+        ],
+        "status": "Approved"
+    }
+]

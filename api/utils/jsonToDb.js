@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 const User = require('../models/user');
 const Ventas = require('../models/ventas');
+const Transactions = require('../models/transactions')
 
 const dotenv = require('dotenv');
 const connectDatabase = require('../config/database');
@@ -8,6 +9,7 @@ const connectDatabase = require('../config/database');
 const products = require('../data/products');
 const user = require('../data/user');
 const ventas = require('../data/ventas');
+const transactions = require('../data/transactions')
 
 // Setting dotenv file
 dotenv.config({ path: 'api/config/config.env' });
@@ -33,6 +35,12 @@ const addProducts = async () => {
 
     await Ventas.insertMany(ventas);
     console.log('ventas users are added.');
+
+    await Transactions.deleteMany();
+    console.log('Transactions are deleted.');
+
+    await Transactions.insertMany(transactions);
+    console.log('Transactions are added.');
 
     process.exit();
   } catch (error) {

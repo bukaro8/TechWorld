@@ -5,6 +5,8 @@ import NavBar from "../components/NavBar/NavBar";
 import CartItem from "../components/Cart/CartItem";
 //import Swal from 'sweetalert2'
 import { deleteCart } from "../Redux/actions";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { newTransaction, putProdut } from "../Redux/actions";
 
 export default function ShoppingCart() {
     const dispatch = useDispatch()
@@ -21,7 +23,41 @@ export default function ShoppingCart() {
             icon: "success"
         });
     } */
+
     var totalPrice
+    var transaction
+    var stockReload
+    function data (status){
+        if (status == "Approved"){
+            stockReload = items.map(e => {
+                return {
+                    _id: e.id,
+                    stock: e.stock - e.quantity
+                }
+            })
+        }
+        if (status == "Cancelled"){
+            stockReload = items.map(e => {
+                return {
+                    _id: e.id,
+                    stock: e.stock
+                }
+            })
+        }
+        var itemsBought = items.map(e => {
+           return {
+                product: e.name,
+                quantity: e.quantity
+            }
+        })
+        transaction = {
+            "userEmail": "prueba@gmail.com",
+            price: total,
+            itemsBought,
+            status: status
+        }
+        
+    }
 
     function setIndividualPrice(){
         totalPrice = items.map(e => {
@@ -33,7 +69,7 @@ export default function ShoppingCart() {
     function setTotalPrice(){
         setIndividualPrice()
         var total = totalPrice.reduce((a, b) => {return a + b})
-        return total
+        return total.toFixed(2)
     }
     
     const handleOnClick = () =>{
@@ -43,38 +79,21 @@ export default function ShoppingCart() {
     const cleanCart = () => {
         dispatch(deleteCart())
     }
+
+    function handleBuyNow(status) {
+        data(status)
+        dispatch(newTransaction(transaction))
+        for (let a = 0; a < stockReload.length; a++){
+            dispatch(putProdut(stockReload[a]))
+        }
+    }
     
 
-    /* const handleBuyNow = () => {
-        if( totalCart.length > 0 ){ //que usar en vez de .length?
-            setTimeout(() => {
-                if(user){
-                    <div>ENVIAR LA INFO COMO LO INDIQUE MERCADO PAGO</div>
-                /*const objCart = {
-                userId: user.id,
-                description: cartDetail.length && cartDetail.map((e) =>  `producto: ${e.name} cantidad: ${totalCart[e.id][1]} total: AR$ ${totalCart[e.id][0] * totalCart[e.id][1]}`  ).join(' | '),
-                productsId: cartDetail.map((e)=> e.id).join(','), 
-                price: totalPrice.toString(),
-                totalCart: localStorage.getItem('totalCart'),
-                }
-                axios.post(`${process.env.REACT_APP_SERVER_BACK}/checkout/checkout-order`, objCart) //que está pasando aca??
-                .then(response =>  window.location.href = response.data.links[1].href )
-                .then(()=> clearCartWithOutAlert())  */
-      /*       }else{
-                userRegister()
-            }},200)
-        } else{
-            emptyCart()
-        } */
-    /*} */
-
-    /* if (cart.length) { return <Loading /> } */
-
     return (
-        <div className="" onClick={handleOnClick}>
+        <div className="" onPointerMove={handleOnClick}>
             <NavBar/>
             <div id=""><h2 >Shopping Cart</h2></div>
-            <div className="">
+            <div className="" >
                 {
                     !items.length ? 
                     <div>There are no products in the Cart yet!</div> :
@@ -97,6 +116,36 @@ export default function ShoppingCart() {
                     </div>
                 </div>
                 <div className="">
+                    <PayPalScriptProvider options={{"client-id": "AQB3R_3UZ3vTt2ldgt4HbNje7Ms7fDH5MP9tbok-zjN6DeuRGw5Z2ommnuZ-ERXDlWT3Ucv9ozPMnfrl"}}>
+                        <PayPalButtons
+                        forceReRender={[total]}
+                        fundingSource="paypal"
+                        createOrder={(data, actions) => {
+                            return actions.order.create({
+                                    purchase_units: [
+                                        {
+                                            amount: {
+                                                value: total,
+                                                currency_code: "USD"
+                                            },
+                                        },
+                                    ],
+                                })}}
+                        onApprove={async (data, actions) => {
+                            const details = await actions.order.capture();
+                            const name = details.payer.name.given_name;
+                            alert("Transaction completed by " + name);
+                            handleBuyNow("Approved")
+                            cleanCart()
+                            history.push('/')
+                            window.location.reload()
+                        }}
+                        onCancel={async (data, actions) => {
+                            alert("Transaction cancelled")
+                            handleBuyNow("Cancelled")
+                        }}
+                        />
+                    </PayPalScriptProvider>
                     <button className=""  onClick={cleanCart} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
                     <button className="" type="button" /* onClick={handleBuyNow()} */ >Buy now</button>
                 </div>
