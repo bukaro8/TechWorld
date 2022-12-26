@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 //import Swal from 'sweetalert2'
 import { increaseQuantity, decreaseQuantity, removeOneProduct } from "../../Redux/actions";
 
-export default function CartItem({id, name, price, image, quantity}) {
+export default function CartItem({id, name, price, image, quantity, stock}) {
     const dispatch = useDispatch()
     const items = useSelector((state) => state.carts)
     const cantidad = useSelector((state) => state.cartItems)
@@ -37,7 +37,8 @@ export default function CartItem({id, name, price, image, quantity}) {
         name,
         image,
         price,
-        id
+        id,
+        stock
     }
 
     /* const successAlert = () => {
@@ -63,7 +64,10 @@ export default function CartItem({id, name, price, image, quantity}) {
                 : <button className="deactiveMinus" disabled="true" > - </button>
                 }
                 <h3>{cont}</h3>
-                <button className="" onClick={suma} > + </button>
+                {
+                cont < stock ? <button className="activePlus" onClick={suma} > + </button>
+                : <button className="deactivePlus" disabled="true"> + </button>
+                }
             </div>
         </div>
 

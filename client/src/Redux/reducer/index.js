@@ -17,7 +17,11 @@ import {
     CREATE_USERS,
     GET_USER_ADMIN,
     PUT_PRODUCT,
-    FILTER_S
+    FILTER_S,
+    GET_TRANSACTIONS,
+    SEARCH_BY_EMAIL,
+    SEARCH_BY_STATUS,
+    GET_LAST_TRANSACTIONS
 } from "../actions/index"
 
 const initialState = {
@@ -36,7 +40,9 @@ const initialState = {
     cartItems: JSON.parse(localStorage.getItem("items")) || [],
     carts: JSON.parse(localStorage.getItem("cart")) || [],
     filterState: [],
-
+    transactions: [],
+    filteredTransactions: [],
+    searchMail: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -113,7 +119,8 @@ function rootReducer(state = initialState, action) {
                     name: action.payload.name,
                     image: action.payload.image,
                     price: action.payload.price,
-                    quantity: 1
+                    quantity: 1,
+                    stock: action.payload.stock
                 }
                 state.carts.push(cart)
                 state.cartItems.push(1)
@@ -123,9 +130,11 @@ function rootReducer(state = initialState, action) {
                 let check = false;
                 state.carts.map((item, key) => {
                     if (item.id == action.payload.id) {
-                        state.carts[key].quantity++;
-                        check = true;
-                        state.cartItems[0]++
+                        if (state.carts[key].stock > state.carts[key].quantity) {
+                            state.carts[key].quantity++;
+                            state.cartItems[0]++
+                        }
+                        check = true
                     }
                 });
                 if (!check) {
@@ -134,7 +143,8 @@ function rootReducer(state = initialState, action) {
                         quantity: 1,
                         name: action.payload.name,
                         image: action.payload.image,
-                        price: action.payload.price
+                        price: action.payload.price,
+                        stock: action.payload.stock
                     }
                     state.cartItems[0]++
                     state.carts.push(_cart);
@@ -144,10 +154,12 @@ function rootReducer(state = initialState, action) {
                 ...state
             }
         case INCREASE_QUANTITY:
-            state.cartItems[0]++
             state.carts.map((item, key) => {
                 if (item.id == action.payload.id) {
-                    state.carts[key].quantity++;
+                    if (state.carts[key].stock > state.carts[key].quantity) {
+                        state.carts[key].quantity++;
+                        state.cartItems[0]++
+                    }
                 }
             });
             return {
@@ -169,7 +181,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
             }
         case REMOVE_ONE_CART:
-            if (state.cartItems[0] > 0) {
+            if (state.carts.length > 1) {
                 let itemsQuantity = state.carts.map((e) => {
                     if (e.id == action.payload.id)
                         return e.quantity
@@ -181,19 +193,24 @@ function rootReducer(state = initialState, action) {
                     }
                 })
                 state.cartItems = [state.cartItems[0] - quantity[0]]
+                state.carts = state.carts.filter(e => e.id != action.payload.id)
             }
             else {
                 state.cartItems[0] = 0
+                state.carts = []
+                localStorage.removeItem("cart")
+                localStorage.removeItem("items")
             }
             return {
                 ...state,
-                carts: state.carts.filter(e => e.id != action.payload.id),
             }
         case DELETE_CART: {
+            state.carts = []
+            state.cartItems = []
+            localStorage.removeItem("cart")
+            localStorage.removeItem("items")
             return {
                 ...state,
-                carts: [],
-                cartItems: []
             }
         }
         case PUT_PRODUCT:
@@ -205,7 +222,22 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 filterState: action.payload
             };
-            
+        case GET_TRANSACTIONS:
+            return {
+                ...state, 
+                transactions: action.payload,
+                filteredTransactions: action.payload
+            };
+        case SEARCH_BY_EMAIL:
+            return {
+                ...state,
+                searchMail: action.payload
+            }
+        case SEARCH_BY_STATUS:
+            return {
+                ...state,
+                filteredTransactions: action.payload
+            }
         default:
             return state;
     }

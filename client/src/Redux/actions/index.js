@@ -23,6 +23,9 @@ export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const GET_USER_ADMIN = "GET_USER_ADMIN";
 export const FILTER_S = 'FILTER_S';
 export const PUT_PRODUCT= 'PUT_PRODUCT';
+export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
+export const SEARCH_BY_EMAIL = 'SEARCH_BY_EMAIL';
+export const SEARCH_BY_STATUS = 'SEARCH_BY_STATUS';
 
 
 export function getAllProducts() {
@@ -168,4 +171,46 @@ export const filState = (input) => {
         })
     }
     
+}
+
+export function getTransactions() {
+    return async function (dispatch) {
+        var json = await back_call.get('/transactions')
+        return dispatch({
+            type: GET_TRANSACTIONS,
+            payload: json.data
+        })
+    }
+}
+
+export function searchByEmail(email) {
+    return async function (dispatch) {
+        var json = await back_call.get(`/transactions?email=${email}`)
+        return dispatch({
+            type: SEARCH_BY_EMAIL,
+            payload: json.data
+        })
+    }
+}
+
+export function searchByStatus(status){
+    return async function (dispatch) {
+        var json = await back_call.get(`/transactions/${status}`)
+        return dispatch({
+            type: SEARCH_BY_STATUS,
+            payload: json.data
+        })
+    }
+}
+
+export function newTransaction(payload) {
+    return async function () {
+        await back_call.post('/transactions/new', payload)
+    }
+}
+
+export function putTransaction(payload) {
+    return async function () {
+        await back_call.post('/transactions/editTransaction', payload)
+    }
 }
