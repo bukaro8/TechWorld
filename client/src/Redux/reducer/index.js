@@ -37,9 +37,12 @@ const initialState = {
     carts: JSON.parse(localStorage.getItem("cart")) || [],
     filterState: [],
 
+
 }
 
 function rootReducer(state = initialState, action) {
+    
+
 
     switch (action.type) {
         case GET_PRODUCTS:
@@ -54,6 +57,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 users: action.payload
+                
             };
 
         case GET_USER_ADMIN:

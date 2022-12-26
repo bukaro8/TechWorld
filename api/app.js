@@ -5,6 +5,7 @@ app.use(express.json());
 const products = require('./routes/product');
 const users = require('./routes/user');
 const ventas = require('./routes/ventas');
+const admins = require('./routes/admin')
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
@@ -17,5 +18,7 @@ app.use((req, res, next) => {
 app.use('/api/v1', products);
 app.use('/api/v1', users);
 app.use('/api/v1', ventas);
+app.use('/api/v1', admins)
+
 
 module.exports = app;
