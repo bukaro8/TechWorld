@@ -38,17 +38,19 @@ export function getAllProducts() {
     }
 }
 export function getAllUsers() {
+    console.log(getAllUsers)
     return async function (dispatch) {
         var json = await back_call.get('/users')
         return dispatch({
             type: GET_USERS,
             payload: json.data
         })
+       
     }
 }
 export function getUserAdmin() {
     return async function (dispatch) {
-        var json = await back_call.get('/users/admin')
+        var json = await back_call.get('/admin')
         return dispatch({
             type: GET_USER_ADMIN,
             payload: json.data

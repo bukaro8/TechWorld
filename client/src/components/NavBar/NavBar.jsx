@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Search from '../Search/Search'
 import { Link } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
 import logos from '../assets/logos.png'
 import Carrito from '../assets/Carrito.jsx'
 
@@ -9,23 +10,49 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Registrar/LoginButton";
 import LogoutButton from "../Registrar/LogoutButton";
 import Profile from '../Registrar/Profile'
+//import user from "../../../../api/models/user";
 
-// import { getUserAdmin } from "../../Redux/actions";
-// import IsAuthenticated from '../Registrar/IsAuthenticated'
-// import { useDispatch, useSelector } from "react-redux";
+ import { getUserAdmin } from "../../Redux/actions";
+ import IsAuthenticated from '../Registrar/IsAuthenticated'
+//Desde IsAuthenticated me traigo la data de como llega 'user' y el booleano
 
-
+ 
 export default function NavBar() {
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated } = useAuth0(); 
+
+    let userAdmin = useSelector((state) => state.admin);
+    //console.log(userAdmin, 'userAdmin')
+    
+    const dataAuth = IsAuthenticated();
+    //console.log(dataAuth,'dataAuth')
+    let data;
+
+if(isAuthenticated === true) {
+   data = user.email  //Extraigo el mail que viene de auth0
+   console.log(data,'data')
+}
+
+let mailAdmin;
+if(userAdmin){
+mailAdmin = userAdmin.map((e) => e.email)
+console.log(mailAdmin,'mailAdmin') //extraigo el mail que viene de la db
+}
+
+const verificador = mailAdmin.includes(data) 
+//let verificador;
+//if(isAuthenticated === true && user.email_verified=== true ){
+  //  verificador = user.email_verified
+ // }
+   
 
 
     // let userAdmin = useSelector((state) => state.admin);
 
-    // let dispatch = useDispatch();
+     let dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(getUserAdmin());
-    // }, [dispatch]);
+     useEffect(() => {
+         dispatch(getUserAdmin());
+     }, [dispatch]);
 
     // const emailAdmin = userAdmin.map((e) => e.email)
 
@@ -49,7 +76,12 @@ export default function NavBar() {
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
-                            <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
+                            {
+                                verificador ? 
+                                <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
+                                null
+                            }
+                            
                             <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
 
                         </ul>
@@ -71,7 +103,7 @@ export default function NavBar() {
                             <Link to="/products" className="hover:text-red-600">Products </Link>
                             <Link to="/" className="hover:text-red-600">Basket </Link>
                             <Link to="/" className="hover:text-red-600">Account </Link>
-                            <Link to="/" className="hover:text-red-600"></Link>
+                            <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
                         </ul>
                     </div>
                 </div>

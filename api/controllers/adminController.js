@@ -1,6 +1,15 @@
 const Admin = require('../models/admin.js');
 const User = require('../models/user.js');
 
+exports.newAdmin = async (req, res) => {
+	const info = req.body;
+	const user = await Admin.create(info);
+	res.status(201).send({
+		success: true,
+		user,
+	});
+};
+
 exports.getAdmin = async (req, res, next) => {
     const name = req.query.name;
     const admin = await Admin.find();

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getAllUsers } from "../../Redux/actions";
 
-import { Table } from 'antd';
+import { Table } from "antd";
 
 const Tablas = () => {
   let data = useSelector((state) => state.users);
@@ -67,7 +67,7 @@ const Tablas = () => {
      )
 
     }
-export default Tablas
+export default Tablas;
 
 
 
