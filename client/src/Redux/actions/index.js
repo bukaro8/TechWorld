@@ -47,7 +47,7 @@ export function getAllUsers() {
 }
 export function getUserAdmin() {
     return async function (dispatch) {
-        var json = await back_call.get('/admin')
+        var json = await back_call.get('/users/admin')
         return dispatch({
             type: GET_USER_ADMIN,
             payload: json.data

@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const connectDatabase = require('../config/database');
 
 const products = require('../data/products');
-const user = require('../data/user');
+const user = require('../data/user.json');
 const ventas = require('../data/ventas');
 const admin = require('../data/admin.json')
 

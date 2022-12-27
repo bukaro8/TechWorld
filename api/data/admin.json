@@ -25,5 +25,16 @@
         "isBan": "false",
         "direction": "porahi 333",
         "phone": "999"
-    }
+    },
+    {
+        "name": "nahir",
+            "email": "nahir.k.sosa@gmail.com",
+            "password": "1233",
+            "isAdmin": true,
+            "rol": "admin",
+            "isBan": false,
+            "address": "Siempreviva 321",
+            "phone": 777333444
+            }
+
 ]
