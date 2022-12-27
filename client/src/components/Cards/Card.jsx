@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
-export default function Product({ name, image, price, ratings, id, }) {
+export default function Product({ name, image, price, ratings, id, stock}) {
     const items = useSelector((state) => state.carts)
     const cantidad = useSelector((state) => state.cartItems)
     const dispatch = useDispatch()
@@ -43,7 +43,8 @@ export default function Product({ name, image, price, ratings, id, }) {
         name,
         image,
         price,
-        id
+        id,
+        stock
     }
     return (
         <div class="container mx-auto  ">
