@@ -44,15 +44,9 @@ exports.idProduct = async (req, res) => {
 
 exports.putProduct = async (req, res) => {
 	try {
-	  const actProduct = await Product.findById({ _id: req.body._id });
-	  const newStock = req.body.stock;
-	  const newPrice = req.body.price;
-	  const newState = req.body.state;
-	  actProduct.stock = newStock;
-	  actProduct.price = newPrice;
-	  actProduct.state = newState;
-	  await actProduct.save();
-	  res.status(200).json({
+		const {_id, stock, price, state} = req.body
+	  const actProduct = await Product.findByIdAndUpdate(_id, {stock: stock, price: price, state: state});
+	  res.status(200).send({
 		success: true,
 		actProduct,
 	  });
