@@ -12,7 +12,7 @@ import LogoutButton from "../Registrar/LogoutButton";
 import Profile from '../Registrar/Profile'
 //import user from "../../../../api/models/user";
 
- import { getUserAdmin } from "../../Redux/actions";
+ import { getUserAdmin, getAllUsers } from "../../Redux/actions";
  import IsAuthenticated from '../Registrar/IsAuthenticated'
 //Desde IsAuthenticated me traigo la data de como llega 'user' y el booleano
 
@@ -20,40 +20,66 @@ import Profile from '../Registrar/Profile'
 export default function NavBar() {
     const { user, isAuthenticated } = useAuth0(); 
 
-    let userAdmin = useSelector((state) => state.admin);
-    //console.log(userAdmin, 'userAdmin')
+    //Si se llega a generar un formulario unico para administradores, se puede usar este bloque de código
+    // ---------------------------------------------------
+    //let userAdmin = useSelector((state) => state.admin);
+    //console.log(userAdmin, 'userAdmin')    
+
+    //LLama al componente de auth y ejecuta la funcion
+    //const dataAuth = IsAuthenticated();
     
+    //let data;
+    //if(isAuthenticated === true) {
+    //data = user.email  //Extraigo el mail que viene de auth0
+    //console.log(data,'data')
+    //}
+
+    //let mailAdmin;
+    //if(userAdmin){
+    //mailAdmin = userAdmin.map((e) => e.email)
+    //console.log(mailAdmin,'mailAdmin') //extraigo el mail que viene de la db
+    //}
+
+    //const verificador = mailAdmin.includes(data) 
+
+    // ------------------------------------------------
+    
+    //Para formulario de usarios
+
+    let usersData = useSelector((state) => state.users);
+    console.log(usersData,'usersData')
+    
+    //LLama al componente de auth y ejecuta la funcion
     const dataAuth = IsAuthenticated();
     //console.log(dataAuth,'dataAuth')
+    
     let data;
+    if(isAuthenticated === true) {
+    data = user.email  //Extraigo el mail que viene de auth0
+    console.log(data,'data')
+    }
 
-if(isAuthenticated === true) {
-   data = user.email  //Extraigo el mail que viene de auth0
-   console.log(data,'data')
-}
+    let isAdminTrue = usersData.map((e)=>e.isAdmin)
+    console.log(isAdminTrue,'isAdminTrue')
 
-let mailAdmin;
-if(userAdmin){
-mailAdmin = userAdmin.map((e) => e.email)
-console.log(mailAdmin,'mailAdmin') //extraigo el mail que viene de la db
-}
+    let mailAdminUser;
+    if(isAdminTrue){
+    mailAdminUser = usersData.map((e) => e.email)
+    console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
+    }
 
-const verificador = mailAdmin.includes(data) 
-//let verificador;
-//if(isAuthenticated === true && user.email_verified=== true ){
-  //  verificador = user.email_verified
- // }
-   
+    const verificador = mailAdminUser.includes(data)
 
-
-    // let userAdmin = useSelector((state) => state.admin);
 
      let dispatch = useDispatch();
 
-     useEffect(() => {
-         dispatch(getUserAdmin());
-     }, [dispatch]);
+     //useEffect(() => {
+     //    dispatch(getUserAdmin());
+     //}, [dispatch]);
 
+     useEffect(() => {
+        dispatch(getAllUsers());
+    }, [dispatch]);
     // const emailAdmin = userAdmin.map((e) => e.email)
 
     return (
