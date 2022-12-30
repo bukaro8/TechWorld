@@ -111,7 +111,7 @@ export default function ShoppingCart() {
 					<button className='' onClick={cleanCart}>
 						<img
 							src='https://cdn-icons-png.flaticon.com/512/323/323711.png'
-							alt={'delete'}
+							alt='delete'
 						/>
 					</button>
 					<button className='' type='button' /* onClick={handleBuyNow()} */>
