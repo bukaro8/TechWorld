@@ -43,7 +43,7 @@ export default function NavBar() {
 					</Link>
 
 					<div class='text-white hover:font-semibold links lg:block hidden w-1/6 md:w-4/6'>
-						<div class='menu flex items center justify-end gap-5 text-l font-bold items-center border border-white'>
+						<div class='menu flex items center justify-end gap-5 text-l font-bold items-center '>
 							<Link to='/' className='hover:text-red-600'>
 								Home
 							</Link>
