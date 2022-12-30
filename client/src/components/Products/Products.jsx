@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
-import NavBar from '../NavBar/NavBar'
+
 import { Filtros, applyFilters } from '../Filtros/Filtros';
 
 export default function Products() {
@@ -40,7 +40,7 @@ export default function Products() {
 
     return (
         <div className="">
-            <NavBar/>
+            
             <Filtros />
             <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {currentProducts.map((e) => {
