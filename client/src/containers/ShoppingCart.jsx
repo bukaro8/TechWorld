@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux";
-import NavBar from "../components/NavBar/NavBar";
-import CartItem from "../components/Cart/CartItem";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import NavBar from '../components/NavBar/NavBar';
+import CartItem from '../components/Cart/CartItem';
 //import Swal from 'sweetalert2'
-import { deleteCart } from "../Redux/actions";
+import { deleteCart } from '../Redux/actions';
 
 export default function ShoppingCart() {
-    const dispatch = useDispatch()
-    const items = useSelector((state) => state.carts)
-    const history = useHistory()
-    const [total, setTotal] = useState(0)
-    // const user = useSelector((state) => state.userOne); //esta viendo el usuario del que compra
+	const dispatch = useDispatch();
+	const items = useSelector((state) => state.carts);
+	const history = useHistory();
+	const [total, setTotal] = useState(0);
+	// const user = useSelector((state) => state.userOne); //esta viendo el usuario del que compra
 
-   /*  const successAlert = () => {
+	/*  const successAlert = () => {
         Swal.fire({
             title: 'All Products Removed!',
             confirmButtonText: "Ok",
@@ -21,31 +21,32 @@ export default function ShoppingCart() {
             icon: "success"
         });
     } */
-    var totalPrice
+	var totalPrice;
 
-    function setIndividualPrice(){
-        totalPrice = items.map(e => {
-        return e.quantity * e.price
-        })
-        return totalPrice
-    }
+	function setIndividualPrice() {
+		totalPrice = items.map((e) => {
+			return e.quantity * e.price;
+		});
+		return totalPrice;
+	}
 
-    function setTotalPrice(){
-        setIndividualPrice()
-        var total = totalPrice.reduce((a, b) => {return a + b})
-        return total
-    }
-    
-    const handleOnClick = () =>{
-        setTotal(setTotalPrice())
-    }
+	function setTotalPrice() {
+		setIndividualPrice();
+		var total = totalPrice.reduce((a, b) => {
+			return a + b;
+		});
+		return total;
+	}
 
-    const cleanCart = () => {
-        dispatch(deleteCart())
-    }
-    
+	const handleOnClick = () => {
+		setTotal(setTotalPrice());
+	};
 
-    /* const handleBuyNow = () => {
+	const cleanCart = () => {
+		dispatch(deleteCart());
+	};
+
+	/* const handleBuyNow = () => {
         if( totalCart.length > 0 ){ //que usar en vez de .length?
             setTimeout(() => {
                 if(user){
@@ -60,76 +61,67 @@ export default function ShoppingCart() {
                 axios.post(`${process.env.REACT_APP_SERVER_BACK}/checkout/checkout-order`, objCart) //que está pasando aca??
                 .then(response =>  window.location.href = response.data.links[1].href )
                 .then(()=> clearCartWithOutAlert())  */
-      /*       }else{
+	/*       }else{
                 userRegister()
             }},200)
         } else{
             emptyCart()
         } */
-    /*} */
+	/*} */
 
-    /* if (cart.length) { return <Loading /> } */
+	/* if (cart.length) { return <Loading /> } */
 
-    return (
-        <div className="" onClick={handleOnClick}>
-            <NavBar/>
-            <div id=""><h2 >Shopping Cart</h2></div>
-            <div className="">
-                {
-                    !items.length ? 
-                    <div>There are no products in the Cart yet!</div> :
-                    items.map(e => {
-                        return (
-                        <CartItem key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} quantity={e.quantity} />
-                    )})
-                }
-            </div>
-            <div className="">
-                <div className="">
-                    <p>Order Summary</p>
-                    <div className="">
-                        <span>Total: </span>
-                        {
-                            !items.length ? 
-                            <span>$ 0</span> :
-                            <span className=""> $ {total}</span>
-                        }
-                    </div>
-                </div>
-                <div className="">
-                    <button className=""  onClick={cleanCart} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
-                    <button className="" type="button" /* onClick={handleBuyNow()} */ >Buy now</button>
-                </div>
-            </div>
-        </div>
-    )
+	return (
+		<div className='' onClick={handleOnClick}>
+			<NavBar />
+			<div id=''>
+				<h2>Shopping Cart</h2>
+			</div>
+			<div className=''>
+				{!items.length ? (
+					<div>There are no products in the Cart yet!</div>
+				) : (
+					items.map((e) => {
+						return (
+							<CartItem
+								key={e.id}
+								id={e.id}
+								name={e.name}
+								price={e.price}
+								image={e.image}
+								quantity={e.quantity}
+							/>
+						);
+					})
+				)}
+			</div>
+			<div className=''>
+				<div className=''>
+					<p>Order Summary</p>
+					<div className=''>
+						<span>Total: </span>
+						{!items.length ? (
+							<span>$ 0</span>
+						) : (
+							<span className=''> $ {total}</span>
+						)}
+					</div>
+				</div>
+				<div className=''>
+					<button className='' onClick={cleanCart}>
+						<img
+							src='https://cdn-icons-png.flaticon.com/512/323/323711.png'
+							alt={'delete'}
+						/>
+					</button>
+					<button className='' type='button' /* onClick={handleBuyNow()} */>
+						Buy now
+					</button>
+				</div>
+			</div>
+		</div>
+	);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { Fragment, useState } from 'react'
 // import { Dialog, Transition } from '@headlessui/react'
