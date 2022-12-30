@@ -50,9 +50,7 @@ export default function NavBar() {
 							<Link to='/products' className='hover:text-red-600'>
 								Products
 							</Link>
-							{/* <Link to='/cart' className='hover:text-red-600'>
-								Basket
-							</Link> */}
+
 							<Link to='/' className='hover:text-red-600'>
 								Account
 							</Link>
@@ -60,9 +58,7 @@ export default function NavBar() {
 								Dashboard
 							</Link>
 							<Link to='/cart'>
-								<span className='text-gray-900 dark:text-white inline-flex'>
-									<Carrito />
-								</span>
+								<Carrito />
 							</Link>
 							<Profile />
 							{isAuthenticated ? <LogoutButton /> : <LoginButton />}
