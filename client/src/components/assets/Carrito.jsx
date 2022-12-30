@@ -8,7 +8,7 @@ const Carrito = () => {
 
     return (
         <>
-            <img className='w-10 h-10 object-cover rounded-lg hover:bg-cyan-200' src={iconCart} />
+            <img className='' src={iconCart} />
         </>
     )
 }
