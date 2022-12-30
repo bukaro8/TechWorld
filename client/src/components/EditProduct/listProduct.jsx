@@ -3,6 +3,8 @@ import React, {useEffect} from "react";
 import ProductoInd from "./productU";
 import { filState} from "../../Redux/actions";
 import Filter from "./filter";
+import Search from "./searchEdit";
+
 
 
 
@@ -18,17 +20,29 @@ export default function List() {
     }, [dispatch]);
 
     var dataProductox = useSelector(state => state.filterState)
-    
-    
+    const error = useSelector(state => state.error);
     
     return (
-      <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <Filter/>
-        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {
-                dataProductox?.map(data => <ProductoInd key={data.id} data={data}/>)
-            }  
-        </div>
+      <div >
+            
+            <div className="grid grid-cols-2 grid-flow-rows-dense">
+                <Search/>
+                <Filter/> 
+            </div>
+            
+            <div class="grid grid-rows-1 gap-y-5 gap-x-4 sm:grid-rows-2 lg:grid-rows-3 xl:grid-rows-4 xl:gap-x-4 ">
+                <div className="grid grid-cols-5 justify-items-center content-center ">
+                    <div>  </div>
+                    <div className="text-lg p-0 font-semibold text-violet-500">Nombre</div>
+                    <div className="text-lg p-0 font-semibold text-violet-500">Precio</div>
+                    <div className="text-lg p-0 font-semibold text-violet-500">Stock</div>
+                    <div ></div>
+                </div>
+                {
+                    error ?(<div ><span>Product not found</span></div>): dataProductox?.map(data => <ProductoInd key={data.id} data={data}/>) 
+                }    
+            </div>
+      
       </div>
   
     );

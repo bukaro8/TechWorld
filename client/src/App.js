@@ -10,6 +10,7 @@ import { Switch } from 'react-router-dom'
 import Pag404 from './components/Pag404';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditarUsuario from './components/EditProduct/editProduct';
+import List from './components/EditProduct/listProduct';
 import IsAuthenticated from './components/Registrar/IsAuthenticated';
 import ProtectedRoute from "./ProtectedRoute";
 import './index.css'
@@ -36,7 +37,8 @@ let userAdmin = useSelector((state) => state.admin);
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
                 
 				{/*<ProtectedRoute exact path="/dashboard" component={Dashboard} />*/}
-				<Route exact path='/edit/:id' ><EditarUsuario/> </Route>
+				
+				<Route exact path='/edit/:id' > <EditarUsuario/> </Route>
 				{/* <Route path='*' component={Pag404} /> */}
 
 

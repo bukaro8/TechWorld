@@ -6,10 +6,14 @@ const {
 	newProduct,
 	idProduct,
 	putProduct,
-	filState
+	filState,
+	filStock,
+	getAdminProduct
 } = require('../controllers/productController.js');
 
+router.get("/product/orderProduct/:stock", filStock);
 router.get("/product/filterProduct/:state", filState);
+router.get("/admin/products", getAdminProduct);
 router.get('/products', getProducts);
 router.get('/product/:id', idProduct);
 router.post('/product/new', newProduct);

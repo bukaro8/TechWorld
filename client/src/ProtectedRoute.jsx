@@ -23,7 +23,7 @@ const dataAuth = IsAuthenticated();
 
 
   return (
-    <Route {...rest}>{data? <Dashboard/> : <Redirect to="/home"/> }</Route>
+    <Route {...rest}>{data? <Dashboard/> : <Redirect to="/"/> }</Route>
 )
 }
 
