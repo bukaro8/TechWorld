@@ -22,6 +22,9 @@ export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const GET_USER_ADMIN = "GET_USER_ADMIN";
 export const FILTER_S = 'FILTER_S';
+export const SEARCH = 'SEARCH';
+export const SET_ERROR = 'SET_ERROR';
+export const O_STOCK = 'O_STOCK';
 export const PUT_PRODUCT= 'PUT_PRODUCT';
 export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 export const SEARCH_BY_EMAIL = 'SEARCH_BY_EMAIL';
@@ -173,6 +176,33 @@ export const filState = (input) => {
         })
     }
     
+}
+export function orderStock(order) {
+    return async function (dispatch) {
+        var json = await back_call.get(`/product/orderProduct/${order}`);
+        return dispatch({
+            type: O_STOCK,
+            payload: json.data
+        })
+    }
+  }
+  export const getProduName = (name) => {
+    return async function (dispatch) {
+        try{
+            const json = await back_call.get(
+          "/admin/products?name=" + name
+        );
+        console.log(json.data);
+        return dispatch({ type: SEARCH, payload: json.data });
+        } catch (error) {
+            dispatch({
+              type: SET_ERROR,
+              payload: error,
+            });
+      
+     
+    };
+  };
 }
 
 export function getTransactions() {

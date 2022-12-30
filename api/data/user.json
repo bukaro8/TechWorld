@@ -35,5 +35,15 @@
             "isBan": false,
             "address": "Siempreviva 321",
             "phone": 777333444
-            }
+    },
+    {
+        "name": "sneider",
+        "email": "sneider242@gmail.com",
+        "password": "25846",
+        "isAdmin": true,
+        "rol": "admin",
+        "isBan": false,
+        "address": "Siempreviva 321",
+        "phone": 777333444
+}
 ]

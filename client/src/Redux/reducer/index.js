@@ -18,6 +18,9 @@ import {
     GET_USER_ADMIN,
     PUT_PRODUCT,
     FILTER_S,
+    SEARCH,
+    SET_ERROR,
+    O_STOCK,
     GET_TRANSACTIONS,
     SEARCH_BY_EMAIL,
     SEARCH_BY_STATUS,
@@ -40,7 +43,7 @@ const initialState = {
     cartItems: JSON.parse(localStorage.getItem("items")) || [],
     carts: JSON.parse(localStorage.getItem("cart")) || [],
     filterState: [],
-
+    
     transactions: [],
     filteredTransactions: [],
     searchMail: [],
@@ -227,6 +230,26 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 filterState: action.payload
             };
+        case SEARCH:
+            return {
+                ...state,
+                filterState: action.payload,
+                error: undefined,
+            };
+        
+        case SET_ERROR:
+        return {
+            ...state,
+            error: action.payload,
+            allProducts: [],
+            filterState: [],
+        };
+    
+        case O_STOCK:
+        return {
+            ...state.filterState,
+            filterState: action.payload,
+        };
         case GET_TRANSACTIONS:
             return {
                 ...state, 
