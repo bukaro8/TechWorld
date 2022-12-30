@@ -37,22 +37,22 @@ export default function NavBar() {
 							className='mr-3 h-9 sm:h-16 rounded-full'
 							alt='nada'
 						/>
-						<span className='self-center text-xl font-semibold whitespace-nowrap hover:text-red-700'>
+						<span className='self-center text-xl font-semibold whitespace-nowrap text-white hover:text-red-700'>
 							TechWorld
 						</span>
 					</Link>
 
-					<div class='links lg:block hidden w-1/6 md:w-4/6'>
-						<ul class='menu flex items center justify-end gap-5 text-xl font-bold '>
+					<div class='text-white hover:font-semibold links lg:block hidden w-1/6 md:w-4/6'>
+						<div class='menu flex items center justify-end gap-5 text-l font-bold items-center border border-white'>
 							<Link to='/' className='hover:text-red-600'>
 								Home
 							</Link>
 							<Link to='/products' className='hover:text-red-600'>
 								Products
 							</Link>
-							<Link to='/cart' className='hover:text-red-600'>
+							{/* <Link to='/cart' className='hover:text-red-600'>
 								Basket
-							</Link>
+							</Link> */}
 							<Link to='/' className='hover:text-red-600'>
 								Account
 							</Link>
@@ -64,31 +64,36 @@ export default function NavBar() {
 									<Carrito />
 								</span>
 							</Link>
-						</ul>
+							<Profile />
+							{isAuthenticated ? <LogoutButton /> : <LoginButton />}
+						</div>
 					</div>
-
-					<Profile />
-					{isAuthenticated ? <LogoutButton /> : <LoginButton />}
 
 					<div class='block lg:hidden w-1/6 lg:w-4/6'>
 						<a href='#' class='link' id='mobile-menu'>
 							Menu
 						</a>
-						<ul class='mobile-links hidden w-full absolute z-50 left-0 text-center bg-gray-800'>
+						<div class='mobile-links hidden w-full absolute z-50 left-0 text-center bg-gray-800'>
 							<Link to='/' className='hover:text-red-600'>
-								Home{' '}
+								Home
 							</Link>
 							<Link to='/products' className='hover:text-red-600'>
-								Products{' '}
+								Products
 							</Link>
 							<Link to='/' className='hover:text-red-600'>
-								Basket{' '}
+								Basket
 							</Link>
 							<Link to='/' className='hover:text-red-600'>
-								Account{' '}
+								Account
 							</Link>
-							<Link to='/' className='hover:text-red-600'></Link>
-						</ul>
+							{/* <Link>
+								const menuButton = document.querySelector('#mobile-menu');
+								menuButton.addEventListener('click', e =&gt; {'{'}
+								const menu = document.querySelector('.mobile-links');
+								menu.classList.toggle('hidden'); );
+							</Link> */}
+							;
+						</div>
 					</div>
 				</div>
 			</nav>
@@ -101,10 +106,3 @@ export default function NavBar() {
 		</div>
 	);
 }
-<div>
-	const menuButton = document.querySelector('#mobile-menu');
-	menuButton.addEventListener('click', e =&gt; {'{'}
-	const menu = document.querySelector('.mobile-links');
-	menu.classList.toggle('hidden');
-	{'}'});
-</div>;
