@@ -86,18 +86,18 @@ export default function NavBar() {
 
         <div>
             <nav className="bg-white border-gray-200 ">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-full h-fit px-4 md:px-6 py-6 mt-2 bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600">
+                <div className="flex flex-wrap justify-around items-center  max-w-full h-fit   py-6 bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600 text-white">
 
                     <Link to="/" class="flex items-center">
-                        <img src={logos} className="mr-3 h-9 sm:h-16 rounded-full" alt="nada" />
-                        <span className="self-center text-xl font-semibold whitespace-nowrap hover:text-red-700">
+                        <img src={logos} className="mr-3 h-9 sm:h-16 rounded-full" alt="Logo" />
+                        <span className="self-center text-xl font-bold whitespace-nowrap hover:text-red-700">
                             TechWorld
                         </span>
                     </Link>
 
 
-                    <div class="links lg:block hidden w-1/6 md:w-4/6">
-                        <ul class="menu flex items center justify-end gap-5 text-xl font-bold ">
+                    <div class="links lg:block hidden w-1/6 md:w-4/6 text-lg font-semibold">
+                        <ul class="menu flex items-center justify-end gap-5  ">
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Basket</Link>
@@ -108,18 +108,18 @@ export default function NavBar() {
                                 null
                             }
                             
-                            <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
-
+                            <Link to="/cart" ><Carrito /></Link>
+                            <Profile />
+                                {isAuthenticated ?
+                            <LogoutButton />
+                            :
+                            <LoginButton />
+                    }
                         </ul>
                     </div>
 
 
-                    <Profile />
-                    {isAuthenticated ?
-                        <LogoutButton />
-                        :
-                        <LoginButton />
-                    }
+                    
 
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>
