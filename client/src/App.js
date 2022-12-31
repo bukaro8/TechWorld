@@ -27,9 +27,9 @@ let userAdmin = useSelector((state) => state.admin);
 
 	return (
 		<div className='App'>
-			
+			<NavBar />
 			<Switch>
-				<Route exact path='/'>  <NavBar /><Home />  </Route>
+				<Route exact path='/'>  <Home />  </Route>
 				<Route exact path='/products'>	<Products />  </Route>
 				<Route exact path="/cart">	<ShoppingCart />  </Route>
 				<Route  path="/product/:id">  <CardDetail />  </Route>
