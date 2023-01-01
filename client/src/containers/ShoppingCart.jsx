@@ -90,20 +90,20 @@ export default function ShoppingCart() {
     
 
     return (
-        <div className="" onPointerMove={handleOnClick}>
-            <NavBar/>
-            <div id=""><h2 >Shopping Cart</h2></div>
-            <div className="" >
+        <div  className="flex flex-col justify-center items-center " onPointerMove={handleOnClick}>
+            
+            <h2 className="text-2xl" >Shopping Cart</h2>
+            <div  className=" flex flex-wrap justify-around" >
                 {
                     !items.length ? 
-                    <div>There are no products in the Cart yet!</div> :
+                    <div >There are no products in the Cart yet!</div> :
                     items.map(e => {
                         return (
                         <CartItem key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} quantity={e.quantity} stock={e.stock}/>
                     )})
                 }
             </div>
-            <div className="">
+            <div className="text-center w-1/4">
                 <div className="">
                     <p>Order Summary</p>
                     <div className="">
@@ -146,8 +146,10 @@ export default function ShoppingCart() {
                         }}
                         />
                     </PayPalScriptProvider>
-                    <button className=""  onClick={cleanCart} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
-                    <button className="" type="button" /* onClick={handleBuyNow()} */ >Buy now</button>
+                    <div className="flex flex-col justify-center items-center">
+                        <button className="w-8"  onClick={cleanCart} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
+                        <button className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button" /* onClick={handleBuyNow()} */ >Buy now</button>
+                    </div>
                 </div>
             </div>
         </div>
