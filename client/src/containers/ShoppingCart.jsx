@@ -3,26 +3,60 @@ import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "../components/NavBar/NavBar";
 import CartItem from "../components/Cart/CartItem";
-//import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import { deleteCart } from "../Redux/actions";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { newTransaction, putProdut } from "../Redux/actions";
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 export default function ShoppingCart() {
     const dispatch = useDispatch()
     const items = useSelector((state) => state.carts)
     const history = useHistory()
     const [total, setTotal] = useState(0)
-    // const user = useSelector((state) => state.userOne); //esta viendo el usuario del que compra
+    const { user } = useAuth0();
+    console.log("hola", user.email)
 
-   /*  const successAlert = () => {
+
+    const successAlert = () => {
         Swal.fire({
             title: 'All Products Removed!',
             confirmButtonText: "Ok",
             timer: 3000,
             icon: "success"
         });
-    } */
+    }
+
+    const successBuy = (name) => {
+        Swal.fire({
+            title: `Transaction completed by ${name}` ,
+            html: "You will be redirected in 5 seconds",
+            icon: "success",
+            timer: 5000,
+            timerProgressBar: true
+        }).then((result) => {
+            history.push("/")
+            window.location.reload()
+        })
+    }
+
+    const failBuy = () => {
+        Swal.fire({
+            title: 'Transaction cancelled',
+            showCancelButton: true,
+            confirmButtonText: "Search more products",
+            cancelButtonText: "Stay in cart",
+            icon: "warning"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                history.push("/products")
+            }
+            else {
+                window.location.reload()
+            }
+        })
+    }
 
     var totalPrice
     var transaction
@@ -80,6 +114,11 @@ export default function ShoppingCart() {
         dispatch(deleteCart())
     }
 
+    const cleanCartAlert = () => {
+        dispatch(deleteCart())
+        successAlert()
+    }
+
     function handleBuyNow(status) {
         data(status)
         dispatch(newTransaction(transaction))
@@ -119,7 +158,6 @@ export default function ShoppingCart() {
                     <PayPalScriptProvider options={{"client-id": "AQB3R_3UZ3vTt2ldgt4HbNje7Ms7fDH5MP9tbok-zjN6DeuRGw5Z2ommnuZ-ERXDlWT3Ucv9ozPMnfrl"}}>
                         <PayPalButtons
                         forceReRender={[total]}
-                        fundingSource="paypal"
                         createOrder={(data, actions) => {
                             return actions.order.create({
                                     purchase_units: [
@@ -134,21 +172,23 @@ export default function ShoppingCart() {
                         onApprove={async (data, actions) => {
                             const details = await actions.order.capture();
                             const name = details.payer.name.given_name;
-                            alert("Transaction completed by " + name);
                             handleBuyNow("Approved")
                             cleanCart()
-                            history.push('/')
-                            window.location.reload()
+                            successBuy(name)
                         }}
                         onCancel={async (data, actions) => {
-                            alert("Transaction cancelled")
+                            failBuy()
                             handleBuyNow("Cancelled")
                         }}
                         />
                     </PayPalScriptProvider>
                     <div className="flex flex-col justify-center items-center">
-                        <button className="w-8"  onClick={cleanCart} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
-                        <button className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button" /* onClick={handleBuyNow()} */ >Buy now</button>
+                        {
+                            items.length ?
+                            <button className="w-8"  onClick={cleanCartAlert} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
+                            : <button className="w-8" disabled="true"><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
+                        }
+                        {/* <button className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button" >Buy now</button> */}
                     </div>
                 </div>
             </div>
