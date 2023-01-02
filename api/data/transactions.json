@@ -24,7 +24,8 @@
                 "product": "Apple AirPods with Charging Case (Wired)"
             }
         ],
-        "status": "Approved"
+        "status": "Approved",
+        "shipping": "Hola 1879"
     },
     {
         "price": 8800,
@@ -51,7 +52,8 @@
                 "product": "Apple AirPods with Charging Case (Wired)"
             }
         ],
-        "status": "Cancelled"
+        "status": "Cancelled",
+        "shipping": "Hola 18"
     },
     {
         "price": 500,
@@ -66,6 +68,7 @@
                 "product": "Apple AirPods with Charging Case (Wired)"
             }
         ],
-        "status": "Approved"
+        "status": "Approved",
+        "shipping": "Hola 79"
     }
 ]
