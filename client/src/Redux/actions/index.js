@@ -41,7 +41,7 @@ export function getAllProducts() {
     }
 }
 export function getAllUsers() {
-    console.log(getAllUsers)
+    // console.log(getAllUsers)
     return async function (dispatch) {
         var json = await back_call.get('/users')
         return dispatch({
