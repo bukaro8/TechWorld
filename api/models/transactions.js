@@ -34,6 +34,10 @@ const transactionsSchemas = new mongoose.Schema({
         default: 'Pending'
     },
 
+    shipping: {
+        type: String
+    },
+
     createdAt: {
         type: Date,
         default: Date.now

@@ -8,6 +8,7 @@ import { deleteCart } from "../Redux/actions";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { newTransaction, putProdut } from "../Redux/actions";
 import { useAuth0 } from '@auth0/auth0-react';
+import emailjs from "@emailjs/browser"
 
 
 export default function ShoppingCart() {
@@ -16,8 +17,24 @@ export default function ShoppingCart() {
     const history = useHistory()
     const [total, setTotal] = useState(0)
     const { user } = useAuth0();
-    console.log("hola", user.email)
 
+
+    const emptyCart = () => {
+        Swal.fire({
+            title: "Cart is empty",
+            showCancelButton: true,
+            confirmButtonText: "Search products",
+            cancelButtonText: "Go home",
+            icon: "warning"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                history.push("/products")
+            }
+            else {
+                history.push("/")
+            }
+        })
+    }
 
     const successAlert = () => {
         Swal.fire({
@@ -61,7 +78,7 @@ export default function ShoppingCart() {
     var totalPrice
     var transaction
     var stockReload
-    function data (status){
+    function data (status, shipping){
         if (status == "Approved"){
             stockReload = items.map(e => {
                 return {
@@ -85,12 +102,12 @@ export default function ShoppingCart() {
             }
         })
         transaction = {
-            "userEmail": "prueba@gmail.com",
+            userEmail: user.email,
             price: total,
             itemsBought,
-            status: status
+            status: status,
+            shipping: shipping
         }
-        
     }
 
     function setIndividualPrice(){
@@ -115,22 +132,43 @@ export default function ShoppingCart() {
     }
 
     const cleanCartAlert = () => {
-        dispatch(deleteCart())
-        successAlert()
+        if (items.length) {
+            dispatch(deleteCart())
+            successAlert()
+        }
+        else {
+            emptyCart()
+        }
     }
 
-    function handleBuyNow(status) {
-        data(status)
+    function handleBuyNow(status, shipping) {
+        data(status, shipping)
         dispatch(newTransaction(transaction))
         for (let a = 0; a < stockReload.length; a++){
             dispatch(putProdut(stockReload[a]))
         }
     }
+
+   
+
+    const emailTransaction = () => {
+        var orderSummary = []
+        for (let i = 0; i < items.length; i++){
+            orderSummary.push(items[i].name)
+            orderSummary.push(items[i].quantity)
+        }
+        var params = {
+            name: user.given_name,
+            message: orderSummary,
+            totals: total,
+            mail: user.email
+        }
+        emailjs.send("service_a3dbnfc","template_ffo4l4o", params, "Vvb2IwNd3JccV-1cY")
+    }
     
 
     return (
-        <div  className="flex flex-col justify-center items-center " onPointerMove={handleOnClick}>
-            
+        <div  className="flex flex-col justify-center items-center " onPointerMove={handleOnClick}>    
             <h2 className="text-2xl" >Shopping Cart</h2>
             <div  className=" flex flex-wrap justify-around" >
                 {
@@ -171,9 +209,11 @@ export default function ShoppingCart() {
                                 })}}
                         onApprove={async (data, actions) => {
                             const details = await actions.order.capture();
+                            var shipping = "" + details.purchase_units[0].shipping.address.address_line_1 + ", " + details.purchase_units[0].shipping.address.admin_area_1 + ", " + details.purchase_units[0].shipping.address.country_code + ". Postal code:" + details.purchase_units[0].shipping.address.postal_code
                             const name = details.payer.name.given_name;
-                            handleBuyNow("Approved")
+                            handleBuyNow("Approved", shipping)
                             cleanCart()
+                            emailTransaction()
                             successBuy(name)
                         }}
                         onCancel={async (data, actions) => {
@@ -183,11 +223,7 @@ export default function ShoppingCart() {
                         />
                     </PayPalScriptProvider>
                     <div className="flex flex-col justify-center items-center">
-                        {
-                            items.length ?
-                            <button className="w-8"  onClick={cleanCartAlert} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
-                            : <button className="w-8" disabled="true"><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
-                        }
+                        <button className="w-8"  onClick={cleanCartAlert} ><img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
                         {/* <button className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button" >Buy now</button> */}
                     </div>
                 </div>
