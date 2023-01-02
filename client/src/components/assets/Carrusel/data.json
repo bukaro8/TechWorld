@@ -1,49 +1,40 @@
 {
   "resources": [
     {
-      "title": "Find Cameras",
-      "link": "/products",
+      "title": "Cameras",
       "imageUrl": "https://img.freepik.com/vector-gratis/conjunto-iconos-camaras-fotos_23-2147490783.jpg?w=740&t=st=1670856064~exp=1670856664~hmac=2c8d2c2b31a0bb4dff85ee8f66ab551a92af8f1b86c3c49728ceff58db62215b"
     },
     {
-      "title": "Find Laptops",
-      "link": "https://ark-labs.co.uk",
+      "title": "Laptops",
       "imageUrl": "https://thumbs.dreamstime.com/z/muchas-computadoras-port%C3%A1tiles-con-diversas-im%C3%A1genes-en-la-pantalla-28631695.jpg"
     },
     {
-      "title": "Find Headphone",
-      "link": "https://twitter.com/kendalmintcode",
+      "title": "Headphones",
       "imageUrl": "https://thumbs.dreamstime.com/b/muchos-auriculares-elegantes-en-el-fondo-blanco-visi%C3%B3n-superior-149451211.jpg"
     },
     {
-      "title": "Find Consoles",
-      "link": "https://robkendal.co.uk",
+      "title": "Consoles",
       "imageUrl": "https://thumbs.dreamstime.com/z/pila-de-antiguas-consolas-videojuegos-bits-y-muchos-accesorios-juego-como-joystick-cartuchos-kharkov-ucrania-septiembre-viejos-159786607.jpg"
     },
     {
-      "title": "Find Television",
-      "link": "https://twitter.com/kendalmintcode",
+      "title": "Television",
       "imageUrl": "https://i.blogs.es/75ec4a/oled/450_1000.webp"
     },
     {
-      "title": "Find products Home",
-      "link": "https://twitter.com/kendalmintcode",
+      "title": "Home",
       "imageUrl": "https://www.tuberplas.com/img/servicios/electrodomesticos2.jpg"
     },
     {
-      "title": "Find VideosGames",
-      "link": "https://twitter.com/kendalmintcode",
+      "title": "VideoGames",
       "imageUrl": "https://static.vecteezy.com/system/resources/previews/008/604/881/non_2x/video-game-icons-many-colors-set-vector.jpg"
     },
     {
-      "title": "Find by Electronics",
-      "link": "https://twitter.com/kendalmintcode",
+      "title": "Electronics",
       "imageUrl": "https://thumbs.dreamstime.com/b/muchos-aparatos-electr%C3%B3nicos-modernos-utilizados-para-uso-diario-en-el-concepto-de-reutilizaci%C3%B3n-y-reciclaje-del-suelo-blanco-173871484.jpg"
     },
     {
-      "title": "Super item number the last",
-      "link": "https://twitter.com/kendalmintcode",
-      "imageUrl": "https://placeimg.com/300/300/tech"
+      "title": "Accessories",
+      "imageUrl": "https://cdn.uniacco.com/blog/wp-content/uploads/2021/05/24133413/gadgets.jpg"
     }
   ]
-}
+} 
