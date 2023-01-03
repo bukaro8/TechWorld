@@ -100,7 +100,7 @@ export default function NavBar() {
                         <ul class="menu flex items-center justify-end gap-5  ">
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
-                            <Link to="/cart" className="hover:text-red-600">Basket</Link>
+                            <Link to="/cart" className="hover:text-red-600">Cart</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
                             {
                                 verificador ? 
@@ -108,7 +108,7 @@ export default function NavBar() {
                                 null
                             }
                             
-                            <Link to="/cart" ><Carrito /></Link>
+                            <Carrito />
                             <Profile />
                                 {isAuthenticated ?
                             <LogoutButton />
@@ -127,7 +127,7 @@ export default function NavBar() {
 
                             <Link to="/" className="hover:text-red-600">Home </Link>
                             <Link to="/products" className="hover:text-red-600">Products </Link>
-                            <Link to="/" className="hover:text-red-600">Basket </Link>
+                            <Link to="/cart" className="hover:text-red-600">Cart </Link>
                             <Link to="/" className="hover:text-red-600">Account </Link>
                             <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
                         </ul>
