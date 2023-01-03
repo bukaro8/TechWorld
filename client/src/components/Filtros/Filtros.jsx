@@ -70,6 +70,8 @@ export const Filtros = () => {
   let dispatch = useDispatch();
   //const [orden, setOrden] = useState('')
   //const [currentPage, setCurrentPage] = useState(1);
+  let categoryFilter = useSelector((state) => state.categoryFilter);
+  console.log("Esto es categoryFilter en Filtros: " + categoryFilter)
   
   let categories = [
     'Electronics',
@@ -111,13 +113,13 @@ export const Filtros = () => {
   
   return (
     <div className="flex justify-around flex-wrap m-2">
-    
+
     <select onChange={e => {handleCategoryFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
         <option value="all" key="all">Categories</option>
         {
         categories.map(c =>{
               return(
-            <option value={c} key={c}>{c}</option>
+            <option value={c} key={c} id={c}>{c}</option>
                         )
             })
         }

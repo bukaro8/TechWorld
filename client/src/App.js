@@ -11,6 +11,7 @@ import { Switch } from 'react-router-dom'
 import Pag404 from './components/Pag404';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditarUsuario from './components/EditProduct/editProduct';
+import List from './components/EditProduct/listProduct';
 import IsAuthenticated from './components/Registrar/IsAuthenticated';
 import ProtectedRoute from "./ProtectedRoute";
 import './index.css'
@@ -27,9 +28,9 @@ let userAdmin = useSelector((state) => state.admin);
 
 	return (
 		<div className='App'>
-			
+			<NavBar />
 			<Switch>
-				<Route exact path='/'>  <NavBar /><Home />  </Route>
+				<Route exact path='/'>  <Home />  </Route>
 				<Route exact path='/products'>	<Products />  </Route>
 				<Route exact path="/cart">	<ShoppingCart />  </Route>
 				<Route  path="/product/:id">  <CardDetail />  </Route>
@@ -38,7 +39,8 @@ let userAdmin = useSelector((state) => state.admin);
 				<ProtectedRoute exact path="/user" component={Perfil} />
                 
 				{/*<ProtectedRoute exact path="/dashboard" component={Dashboard} />*/}
-				<Route exact path='/edit/:id' ><EditarUsuario/> </Route>
+				
+				<Route exact path='/edit/:id' > <EditarUsuario/> </Route>
 				{/* <Route path='*' component={Pag404} /> */}
 
 

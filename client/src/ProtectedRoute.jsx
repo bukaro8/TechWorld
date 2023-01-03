@@ -24,12 +24,14 @@ const dataAuth = IsAuthenticated();
 
 
   return (
+
     
     <Route {...rest}>{data? <Dashboard/> : <Perfil/> }</Route>
     
    
     
     
+
 )
 }
 

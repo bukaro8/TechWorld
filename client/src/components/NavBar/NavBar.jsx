@@ -47,7 +47,7 @@ export default function NavBar() {
     //Para formulario de usarios
 
     let usersData = useSelector((state) => state.users);
-    console.log(usersData,'usersData')
+    // console.log(usersData,'usersData')
     
     //LLama al componente de auth y ejecuta la funcion
     const dataAuth = IsAuthenticated();
@@ -56,16 +56,18 @@ export default function NavBar() {
     let data;
     if(isAuthenticated === true) {
     data = user.email  //Extraigo el mail que viene de auth0
-    console.log(data,'data')
+    // console.log(data,'data')
     }
+
 
     let isAdminTrue = usersData.map((e)=>e.isAdmin) // devuelve true/false
     console.log(isAdminTrue,'isAdminTrue')
 
+
     let mailAdminUser;
     if(isAdminTrue){
     mailAdminUser = usersData.map((e) => e.email)
-    console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
+    // console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
     }
 
 
@@ -87,18 +89,18 @@ export default function NavBar() {
 
         <div>
             <nav className="bg-white border-gray-200 ">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-full h-fit px-4 md:px-6 py-6 mt-2 bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600">
+                <div className="flex flex-wrap justify-around items-center  max-w-full h-fit   py-6 bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600 text-white">
 
                     <Link to="/" class="flex items-center">
-                        <img src={logos} className="mr-3 h-9 sm:h-16 rounded-full" alt="nada" />
-                        <span className="self-center text-xl font-semibold whitespace-nowrap hover:text-red-700">
+                        <img src={logos} className="mr-3 h-9 sm:h-16 rounded-full" alt="Logo" />
+                        <span className="self-center text-xl font-bold whitespace-nowrap hover:text-red-700">
                             TechWorld
                         </span>
                     </Link>
 
 
-                    <div class="links lg:block hidden w-1/6 md:w-4/6">
-                        <ul class="menu flex items center justify-end gap-5 text-xl font-bold ">
+                    <div class="links lg:block hidden w-1/6 md:w-4/6 text-lg font-semibold">
+                        <ul class="menu flex items-center justify-end gap-5  ">
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Basket</Link>
@@ -109,6 +111,7 @@ export default function NavBar() {
                                 <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
                                 null
                             }
+
                          
                             {
                               isAuthenticated && !verificador ? <Link to="/user" className="hover:text-red-600">User</Link>
@@ -119,16 +122,12 @@ export default function NavBar() {
                            
                             <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
 
+
                         </ul>
                     </div>
 
 
-                    <Profile />
-                    {isAuthenticated ?
-                        <LogoutButton />
-                        :
-                        <LoginButton />
-                    }
+                    
 
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>

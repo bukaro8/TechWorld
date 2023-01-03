@@ -1,4 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect  } from 'react'
+import { useDispatch, useSelector} from 'react-redux';
+import { filterByCategory } from '../../../Redux/actions';
+import { useHistory} from 'react-router-dom';
 
 // Data
 import data from './data.json';
@@ -7,6 +10,17 @@ const Carousel = () => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
+  let dispatch = useDispatch();
+  const history = useHistory()
+
+  const handleCarruselCategoryFilter = (e) =>{
+    e.preventDefault();
+    console.log("esto es e.target.id en Carrusel: " + e.target.id)
+    if(e.target.id){
+      dispatch(filterByCategory(e.target.id))
+      history.push("/products")
+    }
+  }
 
   const movePrev = () => {
     if (currentIndex > 0) {
@@ -51,9 +65,6 @@ const Carousel = () => {
 
   return (
     <div className="carousel my-12 mx-auto">
-      <h6 className="text-2xl leading-8 font-semibold mb-12 text-slate-700">
-         carousel categories products
-      </h6>
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
           <button
@@ -109,25 +120,27 @@ const Carousel = () => {
                 key={index}
                 className="carousel-item text-center relative w-64 h-64 snap-start"
               >
-                <a
-                  href={resource.link}
+                <span
                   className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
                   style={{ backgroundImage: `url(${resource.imageUrl || ''})` }}
+                  id={resource.title}
+                  onClick= {e=> {handleCarruselCategoryFilter(e)}}
                 >
                   <img
                     src={resource.imageUrl || ''}
                     alt={resource.title}
                     className="w-full aspect-square hidden"
                   />
-                </a>
-                <a
-                  href={resource.link}
+                </span>
+                <span
                   className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-800/75 z-10"
+                  id={resource.title}
+                  onClick= {e=> {handleCarruselCategoryFilter(e)}}
                 >
                   <h3 className="text-white py-6 px-3 mx-auto text-xl">
-                    {resource.title}
+                    Find {resource.title}
                   </h3>
-                </a>
+                </span>
               </div>
             );
           })}
