@@ -20,7 +20,7 @@ export default function ShoppingCart() {
 
     const register = () => {
         Swal.fire({
-            title: "Register to buy items",
+            title: "Login to buy items",
             confirmButtonText: "Ok",
             icon: "warning"
         }).then((result) => {
