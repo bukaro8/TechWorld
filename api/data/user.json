@@ -3,7 +3,7 @@
         "name": "karen",
         "email": "karen@gmail.com",
         "password": "123",
-        "isAdmin": "true",
+        "isAdmin": "false",
         "isBan": "false",
         "address": "porahi 321",
         "phone": "777"
@@ -36,4 +36,5 @@
             "address": "Siempreviva 321",
             "phone": 777333444
             }
+
 ]
