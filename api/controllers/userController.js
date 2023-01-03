@@ -104,16 +104,3 @@ exports.getUserAdmin = async (req, res, next) => {
 // 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
 // 	}
 // };
-/*
-exports.setAdmin = async (req, res) => {
-	try {
-		const {_id,isAdmin, isBan} = req.body
-	  const actUser = await Product.findByIdAndUpdate(_id, {isAdmin: isAdmin, isBan: isBan});
-	  res.status(200).send({
-		success: true,
-		actUser,
-	  });
-	} catch (e) {
-	  return res.status(500).send("Debe ingresar un ID valido");
-	}
-  };*/

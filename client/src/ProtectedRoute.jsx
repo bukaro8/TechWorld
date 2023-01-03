@@ -1,6 +1,5 @@
 import { Redirect, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard/Dasboard'
-import Perfil from './components/Perfil'
 import IsAuthenticated from '../src/components/Registrar/IsAuthenticated'
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -24,17 +23,8 @@ const dataAuth = IsAuthenticated();
 
 
   return (
-
-    
-    <Route {...rest}>{data? <Dashboard/> : <Perfil/> }</Route>
-    
-   
-    
-    
-
+    <Route {...rest}>{data? <Dashboard/> : <Redirect to="/"/> }</Route>
 )
 }
 
 export default ProtectedRoute
-
-// {/*<Route {...rest}>{data? <Dashboard/> : <Redirect to="/home"/> }</Route>*/}
