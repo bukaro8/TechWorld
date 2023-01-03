@@ -59,8 +59,10 @@ export default function NavBar() {
     // console.log(data,'data')
     }
 
-    let isAdminTrue = usersData.map((e)=>e.isAdmin)
-    // console.log(isAdminTrue,'isAdminTrue')
+
+    let isAdminTrue = usersData.map((e)=>e.isAdmin) // devuelve true/false
+    console.log(isAdminTrue,'isAdminTrue')
+
 
     let mailAdminUser;
     if(isAdminTrue){
@@ -68,7 +70,8 @@ export default function NavBar() {
     // console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
     }
 
-    const verificador = mailAdminUser.includes(data)
+
+    const verificador = mailAdminUser.includes(data);
 
 
      let dispatch = useDispatch();
@@ -102,19 +105,24 @@ export default function NavBar() {
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Basket</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
+                            
                             {
-                                verificador ? 
+                                verificador  ? 
                                 <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
                                 null
                             }
-                            
-                            <Link to="/cart" ><Carrito /></Link>
-                            <Profile />
-                                {isAuthenticated ?
-                            <LogoutButton />
-                            :
-                            <LoginButton />
-                    }
+
+                         
+                            {
+                              isAuthenticated && !verificador ? <Link to="/user" className="hover:text-red-600">User</Link>
+                                :
+                                false
+                            }
+
+                           
+                            <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
+
+
                         </ul>
                     </div>
 
