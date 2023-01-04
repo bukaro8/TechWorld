@@ -2,9 +2,7 @@ import React, { useEffect } from 'react'
 import { getDetail, addToCart } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom"
-
-
-
+import Swal from "sweetalert2"
 
 const CardDetail = () => {
     const items = useSelector((state) => state.detail)
@@ -26,10 +24,20 @@ const CardDetail = () => {
         image: items.images
     }
 
+    const successAlert = () => {
+        Swal.fire({
+            title: 'Product added to cart!',
+            confirmButtonText: "Ok",
+            timer: 3000,
+            icon: "success"
+        });
+    }
+
     const addCart = () => {
         dispatch(addToCart(payload))
         localStorage.setItem("cart", JSON.stringify(cart))
         localStorage.setItem("items", JSON.stringify(cantidad))
+        successAlert()
     }
 
     return (

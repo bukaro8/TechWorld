@@ -2,16 +2,27 @@ import React from "react";
 import { addToCart } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2"
 
 export default function Product({ name, image, price, ratings, id, stock}) {
     const items = useSelector((state) => state.carts)
     const cantidad = useSelector((state) => state.cartItems)
     const dispatch = useDispatch()
 
+    const successAlert = () => {
+        Swal.fire({
+            title: 'Product added to cart!',
+            confirmButtonText: "Ok",
+            timer: 3000,
+            icon: "success"
+        });
+    }
+
     const handleOnClick = () => {
         dispatch(addToCart(payload))
         localStorage.setItem("cart", JSON.stringify(items))
         localStorage.setItem("items", JSON.stringify(cantidad))
+        successAlert()
     }
 
     localStorage.setItem("cart", JSON.stringify(items))

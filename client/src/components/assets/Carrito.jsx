@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { increaseQuantity, removeOneProduct, decreaseQuantity } from "../../Redux/actions";
+import Swal from "sweetalert2"
 
 const Carrito = () => {
     const dispatch = useDispatch()
@@ -8,6 +9,16 @@ const Carrito = () => {
     const cantidad = useSelector((state) => state.cartItems)
     const [total, setTotal] = useState(0)
     const [show, setShow] = useState(true)
+
+    const removeAlert = () => {
+        Swal.fire({
+            title: 'Product Removed!',
+            confirmButtonText: "Ok",
+            timer: 3000,
+            icon: "success"
+        });
+    }
+
 
     const suma = (payload) => {
         dispatch(increaseQuantity(payload))
@@ -23,6 +34,7 @@ const Carrito = () => {
 
     const remove = (payload) => {
         dispatch(removeOneProduct(payload))
+        removeAlert()
     }
 
     const amount = (price, quantity) => {
