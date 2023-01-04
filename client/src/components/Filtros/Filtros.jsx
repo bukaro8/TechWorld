@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
-import { filterByCategory, filterByPrice, filterByRating, orderByName} from '../../Redux/actions';
+import { filterByCategory, filterByPrice, filterByRating, orderByName, resetFilters} from '../../Redux/actions';
 
 export const applyFilters = (allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder) => {
   let finalProducts = allProducts
@@ -110,9 +110,18 @@ export const Filtros = () => {
     //setCurrentPage(1);
     //setOrden(`Ordenado ${e.target.value}`)
   }
+
+  const handleResetFilters = (e) =>{
+    e.preventDefault();
+    dispatch(resetFilters())
+  }
   
   return (
     <div className="flex justify-around flex-wrap m-2">
+
+    <button onClick={e => {handleResetFilters(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
+      Clear Filters
+    </button>
 
     <select onChange={e => {handleCategoryFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
         <option value="all" key="all">Categories</option>
