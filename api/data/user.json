@@ -3,7 +3,7 @@
         "name": "karen",
         "email": "karen@gmail.com",
         "password": "123",
-        "isAdmin": "false",
+        "isAdmin": "true",
         "isBan": "false",
         "address": "porahi 321",
         "phone": "777"
@@ -27,9 +27,6 @@
         "phone": "999"
     },
     {
-
-
-
         "name": "nahir",
         "email": "nahir.k.sosa@gmail.com",
         "password": "1233",
@@ -59,6 +56,5 @@
         "address": "porahi 777",
         "phone": 777333444
     }
-
 
 ]

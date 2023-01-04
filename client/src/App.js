@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
 import Dashboard from './components/Dashboard/Dasboard';
-import Perfil from './components/Perfil';
 import Products from './components/Products/Products';
 import ShoppingCart from './containers/ShoppingCart';
 import CardDetail from './components/Cards/CardDetail';
@@ -36,7 +35,6 @@ let userAdmin = useSelector((state) => state.admin);
 				<Route  path="/product/:id">  <CardDetail />  </Route>
 				
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-				<ProtectedRoute exact path="/user" component={Perfil} />
                 
 				{/*<ProtectedRoute exact path="/dashboard" component={Dashboard} />*/}
 				
