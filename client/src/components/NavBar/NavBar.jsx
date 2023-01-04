@@ -120,9 +120,11 @@ export default function NavBar() {
                             }
 
                             
-                            <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>
+                           {/* <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>*/}
 
                             
+                            <Carrito />
+
                             <Profile />
                                 {isAuthenticated ?
                             <LogoutButton />
