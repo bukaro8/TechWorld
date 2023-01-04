@@ -3,7 +3,7 @@ import React from 'react';
 import Product from '../Cards/Card';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../Redux/actions';
+import { getAllProducts, resetDetail} from '../../Redux/actions';
 import gif from '../assets/imagenes/gif.png'
 import Carrusel from '../assets/Carrusel/Carrusel';
 
@@ -17,11 +17,8 @@ export default function Home({ }) {
   let dispatch = useDispatch();
   useEffect(() => {
     if (!products.length) dispatch(getAllProducts());
+    dispatch(resetDetail());
   }, [dispatch]);
-
-
-
-
 
   let latestProducts = products.slice(-8);
   return (
