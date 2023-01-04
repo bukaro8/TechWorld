@@ -29,7 +29,8 @@ export const PUT_PRODUCT= 'PUT_PRODUCT';
 export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 export const SEARCH_BY_EMAIL = 'SEARCH_BY_EMAIL';
 export const SEARCH_BY_STATUS = 'SEARCH_BY_STATUS';
-
+export const RESET_DETAIL = 'RESET_DETAIL';
+export const RESET_FILTERS = 'RESET_FILTERS';
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -160,6 +161,19 @@ export function deleteCart(payload) {
         payload
     }
 }
+
+export function resetDetail() {
+    return {
+        type: RESET_DETAIL
+    }
+}
+
+export function resetFilters() {
+    return {
+        type: RESET_FILTERS
+    }
+}
+
 export const putProdut = (input) => {
     return async function() {
      await back_call.post(`/product/editProduct`,input);
