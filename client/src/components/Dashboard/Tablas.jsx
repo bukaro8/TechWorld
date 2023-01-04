@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Switch } from 'antd';
-
-
 import { getAllUsers } from "../../Redux/actions";
-
 import { Table,Tag } from "antd";
 
 const Tablas = () => {
   
   let data = useSelector((state) => state.users);
-
   let dispatch = useDispatch();
   
+
+
   const deleteU=()=>{
     //  alert("borrado")
   }
@@ -23,8 +20,6 @@ const Tablas = () => {
  const isadmin=()=>{
   // alert("is admin")
 }
-
-
   // const onChange = (checked) => {
   //   console.log(`switch to ${checked}`);
   // };
@@ -50,9 +45,9 @@ const Tablas = () => {
       key: 'address',
     },
     {
-      title: 'banner',
-      dataIndex: 'banner',
-      key: 'banner',
+      title: 'banned',
+      dataIndex: 'banned',
+      key: 'banned',
       render:()=>   <Switch defaultChecked onChange={isbanner} />
 
     },
