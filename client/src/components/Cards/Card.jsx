@@ -41,19 +41,21 @@ export default function Product({ name, image, price, ratings, id, stock }) {
             <a key={id}>
                 <div className='flex items-stretch -mx-4 h-full'>
                     <div className=" flex  flex-col m-8 w-72 max-w-sm bg-white rounded-lg shadow-md dark:bg-slate-300 dark:border-gray-700 hover:bg-blue-200 ">
-                        <picture className="h-64  rounded flex items-center justify-center ">
+                        <Link to={`/product/${id}`}>
+                            <picture className="h-64  rounded flex items-center justify-center ">
+                                <img className="p-8  rounded-t-lg m max-h-full "
+                                    src={image}
+                                    alt={image}
+                                />
 
-                        <img className="p-8  rounded-t-lg m max-h-full "
-                            src={image}
-                            alt={image}
-                        />
-                        </picture>
+                            </picture>
+                        </Link>
                         <div class="rounded border-red-800 px-2">
                             <Link to={`/product/${id}`}>
                                 {
-                                    name.length > 60 ? 
-                                    <h5 class=" text-center text-lg  font-semibold tracking-tight text-gray-900 dark:text-white h-20">{name.slice(0, 57) + "..."}</h5> :
-                                    <h5 class=" text-center text-lg  font-semibold tracking-tight text-gray-900 dark:text-white h-20">{name}</h5>
+                                    name.length > 60 ?
+                                        <h5 class=" text-center text-lg  font-semibold tracking-tight text-gray-900 dark:text-white h-20">{name.slice(0, 57) + "..."}</h5> :
+                                        <h5 class=" text-center text-lg  font-semibold tracking-tight text-gray-900 dark:text-white h-20">{name}</h5>
                                 }
 
                             </Link>
