@@ -106,7 +106,7 @@ const Carrito = () => {
                                         <ul role="list" class="-my-6 divide-y divide-gray-200">
                                             <li class="flex py-6">
                                             <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                <img src={e.image} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center"/>
+                                                <img className="max-w-full" src={e.image} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center"/>
                                             </div>
                                             <div class="ml-4 flex flex-1 flex-col">
                                                 <div>
