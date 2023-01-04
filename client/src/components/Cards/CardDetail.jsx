@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { getDetail, addToCart } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom"
+import e from 'cors';
 
 
 
@@ -17,8 +18,17 @@ const CardDetail = () => {
         dispatch(getDetail(id));
     }, [dispatch]);
 
+    const payload = {
+        id: items._id,
+        name: items.name,
+        stock: items.stock,
+        quantity: items.quantity,
+        price: items.price,
+        image: items.images
+    }
+
     const addCart = () => {
-        dispatch(addToCart(items))
+        dispatch(addToCart(payload))
         localStorage.setItem("cart", JSON.stringify(cart))
         localStorage.setItem("items", JSON.stringify(cantidad))
     }
