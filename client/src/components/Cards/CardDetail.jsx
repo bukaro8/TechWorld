@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { getDetail, addToCart } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom"
-import e from 'cors';
 
 
 
