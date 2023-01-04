@@ -123,9 +123,6 @@ export default function NavBar() {
                             <Carrito />
 
 
-                            
-                            <Carrito />
-
                             <Profile />
                                 {isAuthenticated ?
                             <LogoutButton />
