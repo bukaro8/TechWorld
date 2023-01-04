@@ -107,8 +107,25 @@ export default function NavBar() {
                                 <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
                                 null
                             }
+
+
                             
-                            <Link to="/cart" ><Carrito /></Link>
+                            {
+                              isAuthenticated && !verificador ? <Link to="/user" className="hover:text-red-600">User</Link>
+                                :
+                                false
+                            }
+
+                            
+                           {/* <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>*/}
+
+                            
+                            <Carrito />
+
+
+                            
+                            <Carrito />
+
                             <Profile />
                                 {isAuthenticated ?
                             <LogoutButton />
@@ -127,7 +144,7 @@ export default function NavBar() {
 
                             <Link to="/" className="hover:text-red-600">Home </Link>
                             <Link to="/products" className="hover:text-red-600">Products </Link>
-                            <Link to="/" className="hover:text-red-600">Cart </Link>
+                            <Link to="/cart" className="hover:text-red-600">Cart </Link>
                             <Link to="/" className="hover:text-red-600">Account </Link>
                             <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
                         </ul>
