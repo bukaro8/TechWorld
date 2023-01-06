@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import { getDetail } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom"
+import { Reviews } from '../Reviews/reviews';
+
+
 
 
 
@@ -93,6 +96,10 @@ const CardDetail = () => {
                     </div>
                 </div>
             </section>
+            <div>
+                <Reviews/>
+            </div>
+            
         </div>
     )
 

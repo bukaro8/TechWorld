@@ -2,7 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 
+
+
 export default function ProductoInd({data}){
+    
     return(
        
         <div > 
@@ -23,11 +26,13 @@ export default function ProductoInd({data}){
                 </div> */}
         
                 <div className='grid justify-items-center content-center'>
-                    <Link to={`/edit/${data._id}`}>
+                    
+                <Link to={`/edit/${data._id}`}>
                         <button >
                             🖋️
                         </button>
                     </Link>
+                   
                 </div>
             </div> 
         </div>

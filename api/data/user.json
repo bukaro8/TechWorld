@@ -45,5 +45,15 @@
         "isBan": false,
         "address": "Siempreviva 321",
         "phone": 777333444
-}
+    },
+    {
+        "name": "snider",
+        "email": "snidergaona@gmail.com",
+        "password": "25846",
+        "isAdmin": false,
+        "rol": "usuario",
+        "isBan": false,
+        "address": "Siempreviva 321",
+        "phone": 777333444
+    }
 ]

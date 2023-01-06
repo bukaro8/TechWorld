@@ -36,7 +36,12 @@
 		"stock": 1,
 		"state": true,
 		"numOfReviews": 12,
-		"reviews": []
+		"reviews": [{
+			"name": "sneider",
+			"email": "sneider@technology.com",
+			"rating": "3",
+			"comment": "exelente producto"
+		}]
 	},
 	{
 		"name": "Bose QuietComfort 35 II Wireless Bluetooth Headphones",

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../Redux/actions';
 import gif from '../assets/imagenes/gif.png'
 import Carrusel from '../assets/Carrusel/Carrusel';
+import Search from '../Search/Search';
 
 
 export default function Home({ }) {
@@ -26,6 +27,12 @@ export default function Home({ }) {
   let latestProducts = products.slice(-8);
   return (
     <div>
+       <nav className="bg-gray-50">
+                <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
+                    <Search />
+                </div>
+            </nav>
+
       <Carrusel />
      
       {/* <div class="flex  items-stretch  -mx-4"> */}

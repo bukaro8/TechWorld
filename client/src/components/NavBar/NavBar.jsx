@@ -137,11 +137,11 @@ export default function NavBar() {
 
 
 
-            <nav className="bg-gray-50">
+            {/* <nav className="bg-gray-50">
                 <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
                     <Search />
                 </div>
-            </nav>
+            </nav> */}
 
 
 
