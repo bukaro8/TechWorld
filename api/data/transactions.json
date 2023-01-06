@@ -25,7 +25,8 @@
             }
         ],
         "status": "Approved",
-        "shipping": "Hola 1879"
+        "shipping": "Hola 1879",
+        "delivered": "Cancelled"
     },
     {
         "price": 8800,
@@ -53,7 +54,8 @@
             }
         ],
         "status": "Cancelled",
-        "shipping": "Hola 18"
+        "shipping": "Hola 18",
+        "delivered": "Delivered"
     },
     {
         "price": 500,
@@ -69,6 +71,7 @@
             }
         ],
         "status": "Approved",
-        "shipping": "Hola 79"
+        "shipping": "Hola 79",
+        "delivered": "Pending"
     }
 ]
