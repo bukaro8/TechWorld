@@ -3,7 +3,7 @@ import React from 'react';
 import Product from '../Cards/Card';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../Redux/actions';
+import { getAllProducts, resetDetail } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
 import Search from '../Search/Search';
 import { Filtros, applyFilters } from '../Filtros/Filtros';
@@ -14,6 +14,7 @@ export default function Products() {
 
   useEffect(() => {
     if (!products.length) dispatch(getAllProducts());
+    dispatch(resetDetail());
   }, [dispatch]);
   let allProducts = useSelector((state) => state.allProducts);
   let searchName = useSelector((state) => state.searchName);
@@ -50,7 +51,7 @@ export default function Products() {
             <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {currentProducts.map((e) => {
                     return (
-                        <Product key={e.id} image={e.images} name={e.name} price={e.price} id={e._id} stock={e.stock}/>
+                        <Product key={e.id} image={e.images} name={e.name} price={e.price} id={e._id} stock={e.stock} ratings={e.ratings}/>
                     )
                 })}
             </div>

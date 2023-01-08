@@ -68,6 +68,7 @@ exports.putProduct = async (req, res) => {
       description: description,
       images: image,
     });
+
     res.status(200).send({
       success: true,
       actProduct,
@@ -112,13 +113,13 @@ exports.filStock = async (req, res) => {
 
 exports.postReviews = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const { name, comment, rating, email } = req.body;
     const product = await Product.findById(id);
-    // // console.log(product.reviews);
-    let find = product.reviews.filter((e)=> e.email == (email) )
-    // console.log(find);
-    if(!find.length){
+
+    let find = product.reviews.filter((e) => e.email == email);
+
+    if (!find.length) {
       const reviews = await product.updateOne({
         $push: {
           reviews: {
@@ -138,7 +139,6 @@ exports.postReviews = async (req, res) => {
         reviews,
       });
     }
-    
   } catch (e) {
     return res.status(500).send("------");
   }

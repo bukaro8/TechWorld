@@ -25,6 +25,8 @@ import {
     SEARCH_BY_EMAIL,
     SEARCH_BY_STATUS,
     GET_LAST_TRANSACTIONS,
+    RESET_DETAIL,
+    RESET_FILTERS,
     POST_REVIEWS
 } from "../actions/index"
 
@@ -268,6 +270,19 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 filteredTransactions: action.payload
+            }
+        case RESET_DETAIL:
+            return {
+                ...state,
+                detail: []
+            }
+        case RESET_FILTERS:
+            return {
+                ...state,
+                categoryFilter: "all",
+                ratingsFilter: "all",
+                priceFilter: "all",
+                alphabeticalOrder: "all",
             }
             case POST_REVIEWS: {
                 return {

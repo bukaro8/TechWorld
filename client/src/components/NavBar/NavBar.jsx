@@ -47,7 +47,7 @@ export default function NavBar() {
     //Para formulario de usarios
 
     let usersData = useSelector((state) => state.users);
-    console.log(usersData,'usersData')
+    // console.log(usersData,'usersData')
     
     //LLama al componente de auth y ejecuta la funcion
     const dataAuth = IsAuthenticated();
@@ -56,16 +56,16 @@ export default function NavBar() {
     let data;
     if(isAuthenticated === true) {
     data = user.email  //Extraigo el mail que viene de auth0
-    console.log(data,'data')
+    // console.log(data,'data')
     }
 
     let isAdminTrue = usersData.map((e)=>e.isAdmin)
-    console.log(isAdminTrue,'isAdminTrue')
+    // console.log(isAdminTrue,'isAdminTrue')
 
     let mailAdminUser;
     if(isAdminTrue){
     mailAdminUser = usersData.map((e) => e.email)
-    console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
+    // console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
     }
 
     const verificador = mailAdminUser.includes(data)
@@ -100,15 +100,29 @@ export default function NavBar() {
                         <ul class="menu flex items-center justify-end gap-5  ">
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
-                            <Link to="/cart" className="hover:text-red-600">Basket</Link>
+                            <Link to="/cart" className="hover:text-red-600">Cart</Link>
                             <Link to="/" className="hover:text-red-600">Account</Link>
                             {
                                 verificador ? 
                                 <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
                                 null
                             }
+
+
                             
-                            <Link to="/cart" ><Carrito /></Link>
+                            {
+                              isAuthenticated && !verificador ? <Link to="/user" className="hover:text-red-600">User</Link>
+                                :
+                                false
+                            }
+
+                            
+                           {/* <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>*/}
+
+                            
+                            <Carrito />
+
+
                             <Profile />
                                 {isAuthenticated ?
                             <LogoutButton />
@@ -127,7 +141,7 @@ export default function NavBar() {
 
                             <Link to="/" className="hover:text-red-600">Home </Link>
                             <Link to="/products" className="hover:text-red-600">Products </Link>
-                            <Link to="/" className="hover:text-red-600">Basket </Link>
+                            <Link to="/cart" className="hover:text-red-600">Cart </Link>
                             <Link to="/" className="hover:text-red-600">Account </Link>
                             <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
                         </ul>

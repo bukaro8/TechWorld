@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Switch } from 'antd';
 import { getAllUsers } from "../../Redux/actions";
-
-import { Table } from "antd";
+import { Table,Tag } from "antd";
 
 const Tablas = () => {
+  
   let data = useSelector((state) => state.users);
-
   let dispatch = useDispatch();
   
+
+
+  const deleteU=()=>{
+    //  alert("borrado")
+  }
+  const isbanner=()=>{
+    // alert("baneado")
+ }
+ const isadmin=()=>{
+  // alert("is admin")
+}
+  // const onChange = (checked) => {
+  //   console.log(`switch to ${checked}`);
+  // };
+
   useEffect(() => {
       dispatch(getAllUsers());
   }, [dispatch]);
@@ -31,21 +45,30 @@ const Tablas = () => {
       key: 'address',
     },
     {
+      title: 'banned',
+      dataIndex: 'banned',
+      key: 'banned',
+      render:()=>   <Switch defaultChecked onChange={isbanner} />
+
+    },
+    {
       title: 'IsAdmin',
       dataIndex: 'isAdmin',
       key: 'isAdmin',
+      render:()=>   <Switch defaultChecked onChange={isadmin} />
+
     },
     {
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
+      tags: ['nice', 'developer'],
     },
-    {
-      title: 'Action',
-      dataIndex: '',
-      key: 'x',
-      render: () => <a>Delete</a>,
-    },
+    // {
+    //   title: 'Action',
+    //   dataIndex: '',     
+    //   render: () => <a onClick={deleteU}>Delete</a>,
+    // },
   ]
     return (
       <Table

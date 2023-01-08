@@ -27,14 +27,14 @@
         "phone": "999"
     },
     {
-            "name": "nahir",
-            "email": "nahir.k.sosa@gmail.com",
-            "password": "1233",
-            "isAdmin": true,
-            "rol": "admin",
-            "isBan": false,
-            "address": "Siempreviva 321",
-            "phone": 777333444
+        "name": "nahir",
+        "email": "nahir.k.sosa@gmail.com",
+        "password": "1233",
+        "isAdmin": true,
+        "rol": "admin",
+        "isBan": false,
+        "address": "Siempreviva 321",
+        "phone": 777333444
     },
     {
         "name": "sneider",
@@ -46,6 +46,16 @@
         "address": "Siempreviva 321",
         "phone": 777333444
     },
+     {
+        "name": "damian",
+        "email": "damianf2022@gmail.com",
+        "password": "25846",
+        "isAdmin": true,
+        "rol": "admin",
+        "isBan": false,
+        "address": "porahi 777",
+        "phone": 777333444
+        },
     {
         "name": "snider",
         "email": "snidergaona@gmail.com",
@@ -56,4 +66,5 @@
         "address": "Siempreviva 321",
         "phone": 777333444
     }
+
 ]

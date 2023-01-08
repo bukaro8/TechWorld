@@ -78,7 +78,8 @@ export const Reviews = () => {
       
       {isAuthenticated ? ( 
         <div >
-          <div className="flex mx-auto items-center justify-center shadow-lg mt-56 mx-8 mb-4 max-w-lg">
+          <hr/>
+          <div className="flex mx-auto items-center justify-center shadow-lg mt-20 mx-8 mb-4 max-w-lg">
             
             <form onSubmit={(e) => handleSubmit(e)} className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"> 
               <div className="flex flex-wrap -mx-3 mb-6">
@@ -137,22 +138,18 @@ export const Reviews = () => {
                 )
                 
               }
-                {/* <div className="-mr-1">
-                  <button type="submit"  
-                    className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100">
-                    Post comment
-                  </button>
-                </div> */}
+                
                 
               </div>
             </form>
           </div>         
         </div>
       ) : (
-        "Inicie session para comentar"
+        
+        <div >"Inicie session para comentar" </div>
       )}
     
-      <div className="  flex mx-auto items-center justify-center shadow-lg mt-56 mx-8 mb-4 max-w-lg">
+      <div className="  flex mx-auto items-center justify-center shadow-lg mt-20 mx-8 mb-4 max-w-lg">
         <div className="px-10">
           
           {product.reviews ? (
@@ -161,13 +158,8 @@ export const Reviews = () => {
                 {product.reviews.map((r) => {
                   return (
                     <div key={r.id} className="mt-4">
-                      
-                        
-                        <p className="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">{r.name}</p>
-                        <p className="flex mt-2">{r.rating} ⭐</p>
-                      
-                    
-                      
+                      <p className="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">{r.name}</p>
+                      <p className="flex mt-2">{r.rating} ⭐</p>
                       <p className="mt-4 text-md text-gray-600">{r.comment}</p>
                     
                     </div>
@@ -175,7 +167,7 @@ export const Reviews = () => {
                 })}
               </div>
             ) : (
-              "Este producto no cuenta con Reviews"
+              <div > "Este producto no cuenta con Reviews" </div>
             )
           ) : (
             "Cargando..."
