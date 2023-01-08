@@ -101,7 +101,7 @@ export default function CartItem({ id, name, price, image, quantity, stock }) {
 			</div>
 
 			<div className=''>
-				<h3>${cont * price}</h3>
+				<h3>${(cont * price).toFixed(2)}</h3>
 			</div>
 			<button
 				type='button'

@@ -38,6 +38,18 @@ const transactionsSchemas = new mongoose.Schema({
         type: String
     },
 
+    delivered : {
+        type: String,
+        enum: {
+            values: [
+                'Pending',
+                'Delivered',
+                'Cancelled'
+            ]
+        },
+        default: 'Pending'
+    },
+
     createdAt: {
         type: Date,
         default: Date.now
