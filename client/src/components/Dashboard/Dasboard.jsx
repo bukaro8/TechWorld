@@ -6,6 +6,9 @@ import Tablas from './Tablas'
 import { useModal } from '../assets/modal/useModal'
 import Modal from '../assets/modal/Modal'
 import List from "../EditProduct/listProduct";
+
+import { Link } from "react-router-dom";
+
 import Transactions from "../Transactions/Transactions";
 
 
@@ -16,8 +19,8 @@ import Transactions from "../Transactions/Transactions";
 const Dasboard = ({ cerrarModal }) => {
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);
-  const [isOpenModal3, openModal3, closeModal3] = useModal(false);
   const [isOpenModal4, openModal4, closeModal4] = useModal(false);
+
 
   // let userss = useSelector((state) => state.users);
 
@@ -49,14 +52,15 @@ const Dasboard = ({ cerrarModal }) => {
               <Formulario closeModal={closeModal} cerrarModal={cerrarModal} />
             </Modal>
 
-           <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal3}>Edit Product</button>
-           <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
-              <List closeModal={closeModal} cerrarModal={cerrarModal} />
-            </Modal>
+
+            <Link to="/list"><button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>Products</button></Link>
+
+          
            <button className='text-orange-700 hover:text-white border border-orange-700 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={openModal4}>Transaction Hisotry</button>
            <Modal isOpen={isOpenModal4} closeModal={closeModal4}>
               <Transactions closeModal={closeModal} cerrarModal={cerrarModal} />
             </Modal>
+
           </div>
         </div>
       </div>

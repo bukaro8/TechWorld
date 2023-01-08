@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts, resetDetail } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
-
+import Search from '../Search/Search';
 import { Filtros, applyFilters } from '../Filtros/Filtros';
 
 export default function Products() {
@@ -41,7 +41,12 @@ export default function Products() {
 
     return (
         <div className="">
-            
+             <nav className="bg-gray-50">
+                <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
+                    <Search />
+                </div>
+            </nav>
+
             <Filtros />
             <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {currentProducts.map((e) => {

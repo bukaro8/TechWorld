@@ -26,7 +26,8 @@ import {
     SEARCH_BY_STATUS,
     GET_LAST_TRANSACTIONS,
     RESET_DETAIL,
-    RESET_FILTERS
+    RESET_FILTERS,
+    POST_REVIEWS
 } from "../actions/index"
 
 const initialState = {
@@ -49,6 +50,8 @@ const initialState = {
     transactions: [],
     filteredTransactions: [],
     searchMail: [],
+
+    resultPost: {},
 
 }
 
@@ -249,7 +252,7 @@ function rootReducer(state = initialState, action) {
     
         case O_STOCK:
         return {
-            ...state.filterState,
+            ...state,
             filterState: action.payload,
         };
         case GET_TRANSACTIONS:
@@ -293,6 +296,12 @@ function rootReducer(state = initialState, action) {
                 priceFilter: "all",
                 alphabeticalOrder: "all",
             }
+            case POST_REVIEWS: {
+                return {
+                  ...state,
+                  resultPost: action.payload,
+                };
+              }
         default:
             return state;
     }

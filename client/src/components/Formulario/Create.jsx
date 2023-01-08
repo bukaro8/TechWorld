@@ -249,25 +249,25 @@ export default function Create() {
                                 /> */}
                             </div>
                             {/* //*=========================================== */}
-							<div
-								{...getRootProps()}
-								className={`m-1 p-1 border border-dashed border-red-500 flex justify-center h-16 items-center rounded {${
-									isDragActive ? 'border-solid border-green-800' : null
-								}}`}
-							>
-								<input
-									name='images'
-									// value={input.images}
-									// onChange={(e) => handleChange(e)}
-									{...getInputProps()}
-								/>
-								Drop Image
-							</div>
-							{loading ? (
-								<h2>loading images</h2>
-							) : (
-								<img src={input.images} style={{ width: '300px' }} />
-							)}
+                                <div
+                                    {...getRootProps()}
+                                    className={`m-1 p-1 border border-dashed border-red-500 flex justify-center h-16 items-center rounded {${
+                                        isDragActive ? 'border-solid border-green-800' : null
+                                    }}`}
+                                >
+                                    <input
+                                        name='images'
+                                        // value={input.images}
+                                        // onChange={(e) => handleChange(e)}
+                                        {...getInputProps()}
+                                    />
+                                    Drop Image
+                                </div>
+                                {loading ? (
+                                    <h2>loading images</h2>
+                                ) : (
+                                    <img src={input.images} style={{ width: '300px' }} />
+                                )}
 							{/* //*=========================================== */}
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">category</label>

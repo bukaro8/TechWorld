@@ -30,7 +30,8 @@ export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 export const SEARCH_BY_EMAIL = 'SEARCH_BY_EMAIL';
 export const SEARCH_BY_STATUS = 'SEARCH_BY_STATUS';
 export const RESET_DETAIL = 'RESET_DETAIL';
-export const RESET_FILTERS = 'RESET_FILTERS';
+export const RESET_FILTERS = 'RESET_FILTERS';export const POST_REVIEWS = 'POST_REVIEWS';
+
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -194,6 +195,7 @@ export const filState = (input) => {
 export function orderStock(order) {
     return async function (dispatch) {
         var json = await back_call.get(`/product/orderProduct/${order}`);
+        console.log(json);
         return dispatch({
             type: O_STOCK,
             payload: json.data
@@ -260,3 +262,11 @@ export function putTransaction(payload) {
         await back_call.post('/transactions/editTransaction', payload)
     }
 }
+
+export const postReview = (review, id) => {
+    return async function () {
+       await back_call.post(`/product/${id}/review`,
+            review
+        );
+    };
+  };

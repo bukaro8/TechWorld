@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { getDetail, addToCart } from '../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';import { Reviews } from '../Reviews/reviews';
+
+
+
 import { Rate } from 'antd';
 
 
@@ -13,10 +16,14 @@ const CardDetail = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
 
+	
+	
 	useEffect(() => {
 		dispatch(getDetail(id));
 	}, [dispatch]);
-
+ 
+	
+	
 	const payload = {
 		id: items._id,
 		name: items.name,
@@ -106,6 +113,10 @@ const CardDetail = () => {
 					</div>
 				</div>
 			</section>
+            <div>
+                <Reviews/>
+            </div>
+            
 		</div>
 	);
 };
