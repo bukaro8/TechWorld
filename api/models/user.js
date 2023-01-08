@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
 
   isAdmin: {
     type: Boolean,
-    default: false
   },
 
   rol: {
@@ -34,7 +33,6 @@ const userSchema = new mongoose.Schema({
 
   isBan: {
     type: Boolean,
-    default: false
   },
 
   address: {

@@ -30,7 +30,9 @@ export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 export const SEARCH_BY_EMAIL = 'SEARCH_BY_EMAIL';
 export const SEARCH_BY_STATUS = 'SEARCH_BY_STATUS';
 export const RESET_DETAIL = 'RESET_DETAIL';
-export const RESET_FILTERS = 'RESET_FILTERS';export const POST_REVIEWS = 'POST_REVIEWS';
+export const RESET_FILTERS = 'RESET_FILTERS';
+export const PUT_ADMIN_BANNER = 'PUT_ADMIN_BANNER';
+export const POST_REVIEWS = 'POST_REVIEWS';
 
 
 export function getAllProducts() {
@@ -180,11 +182,19 @@ export const putProdut = (input) => {
      await back_call.post(`/product/editProduct`,input);
     }
 }
+
+export const putAdmin_Banner = (record) => {
+    return async function() {
+     await back_call.post(`/admin/iduser`,record);
+     console.log("oOKOK");
+
+    }
+}
 export const filState = (input) => {
     
     return async function (dispatch) {
         var json = await back_call.get(`/product/filterProduct/${input}`);
-        console.log(json)
+        // console.log(json)
         return dispatch({
             type: FILTER_S,
             payload: json.data
@@ -208,7 +218,7 @@ export function orderStock(order) {
             const json = await back_call.get(
           "/admin/products?name=" + name
         );
-        console.log(json.data);
+        // console.log(json.data);
         return dispatch({ type: SEARCH, payload: json.data });
         } catch (error) {
             dispatch({

@@ -15,28 +15,26 @@ exports.getProducts = async (req, res, next) => {
   const name = req.query.name;
   const product = await Product.find({ state: true });
   if (name) {
-    const result = product.filter((e) =>
-      e.name.toLowerCase().includes(name.toLowerCase())
-    );
+    const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
     result.length
       ? res.status(200).send(result)
-      : res.status(404).send("producto no encontrado");
+      : res.status(404).send("producto no encontrado")
+
   } else {
-    res.status(200).send(product);
+    res.status(200).send(product)
   }
 };
 exports.getAdminProduct = async (req, res, next) => {
   const name = req.query.name;
   const product = await Product.find();
   if (name) {
-    const result = product.filter((e) =>
-      e.name.toLowerCase().includes(name.toLowerCase())
-    );
+    const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
     result.length
       ? res.status(200).send(result)
-      : res.status(404).send("producto no encontrado");
+      : res.status(404).send("producto no encontrado")
+
   } else {
-    res.status(200).send(product);
+    res.status(200).send(product)
   }
 };
 
@@ -81,6 +79,7 @@ exports.filState = async (req, res) => {
   try {
     const { state } = req.params;
 
+
     if (state === "all") {
       res.status(200).json(await Product.find());
     } else {
@@ -110,6 +109,8 @@ exports.filStock = async (req, res) => {
     return res.status(500).send("------");
   }
 };
+
+
 
 exports.postReviews = async (req, res) => {
   try {

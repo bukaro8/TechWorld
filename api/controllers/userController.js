@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const Admin = require('../models/admin.js');
 
 //* Create new user /api/v1/user/new
 exports.newUser = async (req, res) => {
@@ -61,32 +62,52 @@ exports.delAdmin = async (req, res, next) => {
 // 		return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
 // 	}
 // };
-exports.putAdmin = async (req, res) => {
-	try {
-		const actUser = await User.findById(req.params.id);
-		const isAdmin = req.body.isAdmin;
-		const isBan = req.body.isBan;
-		actUser.isAdmin = isAdmin
-		actUser.isBan = isBan
-		await actUser.save();
-		res.status(200).json({
-			success: true,
-			actUser,
-		});
+// ********************************************************************
+// exports.putAdmin = async (req, res) => {
+// 	try {
+// 		const actUser = await User.findById(req.params.id);
+// 		const isAdmin = req.body.isAdmin;
+// 		const isBan = req.body.isBan;
+// 		actUser.isAdmin = isAdmin
+// 		actUser.isBan = isBan
+// 		await actUser.save();
+// 		res.status(200).json({
+// 			success: true,
+// 			actUser,
+// 		});
 
-	} catch (e) {
-		return res.status(500).send('Debe ingresar un ID valido');
-	}
+// 	} catch (e) {
+// 		return res.status(500).send('Debe ingresar un ID valido');
+// 	}
 
-};
+// };
+// ***************************************************************************
 
 exports.getUserAdmin = async (req, res, next) => {
-	const userAdmin=[];
+	const userAdmin = [];
 	const result = await User.find({ isAdmin: true })
 	userAdmin.push(result)
 	// console.log(userAdmin);
 	res.status(200).send(result)
 }
+
+// Ojo con id que se le pasa no confundir el id de user con el id de admin
+exports.putAdmin = async (req, res) => {
+	try {
+		const { _id, isAdmin, isBan } = req.body
+		const actualizarAdmin = await User.findByIdAndUpdate( _id, { isAdmin: isAdmin, isBan: isBan });
+		console.log("asass",actualizarAdmin);
+		res.status(200).send({
+			success: true,
+			actualizarAdmin,
+		});
+	} catch (e) {
+		console.log("error", e)
+		return res.status(500).send("Debe ingresar un ID valido");
+	}
+
+};
+
 
 // exports.idUser = async (req, res) => {
 // 	const iduser = req.params.id; //Solicito el id por params
