@@ -26,7 +26,8 @@ import {
     SEARCH_BY_STATUS,
     GET_LAST_TRANSACTIONS,
     RESET_DETAIL,
-    RESET_FILTERS
+    RESET_FILTERS,
+    PUT_ADMIN_BANNER
 } from "../actions/index"
 
 const initialState = {
@@ -227,6 +228,10 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             };
+            case PUT_ADMIN_BANNER:
+                return {
+                    ...state,
+                };
         case FILTER_S:
             return {
                 ...state,

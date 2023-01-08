@@ -13,6 +13,7 @@ import EditarUsuario from './components/EditProduct/editProduct';
 import List from './components/EditProduct/listProduct';
 import IsAuthenticated from './components/Registrar/IsAuthenticated';
 import ProtectedRoute from "./ProtectedRoute";
+import Nosotros from '../src/components/Footer/Nosotros'
 import './index.css'
 
 
@@ -32,6 +33,8 @@ let userAdmin = useSelector((state) => state.admin);
 				<Route exact path='/'>  <Home />  </Route>
 				<Route exact path='/products'>	<Products />  </Route>
 				<Route exact path="/cart">	<ShoppingCart />  </Route>
+				<Route exact path="/team">	<Nosotros />  </Route>
+
 				<Route  path="/product/:id">  <CardDetail />  </Route>
 				
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />

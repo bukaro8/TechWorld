@@ -1,43 +1,85 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Switch } from 'antd';
-import { getAllUsers } from "../../Redux/actions";
-import { Table,Tag } from "antd";
+import { useSelector } from "react-redux";
+import { Checkbox, Switch } from 'antd';
+// import { getAllUsers, putAdmin_Banner } from "../../Redux/actions";
+import { Table, Tag } from "antd";
+import Swal from "sweetalert"
 
-const Tablas = () => {
-  
+
+const Tablas = (record) => {
+
   let data = useSelector((state) => state.users);
-  let dispatch = useDispatch();
-  
 
 
-  const deleteU=()=>{
-    //  alert("borrado")
+  const onChange = (checked) => {
+    // console.log(`switch to ${checked}`);
+    // console.log("CHE",`${checked}`);
+  };
+
+
+  const isBanned = (record, checked) => {
+    console.log("000", checked);//me devuelve true||false seleccionado
+    console.log("001", record._id);//me devuelve el _id del user seleccionado
+    fetch(`http://localhost:3001/api/v1/users/id`, {
+      method: 'PUT',
+      body: JSON.stringify(checked, record),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(resp => resp.json())
+      .then(
+        Swal(
+          ' echo',
+          'the user is Banned',
+        )
+      )
+
   }
-  const isbanner=()=>{
-    // alert("baneado")
- }
- const isadmin=()=>{
-  // alert("is admin")
-}
-  // const onChange = (checked) => {
-  //   console.log(`switch to ${checked}`);
-  // };
 
-  useEffect(() => {
-      dispatch(getAllUsers());
-  }, [dispatch]);
+  const isAdmin = (record, checked) => {
+    // record.banOrAdmin = "isAdmin"
+    console.log("000", checked);
+    console.log("001", record._id);
+    fetch(`http://localhost:3001/api/v1/users/id`, {
+      method: 'POST',
+      body: JSON.stringify(checked, record),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(resp => resp.json())
+      .then(
+        Swal(
+          ' echo',
+          'the user was edited',
+        )
+      )
+  }
+
+  useEffect((record) => {
+
+  }, []);
+
 
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      filterSearch: true,
     },
     {
-      title: 'email',
+      title: 'ID',
+      dataIndex: '_id',
+      key: '_id',
+    },
+    {
+      title: 'Email',
       dataIndex: 'email',
       key: 'email',
+      filterSearch: true,
+      onFilter: (value, record) => record.email.startsWith(value),
     },
     {
       title: 'Address',
@@ -45,17 +87,18 @@ const Tablas = () => {
       key: 'address',
     },
     {
-      title: 'banned',
+      title: 'Banned',
       dataIndex: 'banned',
       key: 'banned',
-      render:()=>   <Switch defaultChecked onChange={isbanner} />
-
+      // render: (_, record) => { return (<Switch onChange={() => onChange(record)} />) }
+      render: (_, record) => { return (<Switch onChange={(checked) => isBanned(record, checked)} />) }
     },
     {
       title: 'IsAdmin',
       dataIndex: 'isAdmin',
       key: 'isAdmin',
-      render:()=>   <Switch defaultChecked onChange={isadmin} />
+      // render: (_, record) => { return (<Switch onChange={() => isAdmin(record)} />) }
+      render: (_, record) => { return (<Switch onChange={(checked) => isAdmin(record, checked)} />) }
 
     },
     {
@@ -64,191 +107,26 @@ const Tablas = () => {
       key: 'phone',
       tags: ['nice', 'developer'],
     },
-    // {
-    //   title: 'Action',
-    //   dataIndex: '',     
-    //   render: () => <a onClick={deleteU}>Delete</a>,
-    // },
   ]
-    return (
-      <Table
-    columns={columns}
-    expandable={{
-      expandedRowRender: (record) => (
-        <p
-          style={{
-            margin: 0,
-          }}
-        >
-          {record.description}
-        </p>
-      ),
-      rowExpandable: (record) => record.name !== 'Not Expandable',
-    }}
-    dataSource={data}
-  />
-     )
 
-    }
+  return (
+    <Table
+      columns={columns}
+      expandable={{
+        expandedRowRender: (record) => (
+          <p
+            style={{
+              margin: 0,
+            }}
+          >
+            {record.description}
+          </p>
+        ),
+        rowExpandable: (record) => record.name !== 'Not Expandable',
+      }}
+      dataSource={data}
+    />
+  )
+
+}
 export default Tablas;
-
-
-
-
-
-// const columns = [
-//   {
-//     title: 'Name',
-//     dataIndex: 'name',
-//     key: 'name',
-//   },
-//   {
-//     title: 'Age',
-//     dataIndex: 'age',
-//     key: 'age',
-//   },
-//   {
-//     title: 'Address',
-//     dataIndex: 'address',
-//     key: 'address',
-//   },
-//   {
-//     title: 'Action',
-//     dataIndex: '',
-//     key: 'x',
-//     render: () => <a>Delete</a>,
-//   },
-// ];
-
-// const data = [
-//   {
-//     key: 1,
-//     name: 'John Brown',
-//     age: 32,
-//     address: 'New York No. 1 Lake Park',
-//     description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-//   },
-//   {
-//     key: 2,
-//     name: 'Jim Green',
-//     age: 42,
-//     address: 'London No. 1 Lake Park',
-//     description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-//   },
-//   {
-//     key: 3,
-//     name: 'Not Expandable',
-//     age: 29,
-//     address: 'Jiangsu No. 1 Lake Park',
-//     description: 'This not expandable',
-//   },
-//   {
-//     key: 4,
-//     name: 'Joe Black',
-//     age: 32,
-//     address: 'Sidney No. 1 Lake Park',
-//     description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-//   },
-// ];
-// const App = () => {
-  
-//   <Table
-//     columns={columns}
-//     expandable={{
-//       expandedRowRender: (record) => (
-//         <p
-//           style={{
-//             margin: 0,
-//           }}
-//         >
-//           {record.description}
-//         </p>
-//       ),
-//       rowExpandable: (record) => record.name !== 'Not Expandable',
-//     }}
-//     dataSource={data}
-//   />
-//   };
-// export default App;
-
-
-
-
-
-
-
-// import React from 'react';
-// import { Space, Table, Tag } from 'antd';
-// const columns = [
-//   {
-//     title: 'Name',
-//     dataIndex: 'name',
-//     key: 'name',
-//     render: (text) => <a>{text}</a>,
-//   },
-//   {
-//     title: 'Age',
-//     dataIndex: 'age',
-//     key: 'age',
-//   },
-//   {
-//     title: 'Address',
-//     dataIndex: 'address',
-//     key: 'address',
-//   },
-//   {
-//     title: 'Tags',
-//     key: 'tags',
-//     dataIndex: 'tags',
-//     render: (_, { tags }) => (
-//       <>
-//         {tags.map((tag) => {
-//           let color = tag.length > 5 ? 'geekblue' : 'green';
-//           if (tag === 'loser') {
-//             color = 'volcano';
-//           }
-//           return (
-//             <Tag color={color} key={tag}>
-//               {tag.toUpperCase()}
-//             </Tag>
-//           );
-//         })}
-//       </>
-//     ),
-//   },
-//   {
-//     title: 'Action',
-//     key: 'action',
-//     render: (_, record) => (
-//       <Space size="middle">
-//         <a>Invite {record.name}</a>
-//         <a>Delete</a>
-//       </Space>
-//     ),
-//   },
-// ];
-// const data = [
-//   {
-//     key: '1',
-//     name: 'John Brown',
-//     age: 32,
-//     address: 'New York No. 1 Lake Park',
-//     tags: ['nice', 'developer'],
-//   },
-//   {
-//     key: '2',
-//     name: 'Jim Green',
-//     age: 42,
-//     address: 'London No. 1 Lake Park',
-//     tags: ['loser'],
-//   },
-//   {
-//     key: '3',
-//     name: 'Joe Black',
-//     age: 32,
-//     address: 'Sidney No. 1 Lake Park',
-//     tags: ['cool', 'teacher'],
-//   },
-// ];
-// const App = () => <Table columns={columns} dataSource={data} />;
-// export default App;

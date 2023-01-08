@@ -14,28 +14,28 @@ exports.getProducts = async (req, res, next) => {
 	const name = req.query.name;
 	const product = await Product.find({ state: true });
 	if (name) {
-	  const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
-	  result.length
-		? res.status(200).send(result)
-		: res.status(404).send("producto no encontrado")
-  
+		const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
+		result.length
+			? res.status(200).send(result)
+			: res.status(404).send("producto no encontrado")
+
 	} else {
-	  res.status(200).send(product)
+		res.status(200).send(product)
 	}
-  };
-  exports.getAdminProduct = async (req, res, next) => {
+};
+exports.getAdminProduct = async (req, res, next) => {
 	const name = req.query.name;
 	const product = await Product.find();
 	if (name) {
-	  const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
-	  result.length
-		? res.status(200).send(result)
-		: res.status(404).send("producto no encontrado")
-  
+		const result = product.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
+		result.length
+			? res.status(200).send(result)
+			: res.status(404).send("producto no encontrado")
+
 	} else {
-	  res.status(200).send(product)
+		res.status(200).send(product)
 	}
-  };
+};
 
 exports.idProduct = async (req, res) => {
 	const idProduct = req.params.id; //Solicito el id por params
@@ -56,47 +56,48 @@ exports.idProduct = async (req, res) => {
 
 exports.putProduct = async (req, res) => {
 	try {
-		const {_id, stock, price, state} = req.body
-	  const actProduct = await Product.findByIdAndUpdate(_id, {stock: stock, price: price, state: state});
-	  res.status(200).send({
-		success: true,
-		actProduct,
-	  });
+		const { _id, stock, price, state } = req.body
+		const actProduct = await Product.findByIdAndUpdate(_id, { stock: stock, price: price, state: state });
+		res.status(200).send({
+			success: true,
+			actProduct,
+		});
 	} catch (e) {
-	  return res.status(500).send("Debe ingresar un ID valido");
+		return res.status(500).send("Debe ingresar un ID valido");
 	}
-  };
+};
+
 exports.filState = async (req, res) => {
 	try {
-	  const { state } = req.params;
-  
-	  
-	  if (state === "all") {
-		res.status(200).json(await Product.find());
-	  } else {
-		if (state === "true") {
-		  res.status(200).json(await Product.find({ state: true }));
+		const { state } = req.params;
+
+
+		if (state === "all") {
+			res.status(200).json(await Product.find());
 		} else {
-		  res.status(200).json(await Product.find({ state: false }));
+			if (state === "true") {
+				res.status(200).json(await Product.find({ state: true }));
+			} else {
+				res.status(200).json(await Product.find({ state: false }));
+			}
 		}
-	  }
 	} catch (e) {
-	  return res.status(500).send("Debe ingresar");
+		return res.status(500).send("Debe ingresar");
 	}
 };
 exports.filStock = async (req, res) => {
 	try {
-	  const { stock} = req.params;
-	  if (stock === "all") {
-		res.status(200).json(await Product.find());
-	  } else {
-		if (stock === "asc" ) {
-		  res.status(200).json(await Product.find().sort({ stock:1 }));
+		const { stock } = req.params;
+		if (stock === "all") {
+			res.status(200).json(await Product.find());
 		} else {
-		  res.status(200).json(await Product.find().sort({ stock: -1 }));
+			if (stock === "asc") {
+				res.status(200).json(await Product.find().sort({ stock: 1 }));
+			} else {
+				res.status(200).json(await Product.find().sort({ stock: -1 }));
+			}
 		}
-	  }
 	} catch (e) {
-	  return res.status(500).send("------");
+		return res.status(500).send("------");
 	}
 };
