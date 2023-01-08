@@ -259,17 +259,29 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state, 
                 transactions: action.payload,
-                filteredTransactions: action.payload
+                filteredTransactions: action.payload,
+                searchMail: action.payload
             };
         case SEARCH_BY_EMAIL:
             return {
                 ...state,
+                filteredTransactions: action.payload,
                 searchMail: action.payload
             }
         case SEARCH_BY_STATUS:
+            if (state.transactions.length == state.filteredTransactions.length){
+                state.searchMail = action.payload
+            }
+            else {
+                if (!action.payload.length){
+                    state.searchMail = []
+                }
+                else{
+                    state.searchMail = state.filteredTransactions.filter(e => e.userEmail == action.payload[0].userEmail) 
+                }
+            }
             return {
                 ...state,
-                filteredTransactions: action.payload
             }
         case RESET_DETAIL:
             return {
