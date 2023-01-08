@@ -2,7 +2,7 @@ const Express = require('express');
 const router = Express();
 
 const {
-	getAdmin,
+	getAdmin, 
 	delAdmin,
 	putAdmin,
 	newAdmin
@@ -14,3 +14,4 @@ router.post('/admin/new',newAdmin)
 router.post('/admin/iduser', putAdmin);
 
 module.exports = router;
+ 

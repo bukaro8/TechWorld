@@ -40,7 +40,7 @@ let userAdmin = useSelector((state) => state.admin);
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
                 
 				{/*<ProtectedRoute exact path="/dashboard" component={Dashboard} />*/}
-				
+				<Route exact path='/list' > <List/> </Route>
 				<Route exact path='/edit/:id' > <EditarUsuario/> </Route>
 				{/* <Route path='*' component={Pag404} /> */}
 

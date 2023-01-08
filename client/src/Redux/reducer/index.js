@@ -27,7 +27,8 @@ import {
     GET_LAST_TRANSACTIONS,
     RESET_DETAIL,
     RESET_FILTERS,
-    PUT_ADMIN_BANNER
+    PUT_ADMIN_BANNER,
+    POST_REVIEWS
 } from "../actions/index"
 
 const initialState = {
@@ -50,6 +51,8 @@ const initialState = {
     transactions: [],
     filteredTransactions: [],
     searchMail: [],
+
+    resultPost: {},
 
 }
 
@@ -254,24 +257,36 @@ function rootReducer(state = initialState, action) {
     
         case O_STOCK:
         return {
-            ...state.filterState,
+            ...state,
             filterState: action.payload,
         };
         case GET_TRANSACTIONS:
             return {
                 ...state, 
                 transactions: action.payload,
-                filteredTransactions: action.payload
+                filteredTransactions: action.payload,
+                searchMail: action.payload
             };
         case SEARCH_BY_EMAIL:
             return {
                 ...state,
+                filteredTransactions: action.payload,
                 searchMail: action.payload
             }
         case SEARCH_BY_STATUS:
+            if (state.transactions.length == state.filteredTransactions.length){
+                state.searchMail = action.payload
+            }
+            else {
+                if (!action.payload.length){
+                    state.searchMail = []
+                }
+                else{
+                    state.searchMail = state.filteredTransactions.filter(e => e.userEmail == action.payload[0].userEmail) 
+                }
+            }
             return {
                 ...state,
-                filteredTransactions: action.payload
             }
         case RESET_DETAIL:
             return {
@@ -286,6 +301,12 @@ function rootReducer(state = initialState, action) {
                 priceFilter: "all",
                 alphabeticalOrder: "all",
             }
+            case POST_REVIEWS: {
+                return {
+                  ...state,
+                  resultPost: action.payload,
+                };
+              }
         default:
             return state;
     }
