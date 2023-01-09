@@ -15,7 +15,8 @@ import IsAuthenticated from './components/Registrar/IsAuthenticated';
 import ProtectedRoute from "./ProtectedRoute";
 import Nosotros from '../src/components/Footer/Nosotros'
 import './index.css'
-
+// import Profile from './components/NavBar/Profile';
+import Perfil from './components/Perfil/Perfil.jsx';
 
 function App() {
 	const { user, isAuthenticated } = useAuth0();
@@ -36,7 +37,7 @@ let userAdmin = useSelector((state) => state.admin);
 				<Route exact path="/team">	<Nosotros />  </Route>
 
 				<Route  path="/product/:id">  <CardDetail />  </Route>
-				
+				<Route exact path='/users'><Perfil /></Route>
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
                 
 				{/*<ProtectedRoute exact path="/dashboard" component={Dashboard} />*/}

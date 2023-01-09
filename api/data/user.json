@@ -55,17 +55,18 @@
         "isBan": false,
         "address": "porahi 777",
         "phone": 777333444
-        },
+    },
     {
-        "name": "Snider",
-        "email": "snidergaona@gmail.com",
-        "password": "25846",
+        "name": "Ignacio Barrios",
+        "email": "ignaciobarrios70@gmail.com",
+        "password": "258468",
         "isAdmin": false,
         "rol": "usuario",
         "isBan": false,
-        "address": "Siempreviva 321",
-        "phone": 777333444
-    },
+        "address": "por 777",
+        "phone": 7773334447
+        },
+ 
     {
         "name": "Damian",
         "email": "damianpavser@gmail.com",
@@ -75,6 +76,7 @@
         "isBan": false,
         "address": "Holi 7",
         "phone": 1122334455
+
     }
 
 ]

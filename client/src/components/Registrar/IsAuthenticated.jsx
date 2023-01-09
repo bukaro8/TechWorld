@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
-import Profile from "./Profile";
+import Profile from "../NavBar/Profile";
 import UnloginProfile from "./UnlogingProfile";
 
 
