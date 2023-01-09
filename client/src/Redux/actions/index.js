@@ -31,6 +31,9 @@ export const SEARCH_BY_EMAIL = 'SEARCH_BY_EMAIL';
 export const SEARCH_BY_STATUS = 'SEARCH_BY_STATUS';
 export const RESET_DETAIL = 'RESET_DETAIL';
 export const RESET_FILTERS = 'RESET_FILTERS';
+export const PUT_ADMIN_BANNER = 'PUT_ADMIN_BANNER';
+export const POST_REVIEWS = 'POST_REVIEWS';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -184,7 +187,7 @@ export const filState = (input) => {
     
     return async function (dispatch) {
         var json = await back_call.get(`/product/filterProduct/${input}`);
-        console.log(json)
+        // console.log(json)
         return dispatch({
             type: FILTER_S,
             payload: json.data
@@ -195,6 +198,7 @@ export const filState = (input) => {
 export function orderStock(order) {
     return async function (dispatch) {
         var json = await back_call.get(`/product/orderProduct/${order}`);
+        console.log(json);
         return dispatch({
             type: O_STOCK,
             payload: json.data
@@ -207,7 +211,7 @@ export function orderStock(order) {
             const json = await back_call.get(
           "/admin/products?name=" + name
         );
-        console.log(json.data);
+        // console.log(json.data);
         return dispatch({ type: SEARCH, payload: json.data });
         } catch (error) {
             dispatch({
@@ -261,3 +265,45 @@ export function putTransaction(payload) {
         await back_call.post('/transactions/editTransaction', payload)
     }
 }
+
+export const postReview = (review, id) => {
+    return async function () {
+       await back_call.post(`/product/${id}/review`,
+            review
+        );
+    };
+  };
+
+export function setCurrentPage(pageNumber) {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: pageNumber
+    }
+}
+
+export function putAdmin (id) {
+    console.log(`Changing Admin state from Actions stage for id: ${id}`)
+    return async function () {
+        await back_call.put(`/users/admin/${id}`
+        );
+    };
+}
+
+export function putBan (id) {
+    console.log(`Changing Ban state from Actions stage for id: ${id}`)
+    return async function () {
+        await back_call.put(`/users/ban/${id}`
+        );
+    };
+
+}
+
+export function deleteUser (id) {
+    console.log(`Deleting id ${id} in actions stage`)
+    return async function () {
+        await back_call.delete(`/users/delete/${id}`
+        );
+    };
+
+}
+

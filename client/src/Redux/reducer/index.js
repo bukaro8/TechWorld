@@ -26,7 +26,8 @@ import {
     SEARCH_BY_STATUS,
     GET_LAST_TRANSACTIONS,
     RESET_DETAIL,
-    RESET_FILTERS
+    RESET_FILTERS,
+    SET_CURRENT_PAGE
 } from "../actions/index"
 
 const initialState = {
@@ -45,10 +46,12 @@ const initialState = {
     cartItems: JSON.parse(localStorage.getItem("items")) || [],
     carts: JSON.parse(localStorage.getItem("cart")) || [],
     filterState: [],
-    
+    currentPage: 1,
     transactions: [],
     filteredTransactions: [],
     searchMail: [],
+
+    resultPost: {},
 
 }
 
@@ -249,24 +252,36 @@ function rootReducer(state = initialState, action) {
     
         case O_STOCK:
         return {
-            ...state.filterState,
+            ...state,
             filterState: action.payload,
         };
         case GET_TRANSACTIONS:
             return {
                 ...state, 
                 transactions: action.payload,
-                filteredTransactions: action.payload
+                filteredTransactions: action.payload,
+                searchMail: action.payload
             };
         case SEARCH_BY_EMAIL:
             return {
                 ...state,
+                filteredTransactions: action.payload,
                 searchMail: action.payload
             }
         case SEARCH_BY_STATUS:
+            if (state.transactions.length == state.filteredTransactions.length){
+                state.searchMail = action.payload
+            }
+            else {
+                if (!action.payload.length){
+                    state.searchMail = []
+                }
+                else{
+                    state.searchMail = state.filteredTransactions.filter(e => e.userEmail == action.payload[0].userEmail) 
+                }
+            }
             return {
                 ...state,
-                filteredTransactions: action.payload
             }
         case RESET_DETAIL:
             return {
@@ -280,6 +295,11 @@ function rootReducer(state = initialState, action) {
                 ratingsFilter: "all",
                 priceFilter: "all",
                 alphabeticalOrder: "all",
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload
             }
         default:
             return state;

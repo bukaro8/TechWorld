@@ -3,9 +3,9 @@ import React from 'react';
 import Product from '../Cards/Card';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts, resetDetail } from '../../Redux/actions';
+import { getAllProducts, resetDetail, setCurrentPage } from '../../Redux/actions';
 import Paginated from '../Paginated/Paginated';
-
+import Search from '../Search/Search';
 import { Filtros, applyFilters } from '../Filtros/Filtros';
 
 export default function Products() {
@@ -22,15 +22,14 @@ export default function Products() {
   let priceFilter = useSelector((state) => state.priceFilter);
   let ratingsFilter = useSelector((state) => state.ratingsFilter);
   let alphabeticalOrder = useSelector((state) => state.alphabeticalOrder);
-  
+
   if(searchName.length){
     products = applyFilters(searchName, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
   }
   else{
     products = applyFilters(allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder);
   }
-
-  const [currentPage, setCurrentPage] = useState(1);
+  let currentPage = useSelector((state)=> state.currentPage);
   const productsPerPage = 8;
   const indexLast = currentPage * productsPerPage;
   const indexFirst = indexLast - productsPerPage;
@@ -38,9 +37,13 @@ export default function Products() {
 
   const currentProducts = products.slice(indexFirst, indexLast);
 
-
     return (
         <div className="">
+             <nav className="bg-gray-50">
+                <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
+                    <Search />
+                </div>
+            </nav>
             
             <Filtros />
             <div className="grid grid-cols-1 m-16 gap-x-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
@@ -51,7 +54,7 @@ export default function Products() {
                 })}
             </div>
             <div>
-                <Paginated page={currentPage} setPage={setCurrentPage} maxPage={maxPage} />
+                <Paginated maxPage={maxPage} />
             </div>
         </div>
     )

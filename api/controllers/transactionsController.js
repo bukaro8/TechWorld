@@ -33,9 +33,7 @@ exports.newTransaction = async (req, res) => {
 }
 
 exports.putTransaction = async (req, res) => {
-    const transaction = await Transaction.findById({_id: req.body._id});
-    const newStatus = req.body.status;
-    transaction.status = newStatus;
-    await transaction.save()
-    res.status(200).send(transaction) 
+    const { _id, status, delivered } = req.body
+    const transaction = await Transaction.findByIdAndUpdate(_id, {delivered: delivered, status: status});
+    res.status(200).send(transaction)
 }

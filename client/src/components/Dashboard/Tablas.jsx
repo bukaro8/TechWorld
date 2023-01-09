@@ -1,43 +1,163 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch } from 'antd';
-import { getAllUsers } from "../../Redux/actions";
-import { Table,Tag } from "antd";
+import { Checkbox, Switch, Button} from 'antd';
+import { getAllUsers, putBan, putAdmin, resetDetail, deleteUser } from "../../Redux/actions";
+import { Table } from "antd";
+import Swal from 'sweetalert2'
 
-const Tablas = () => {
-  
+
+const Tablas = (record) => {
+  let dispatch = useDispatch()
   let data = useSelector((state) => state.users);
-  let dispatch = useDispatch();
-  
-
-
-  const deleteU=()=>{
-    //  alert("borrado")
-  }
-  const isbanner=()=>{
-    // alert("baneado")
- }
- const isadmin=()=>{
-  // alert("is admin")
-}
-  // const onChange = (checked) => {
-  //   console.log(`switch to ${checked}`);
-  // };
 
   useEffect(() => {
-      dispatch(getAllUsers());
+    dispatch(getAllUsers());
+    dispatch(resetDetail());
   }, [dispatch]);
+
+  const handleIsBan = async (record) => {
+    let trueOrFalse = record.isBan
+    if(trueOrFalse){
+      Swal.fire({
+        title: `Desbannear usuario`,
+        text: `Seguro que queres quitar el banneo a ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putBan(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: 'Ha vuelto! :)',
+            })
+          }
+        })
+        }
+    else if(!trueOrFalse){
+      Swal.fire({
+        title: `Bannear usuario`,
+        text: `Seguro que queres bannear a ${record.name} como usuario?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Si! Pa' que aprenda...",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putBan(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: 'Se fue... :(',
+            })
+          }
+        })
+        }
+  }
+
+  const handleIsAdmin = (record) => {
+    let trueOrFalse = record.isAdmin
+    if(trueOrFalse){
+      Swal.fire({
+        title: `Quitar Administrador`,
+        text: `Seguro que queres quitar los permisos de administrador a ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putAdmin(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: 'Ya no es Admin :(',
+              text: 'No puede hacer más cosas de Admin',
+            })
+          }
+        })
+        }
+    else if(!trueOrFalse){
+      Swal.fire({
+        title: `Nuevo Administrador`,
+        text: `Seguro que queres hacer admin a ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, que sea Admin!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putAdmin(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: '¡Ahora es Admin! :)',
+              text: 'Un gran poder, conlleva una gran responsabilidad',
+            })
+          }
+        })
+        }
+    }
+
+    const handleDelete = (record) => {
+      Swal.fire({
+        title: `Eliminar Usuario`,
+        text: `No hay vuelta atras.
+        Seguro que queres eliminar al usuario ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then( async (result) => {
+        if (result.isConfirmed) {
+        Swal.fire({
+          title: `Eliminar a ${record.name}`,
+          text: `100% seguro?`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Confirmar'
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await dispatch(deleteUser(record._id))
+            dispatch(getAllUsers());
+              Swal.fire({
+                icon: 'success',
+                title: 'Ya no está en este (Tech)world :(',
+              })
+            }
+          })
+        }
+      }
+      )
+    }
 
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      filterSearch: true,
     },
     {
-      title: 'email',
+      title: 'ID',
+      dataIndex: '_id',
+      key: '_id',
+    },
+    {
+      title: 'Email',
       dataIndex: 'email',
       key: 'email',
+      filterSearch: true,
+      onFilter: (value, record) => record.email.startsWith(value),
     },
     {
       title: 'Address',
@@ -45,18 +165,16 @@ const Tablas = () => {
       key: 'address',
     },
     {
-      title: 'banned',
+      title: 'Banned',
       dataIndex: 'banned',
       key: 'banned',
-      render:()=>   <Switch defaultChecked onChange={isbanner} />
-
+      render: (_, record) => { return (<Switch disabled={record.isAdmin===true?true:false} checked={record.isBan} onChange={() => handleIsBan(record)} />) }
     },
     {
-      title: 'IsAdmin',
+      title: 'Admin',
       dataIndex: 'isAdmin',
       key: 'isAdmin',
-      render:()=>   <Switch defaultChecked onChange={isadmin} />
-
+      render: (_, record) => { return (<Switch checked={record.isAdmin} onChange={() => handleIsAdmin(record)} />) }
     },
     {
       title: 'Phone',
@@ -64,191 +182,34 @@ const Tablas = () => {
       key: 'phone',
       tags: ['nice', 'developer'],
     },
-    // {
-    //   title: 'Action',
-    //   dataIndex: '',     
-    //   render: () => <a onClick={deleteU}>Delete</a>,
-    // },
+    {
+      title: 'Delete',
+      dataIndex: '',
+      key: '',
+      render:(_, record) => { return (
+        <button hidden={record.isAdmin===true?true:false} onClick={() => handleDelete(record)}><img width="40px" height="40px" src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
+        )}
+    },
   ]
-    return (
-      <Table
-    columns={columns}
-    expandable={{
-      expandedRowRender: (record) => (
-        <p
-          style={{
-            margin: 0,
-          }}
-        >
-          {record.description}
-        </p>
-      ),
-      rowExpandable: (record) => record.name !== 'Not Expandable',
-    }}
-    dataSource={data}
-  />
-     )
 
-    }
+  return (
+    <Table
+      columns={columns}
+      expandable={{
+        expandedRowRender: (record) => (
+          <p
+            style={{
+              margin: 0,
+            }}
+          >
+            {record.description}
+          </p>
+        ),
+        rowExpandable: (record) => record.name !== 'Not Expandable',
+      }}
+      dataSource={data}
+    />
+  )
+
+}
 export default Tablas;
-
-
-
-
-
-// const columns = [
-//   {
-//     title: 'Name',
-//     dataIndex: 'name',
-//     key: 'name',
-//   },
-//   {
-//     title: 'Age',
-//     dataIndex: 'age',
-//     key: 'age',
-//   },
-//   {
-//     title: 'Address',
-//     dataIndex: 'address',
-//     key: 'address',
-//   },
-//   {
-//     title: 'Action',
-//     dataIndex: '',
-//     key: 'x',
-//     render: () => <a>Delete</a>,
-//   },
-// ];
-
-// const data = [
-//   {
-//     key: 1,
-//     name: 'John Brown',
-//     age: 32,
-//     address: 'New York No. 1 Lake Park',
-//     description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-//   },
-//   {
-//     key: 2,
-//     name: 'Jim Green',
-//     age: 42,
-//     address: 'London No. 1 Lake Park',
-//     description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-//   },
-//   {
-//     key: 3,
-//     name: 'Not Expandable',
-//     age: 29,
-//     address: 'Jiangsu No. 1 Lake Park',
-//     description: 'This not expandable',
-//   },
-//   {
-//     key: 4,
-//     name: 'Joe Black',
-//     age: 32,
-//     address: 'Sidney No. 1 Lake Park',
-//     description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-//   },
-// ];
-// const App = () => {
-  
-//   <Table
-//     columns={columns}
-//     expandable={{
-//       expandedRowRender: (record) => (
-//         <p
-//           style={{
-//             margin: 0,
-//           }}
-//         >
-//           {record.description}
-//         </p>
-//       ),
-//       rowExpandable: (record) => record.name !== 'Not Expandable',
-//     }}
-//     dataSource={data}
-//   />
-//   };
-// export default App;
-
-
-
-
-
-
-
-// import React from 'react';
-// import { Space, Table, Tag } from 'antd';
-// const columns = [
-//   {
-//     title: 'Name',
-//     dataIndex: 'name',
-//     key: 'name',
-//     render: (text) => <a>{text}</a>,
-//   },
-//   {
-//     title: 'Age',
-//     dataIndex: 'age',
-//     key: 'age',
-//   },
-//   {
-//     title: 'Address',
-//     dataIndex: 'address',
-//     key: 'address',
-//   },
-//   {
-//     title: 'Tags',
-//     key: 'tags',
-//     dataIndex: 'tags',
-//     render: (_, { tags }) => (
-//       <>
-//         {tags.map((tag) => {
-//           let color = tag.length > 5 ? 'geekblue' : 'green';
-//           if (tag === 'loser') {
-//             color = 'volcano';
-//           }
-//           return (
-//             <Tag color={color} key={tag}>
-//               {tag.toUpperCase()}
-//             </Tag>
-//           );
-//         })}
-//       </>
-//     ),
-//   },
-//   {
-//     title: 'Action',
-//     key: 'action',
-//     render: (_, record) => (
-//       <Space size="middle">
-//         <a>Invite {record.name}</a>
-//         <a>Delete</a>
-//       </Space>
-//     ),
-//   },
-// ];
-// const data = [
-//   {
-//     key: '1',
-//     name: 'John Brown',
-//     age: 32,
-//     address: 'New York No. 1 Lake Park',
-//     tags: ['nice', 'developer'],
-//   },
-//   {
-//     key: '2',
-//     name: 'Jim Green',
-//     age: 42,
-//     address: 'London No. 1 Lake Park',
-//     tags: ['loser'],
-//   },
-//   {
-//     key: '3',
-//     name: 'Joe Black',
-//     age: 32,
-//     address: 'Sidney No. 1 Lake Park',
-//     tags: ['cool', 'teacher'],
-//   },
-// ];
-// const App = () => <Table columns={columns} dataSource={data} />;
-// export default App;

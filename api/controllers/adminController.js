@@ -2,12 +2,12 @@ const Admin = require('../models/admin.js');
 const User = require('../models/user.js');
 
 exports.newAdmin = async (req, res) => {
-	const info = req.body;
-	const user = await Admin.create(info);
-	res.status(201).send({
-		success: true,
-		user,
-	});
+    const info = req.body;
+    const user = await Admin.create(info);
+    res.status(201).send({
+        success: true,
+        user,
+    });
 };
 
 exports.getAdmin = async (req, res, next) => {
@@ -38,20 +38,35 @@ exports.delAdmin = async (req, res, next) => {
 }
 
 
+// exports.putAdmin = async (req, res) => {
+//     const idadmin = req.params.id; //Solicito el id por params
+//     try {
+//         const usuario = await User.updateOne({
+//            isAdmin:"true",
+//            isBan:"true"
+//         });
+//         // console.log(usuario);
+
+//         res.status(201).json({
+//             success: true,
+//             usuario,
+//         });
+//     } catch (e) {
+//         return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
+//     }
+// };
+
+
+// Ojo con id que se le pasa no confundir el id de user con el id de admin
 exports.putAdmin = async (req, res) => {
-    const idadmin = req.params.id; //Solicito el id por params
     try {
-        const usuario = await User.updateOne({
-           isAdmin:"true",
-           isBan:"true"
-        });
-        console.log(usuario);
-      
-        res.status(201).json({
+        const { _id, isAdmin, isBan } = req.body
+        const actualizarAdmin = await Admin.findByIdAndUpdate(_id, { isAdmin: isAdmin, isBan: isBan });
+        res.status(200).send({
             success: true,
-            usuario,
+            actualizarAdmin,
         });
     } catch (e) {
-        return res.status(500).send('Debe ingresar un ID valido'); // en caso de que no pueda entrar a la db
+        return res.status(500).send("Debe ingresar un ID valido");
     }
 };

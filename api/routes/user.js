@@ -5,14 +5,16 @@ const {
 	getUsers,
 	newUser,
 	putAdmin,
-	delAdmin,
-	getUserAdmin
+	deleteUser,
+	getUserAdmin,
+	putBan
 } = require('../controllers/userController.js');
 
 router.post('/user/new', newUser);
 router.get('/users/admin', getUserAdmin);
 router.get('/users', getUsers);
-router.put('/users/:id', putAdmin);
-router.put('/users/delete/:id', delAdmin);
+router.put('/users/admin/:id', putAdmin);
+router.put('/users/ban/:id', putBan);
+router.delete('/users/delete/:id', deleteUser);
 
 module.exports = router;

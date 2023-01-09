@@ -177,7 +177,7 @@ export default function ShoppingCart() {
     
 
     return (
-        <div  className="flex flex-col justify-center items-center " onPointerMove={handleOnClick}>    
+        <div  className="flex flex-col justify-center items-center " onPointerMove={handleOnClick} onClick={handleOnClick}>    
             <h2 className="text-2xl" >Shopping Cart</h2>
             <div  className=" flex flex-wrap justify-around" >
                 {
