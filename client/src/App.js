@@ -14,7 +14,8 @@ import List from './components/EditProduct/listProduct';
 import IsAuthenticated from './components/Registrar/IsAuthenticated';
 import ProtectedRoute from "./ProtectedRoute";
 import './index.css'
-
+// import Profile from './components/NavBar/Profile';
+import Perfil from './components/Perfil/Perfil.jsx';
 
 function App() {
 	const { user, isAuthenticated } = useAuth0();
@@ -33,7 +34,7 @@ let userAdmin = useSelector((state) => state.admin);
 				<Route exact path='/products'>	<Products />  </Route>
 				<Route exact path="/cart">	<ShoppingCart />  </Route>
 				<Route  path="/product/:id">  <CardDetail />  </Route>
-				
+				<Route exact path='/users'><Perfil /></Route>
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
                 
 				{/*<ProtectedRoute exact path="/dashboard" component={Dashboard} />*/}

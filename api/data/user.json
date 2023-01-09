@@ -55,6 +55,16 @@
         "isBan": false,
         "address": "porahi 777",
         "phone": 777333444
+    },
+    {
+        "name": "Ignacio Barrios",
+        "email": "ignaciobarrios70@gmail.com",
+        "password": "258468",
+        "isAdmin": false,
+        "rol": "usuario",
+        "isBan": false,
+        "address": "por 777",
+        "phone": 7773334447
     }
 
 ]

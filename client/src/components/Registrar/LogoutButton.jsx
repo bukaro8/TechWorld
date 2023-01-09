@@ -8,7 +8,7 @@ const LogoutButton = () => {
 
     return (
         <div>
-            <button className="text-lg font-semibold hover:text-red-600  " onClick={() => logout({returnTo:window.location.origin})}>Log Out</button>
+            <button className="text-lg font-semibold hover:text-red-600 px-8 " onClick={() => logout({returnTo:window.location.origin})}>Log Out</button>
         </div>
     )
 }

@@ -7,7 +7,7 @@ const LoginButton = () => {
 
     return (
         <div>
-            <button className="text-lg font-semibold hover:text-red-600 " onClick={() => loginWithRedirect()}>Log In</button>
+            <button className="text-lg font-semibold hover:text-red-600 px-9 " onClick={() => loginWithRedirect()}>Log In</button>
         </div>
     )
 }

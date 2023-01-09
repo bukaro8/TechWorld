@@ -9,16 +9,16 @@ import Carrito from '../assets/Carrito.jsx'
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Registrar/LoginButton";
 import LogoutButton from "../Registrar/LogoutButton";
-import Profile from '../Registrar/Profile'
+import Profile from './Profile.jsx'
 //import user from "../../../../api/models/user";
 
- import { getUserAdmin, getAllUsers } from "../../Redux/actions";
- import IsAuthenticated from '../Registrar/IsAuthenticated'
+import { getUserAdmin, getAllUsers } from "../../Redux/actions";
+import IsAuthenticated from '../Registrar/IsAuthenticated'
 //Desde IsAuthenticated me traigo la data de como llega 'user' y el booleano
 
- 
+
 export default function NavBar() {
-    const { user, isAuthenticated } = useAuth0(); 
+    const { user, isAuthenticated } = useAuth0();
 
     //Si se llega a generar un formulario unico para administradores, se puede usar este bloque de código
     // ---------------------------------------------------
@@ -27,7 +27,7 @@ export default function NavBar() {
 
     //LLama al componente de auth y ejecuta la funcion
     //const dataAuth = IsAuthenticated();
-    
+
     //let data;
     //if(isAuthenticated === true) {
     //data = user.email  //Extraigo el mail que viene de auth0
@@ -43,41 +43,37 @@ export default function NavBar() {
     //const verificador = mailAdmin.includes(data) 
 
     // ------------------------------------------------
-    
+
     //Para formulario de usarios
 
     let usersData = useSelector((state) => state.users);
     // console.log(usersData,'usersData')
-    
+
     //LLama al componente de auth y ejecuta la funcion
     const dataAuth = IsAuthenticated();
     //console.log(dataAuth,'dataAuth')
-    
+
     let data;
-    if(isAuthenticated === true) {
-    data = user.email  //Extraigo el mail que viene de auth0
-    // console.log(data,'data')
+    if (isAuthenticated === true) {
+        data = user.email  //Extraigo el mail que viene de auth0
+        // console.log(data,'data')
     }
 
-    let isAdminTrue = usersData.map((e)=>e.isAdmin)
+    let isAdminTrue = usersData.filter((e) => e.isAdmin === true)
     // console.log(isAdminTrue,'isAdminTrue')
 
-    let mailAdminUser;
-    if(isAdminTrue){
-    mailAdminUser = usersData.map((e) => e.email)
-    // console.log(mailAdminUser,'mailAdminUser') //extraigo el mail que viene de la db
-    }
 
-    const verificador = mailAdminUser.includes(data)
+    const verificador = isAdminTrue.includes(data);
 
+    // console.log(verificador);
 
-     let dispatch = useDispatch();
+    let dispatch = useDispatch();
 
-     //useEffect(() => {
-     //    dispatch(getUserAdmin());
-     //}, [dispatch]);
+    //useEffect(() => {
+    //    dispatch(getUserAdmin());
+    //}, [dispatch]);
 
-     useEffect(() => {
+    useEffect(() => {
         dispatch(getAllUsers());
     }, [dispatch]);
     // const emailAdmin = userAdmin.map((e) => e.email)
@@ -101,39 +97,44 @@ export default function NavBar() {
                             <Link to="/" className="hover:text-red-600">Home</Link>
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Cart</Link>
-                            <Link to="/" className="hover:text-red-600">Account</Link>
                             {
-                                verificador ? 
-                                <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
-                                null
+                                verificador ?
+                                    <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
+                                    null
                             }
 
 
-                            
+
                             {
-                              isAuthenticated && !verificador ? <Link to="/user" className="hover:text-red-600">User</Link>
-                                :
-                                false
+                                isAuthenticated && !verificador ?
+
+                                        <Link to="/users" className="hover:text-red-600">
+                                            Account
+                                        </Link>
+                                    :
+                                    false
                             }
 
-                            
-                           {/* <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>*/}
 
-                            
+                            {/* <Link to="/cart" ><span className="text-gray-900 dark:text-white inline-flex"><Carrito /></span></Link>*/}
+
+
                             <Carrito />
 
+                            {isAuthenticated && !verificador ?
+                                <>
+                                    <Profile />
+                                    <LogoutButton />
+                                </>
+                                :
+                                <LoginButton />
+                            }
 
-                            <Profile />
-                                {isAuthenticated ?
-                            <LogoutButton />
-                            :
-                            <LoginButton />
-                    }
                         </ul>
                     </div>
 
 
-                    
+
 
                     <div class="block lg:hidden w-1/6 lg:w-4/6">
                         <a href="#" class="link" id="mobile-menu">Menu</a>
@@ -142,7 +143,6 @@ export default function NavBar() {
                             <Link to="/" className="hover:text-red-600">Home </Link>
                             <Link to="/products" className="hover:text-red-600">Products </Link>
                             <Link to="/cart" className="hover:text-red-600">Cart </Link>
-                            <Link to="/" className="hover:text-red-600">Account </Link>
                             <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link>
                         </ul>
                     </div>

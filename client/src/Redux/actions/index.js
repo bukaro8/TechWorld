@@ -45,6 +45,7 @@ export function getAllUsers() {
     // console.log(getAllUsers)
     return async function (dispatch) {
         var json = await back_call.get('/users')
+        // console.log(json.data)
         return dispatch({
             type: GET_USERS,
             payload: json.data
