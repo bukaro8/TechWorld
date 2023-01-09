@@ -1,13 +1,33 @@
-import { getTransactions, searchByEmail, searchByStatus, putTransaction} from "../../Redux/actions";
+import {
+  getTransactions,
+  searchByEmail,
+  searchByStatus,
+  putTransaction,
+} from "../../Redux/actions";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import emailjs from "@emailjs/browser";
 
 export default function Transactions() {
   let dispatch = useDispatch();
   let searchMail = useSelector((state) => state.searchMail);
   let transactions = useSelector((state) => state.filteredTransactions);
   const [email, setEmail] = useState("");
+
+  function emailDelivery(payload) {
+    var params = {
+      deliveryStatus: payload.delivered,
+      transactionId: payload._id,
+      email: payload.userEmail,
+    };
+    emailjs.send(
+      "service_a3dbnfc",
+      "template_xrfy3cg",
+      params,
+      "Vvb2IwNd3JccV-1cY"
+    );
+  }
 
   const changeDelivery = (payload) => {
     Swal.fire({
@@ -18,6 +38,7 @@ export default function Transactions() {
       icon: "warning",
     }).then((result) => {
       if (result.isConfirmed) {
+        emailDelivery(payload);
         dispatch(putTransaction(payload));
         window.location.reload();
       }
