@@ -1,20 +1,20 @@
-import React from 'react'
-import './Spinner.css'
+import React from 'react';
+import './Spinner.css';
 
 const Spinner = () => {
-  return (
-    /* Centrar Spinner */
-    <div class="lds-roller">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-  )
-}
+	return (
+		/* Centrar Spinner */
+		<div className='lds-roller'>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	);
+};
 
-export default Spinner
+export default Spinner;
