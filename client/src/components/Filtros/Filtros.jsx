@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
-import { filterByCategory, filterByPrice, filterByRating, orderByName, resetFilters} from '../../Redux/actions';
+import { filterByCategory, filterByPrice, filterByRating, orderByName, resetFilters, setCurrentPage} from '../../Redux/actions';
 
 export const applyFilters = (allProducts, categoryFilter, priceFilter, ratingsFilter, alphabeticalOrder) => {
   let finalProducts = allProducts
@@ -67,9 +67,12 @@ export const applyFilters = (allProducts, categoryFilter, priceFilter, ratingsFi
 }
 
 export const Filtros = () => {
-  let dispatch = useDispatch();
   //const [orden, setOrden] = useState('')
   //const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch()
+  const setPage = (pageNumber) => {
+      dispatch(setCurrentPage(pageNumber));
+  }
   let categoryFilter = useSelector((state) => state.categoryFilter);
   console.log("Esto es categoryFilter en Filtros: " + categoryFilter)
   
@@ -88,27 +91,25 @@ export const Filtros = () => {
   const handleCategoryFilter = (e) =>{
     e.preventDefault();
     dispatch(filterByCategory(e.target.value))
-    // SETEAR CURRENT PAGE A 1
+    setPage(1)
   }
 
   const handleRatingFilter = (e) =>{
     e.preventDefault();
     dispatch(filterByRating(e.target.value))
-    // SETEAR CURRENT PAGE A 1
+    setPage(1)
   }
 
   const handlePriceFilter = (e) =>{
     e.preventDefault();
     dispatch(filterByPrice(e.target.value))
-    // SETEAR CURRENT PAGE A 1
+    setPage(1)
   }
 
   const handleNameOrder = (e) =>{
     e.preventDefault();
     dispatch(orderByName(e.target.value))
-    // SETEAR CURRENT PAGE A 1
-    //setCurrentPage(1);
-    //setOrden(`Ordenado ${e.target.value}`)
+    setPage(1)
   }
 
   const handleResetFilters = (e) =>{

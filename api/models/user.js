@@ -19,9 +19,10 @@ const userSchema = new mongoose.Schema({
 
   isAdmin: {
     type: Boolean,
+    default: false
   },
 
-  rol: {
+  role: {
     type: String,
     default: "usuario",
     enum: {
@@ -33,6 +34,7 @@ const userSchema = new mongoose.Schema({
 
   isBan: {
     type: Boolean,
+    default: false
   },
 
   address: {
