@@ -9,30 +9,67 @@ import { getAllUsers } from "../../Redux/actions";
 import { Table,Tag } from "antd";
 
 const Tablas = () => {
-  
-  let data = useSelector((state) => state.users);
+
+  const [input, setInput] = useState({}) 
 
   let dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getAllUsers());
+}, [dispatch]);
+
+  
+  let data = useSelector((state) => state.users);
+  console.log(data,'data')
+  
+  let isBann = data.map(d => d.isBan)
+  console.log(isBann,'isBannnnnn')
+ 
+ 
   
   const deleteU=()=>{
     //  alert("borrado")
   }
-  const isbanner=()=>{
-    // alert("baneado")
+  function isbanner(checked){
+   if( checked) {
+    alert("baneado")
+   } 
+   return alert ("No baneado")
+
  }
  const isadmin=()=>{
   // alert("is admin")
 }
-
+  //const onChange = (checked) => {
+    // checked ? true : false;
+   //};
 
   // const onChange = (checked) => {
   //   console.log(`switch to ${checked}`);
   // };
 
-  useEffect(() => {
-      dispatch(getAllUsers());
-  }, [dispatch]);
+    
 
+  const handleChecked = (e)=>{
+        if (e.target.checked) {  
+            setInput({
+            ...input,
+            isBann: [...input.isBann , e.target.value]
+            })
+
+            console.log(setInput,'1')
+        } else if (!e.target.checked) {
+            setInput({
+                ...input,
+                isBan: input.isBann.filter(el => el !== e.target.value)
+                })
+                console.log(setInput,'2')
+        }
+    };
+
+ 
+
+ 
   const columns = [
     {
       title: 'Name',
@@ -53,7 +90,8 @@ const Tablas = () => {
       title: 'banner',
       dataIndex: 'banner',
       key: 'banner',
-      render:()=>   <Switch defaultChecked onChange={isbanner} />
+      render:()=>   <Switch defaultChecked onChange={handleChecked} />
+      //render:()=>   <Switch defaultChecked onChange={handleChecked} />
 
     },
     {

@@ -38,7 +38,7 @@ exports.delAdmin = async (req, res, next) => {
 		});
 	} catch (e) {
 		return res.status(500).send('No se pudo borrar el usuario'); // en caso de que no pueda entrar a la db
-	}
+	} 
 
 }
 

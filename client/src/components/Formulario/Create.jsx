@@ -5,25 +5,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { newProduct, getAllProducts } from '../../Redux/actions/index';
 import Card from '../Cards/Card'
+import validate from './Validate'
 
-// import validate from './Validate';
-
-//  function validate(input, product){
-//     let errors = {};
-//     let R12egExpression = /^[a-zA-Z\s]*$/;
-// //Ejemplo con prop: name
-//     if(!input.name){
-//         errors.name = 'A name is required'
-//     }
-//     if(product.indexOf( input.name ) !== -1){
-//         errors.name = 'A product with that name is already existing'
-//     }
-//     if(!RegExpression.test(input.name)){
-//         errors.name = 'Numbers or special characters are not allowed'
-//     }
-
-// return errors;
-// }
 
 export default function Create() {
 	const dispatch = useDispatch();
@@ -71,7 +54,7 @@ export default function Create() {
 	const history = useHistory();
 
 	const [errors, setErrors] = useState({});
-	const [section, setSection] = useState(1);
+	//const [section, setSection] = useState(1);
 
 	function handleChange(e) {
 		setInput({
@@ -79,12 +62,12 @@ export default function Create() {
 			[e.target.name]: e.target.value
 				.replaceAll(/^\s+/g, '')
 				.replaceAll(/\s+/g, ' '),
-		});
+		})
 
-		// setErrors(validate({
-		//     ...input,
-		//     [e.target.name] : e.target.value
-		// }, products))
+		 setErrors(validate({
+		     ...input,
+		     [e.target.name] : e.target.value
+		 }, products))
 	}
 
 	function handleSubmit(e) {
@@ -149,18 +132,21 @@ export default function Create() {
 								className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white'
 								id='grid-first-name'
 							/>
-							{/* {
+							{
                             errors.name ? (
                                 <div>
                                 <p>{errors.name}</p>
                                 </div>
                             ) :
-                            input.name.length ?
-                            <i style={{color: '#2ecc71'}}></i>
+                            input.name ?
+                            <i style={{color: '#e74c3c'}}></i>
                             :
-                            <i></i>
-                        } */}
+                            <i>The name is required</i>
+                           
+ }
+
                         </div>
+                        
                         <div>
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Price</label>
                             <input
@@ -173,18 +159,18 @@ export default function Create() {
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
-                            {/* {
+                            {
                             errors.price ? (
                                 <div>
                                 <i style={{color: '#e74c3c'}}></i>
                                 <p>{errors.hp}</p>
                                 </div>
                             ) :
-                            input.hp.length ?
+                            input.hp ?
                             <i style={{color: '#2ecc71'}}></i>
                             :
                             <i></i>
-                        } */}
+                        } 
                         </div>
                         <div>
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Description</label>
@@ -198,19 +184,20 @@ export default function Create() {
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
-                            {/* {
+                             {
                             errors.description ? (
                                 <div>
                                 <i  style={{color: '#e74c3c'}}></i>
                                 <p>{errors.description}</p>
                                 </div>
                             ) :
-                            input.attack.description ?
+                            input.description ?
                             <i  style={{color: '#2ecc71'}}></i>
                             :
-                            <i></i>
-                        } */}
+                            <i>The description  is required</i>
+                        } 
                         </div>
+
                         <div>
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Ratings</label>
                             <input
@@ -223,18 +210,18 @@ export default function Create() {
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
-                            {/* {
+                             {
                              errors.ratings ? (
                                 <div>
                                 <i className="fas fa-exclamation-circle" style={{color: '#e74c3c'}}></i>
                                 <p>{errors.rating}</p>
                                 </div>
                             ) :
-                            input.ratings.length ?
+                            input.ratings ?
                             <i  style={{color: '#2ecc71'}}></i>
                             :
                             <i></i>
-                        } */}
+                        } 
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">images</label>
                                 {/* <input
@@ -281,7 +268,22 @@ export default function Create() {
                                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                                 />
+                                  {
+                             errors.category ? (
+                                <div>
+                                <i className="fas fa-exclamation-circle" style={{color: '#e74c3c'}}></i>
+                                <p>{errors.category}</p>
+                                </div>
+                            ) :
+                            input.category ?
+                            <i  style={{color: '#2ecc71'}}></i>
+                            :
+                            <i>The category  must be 'Electronics','Cameras','Laptops','Accessories',
+                            'Headphones','Consoles','Television','VideoGames' or 'Home'</i>
+                        } 
                             </div>
+
+
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Seller</label>
                                 <input
@@ -294,6 +296,18 @@ export default function Create() {
                                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                                 />
+                                  {
+                             errors.seller ? (
+                                <div>
+                                <i className="fas fa-exclamation-circle" style={{color: '#e74c3c'}}></i>
+                                <p>{errors.seller}</p>
+                                </div>
+                            ) :
+                            input.seller ?
+                            <i  style={{color: '#2ecc71'}}></i>
+                            :
+                            <i>The seller is required</i>
+                        } 
                             </div>
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Stock</label>
@@ -307,7 +321,30 @@ export default function Create() {
                                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                                 />
+                                  {
+                             errors.ratings ? (
+                                <div>
+                                <i className="fas fa-exclamation-circle" style={{color: '#e74c3c'}}></i>
+                                <p>{errors.stock}</p>
+                                </div>
+                            ) :
+                            input.stock ?
+                            <i  style={{color: '#2ecc71'}}></i>
+                            :
+                            <i></i>
+                        } 
                             </div>
+                            {
+                            errors.stock ? (
+                                <div>
+                                <p>{errors.stock}</p>
+                                </div>
+                            ) :
+                            input.stock ?
+                            <i style={{color: '#2ecc71'}}></i>
+                            :
+                            <i></i>
+                        } 
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">Reviews</label>
                                 <input
@@ -321,6 +358,17 @@ export default function Create() {
 
                                 />
                             </div>
+                            {
+                            errors.numOfReviews ? (
+                                <div>
+                                <p>{errors.numOfReviews}</p>
+                                </div>
+                            ) :
+                            input.numOfReviews ?
+                            <i style={{color: '#2ecc71'}}></i>
+                            :
+                            <i></i>
+                        } 
                         </div>
 
                     </section>

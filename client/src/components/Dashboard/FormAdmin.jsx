@@ -4,11 +4,48 @@ import { useDispatch, useSelector } from 'react-redux';
 import { newUsers, getAllUsers } from '../../Redux/actions/index';
 import Card from '../Cards/Card'
 
+//name: "",email: "",password: "",isAdmin: "",isBan: "",address: "",phone:
+ function validate(input, users){
+    let errors = {};
+    let RegExpression = /^[a-zA-Z\s]*$/;  
+
+   if(!input.name){
+       errors.name = 'A name is required'
+   }
+   if(!input.email){
+       errors.email = 'Email is required'
+   }
+   if(!input.password){
+           errors.password = 'The password  is required'   
+   }
+   if(!input.isAdmin){
+       errors.isAdmin = 'Admin is required'
+   }
+   if(!input.isBan){
+    errors.isBann = 'Bann is required'
+   } 
+   if(!input.images){ 
+           errors.images = 'The images is required'
+   }
+   if(!input.address){
+           errors.address='Address is required'
+   }
+   if(!input.phone){
+           errors.phone= 'The phone is required'
+   }
+
+ 
+   return errors;
+
+}
+// Agregar validaciones y mensajes de error
+
+
 export default function FormAdmin() {
 
     const dispatch = useDispatch();
 
-    const products = useSelector(state => state.users)
+    const users = useSelector(state => state.users)
 
     const history = useHistory()
 
@@ -35,7 +72,10 @@ export default function FormAdmin() {
             ...input,
             [e.target.name]: e.target.value.replaceAll(/^\s+/g, "").replaceAll(/\s+/g, " ")
         })
-
+        setErrors(validate({
+            ...input,
+            [e.target.name] : e.target.value
+        }, users))
     }
 
 
@@ -90,6 +130,18 @@ export default function FormAdmin() {
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
+                            {
+                            errors.name ? (
+                                <div>
+                                <p>{errors.name}</p>
+                                </div>
+                            ) :
+                            input.name ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The name is required</i>
+                           
+                            }
 
                         </div>
                         <div>
@@ -104,6 +156,18 @@ export default function FormAdmin() {
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
+                               {
+                            errors.email ? (
+                                <div>
+                                <p>{errors.email}</p>
+                                </div>
+                            ) :
+                            input.email ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The email is required</i>
+                           
+                            }
                         </div>
                         <div>
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">password</label>
@@ -117,6 +181,18 @@ export default function FormAdmin() {
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
+                               {
+                            errors.password ? (
+                                <div>
+                                <p>{errors.password}</p>
+                                </div>
+                            ) :
+                            input.password ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The password is required</i>
+                           
+                            }
                         </div>
                         <div>
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">isAdmin</label>
@@ -130,6 +206,18 @@ export default function FormAdmin() {
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                             />
+                               {
+                            errors.isAdmin ? (
+                                <div>
+                                <p>{errors.isAdmin}</p>
+                                </div>
+                            ) :
+                            input.isAdmin ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The Admin is required and must be true or false</i>
+                           
+                            }
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">isBan</label>
                                 <input
@@ -142,6 +230,18 @@ export default function FormAdmin() {
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                                 />
+                                   {
+                            errors.isBan ? (
+                                <div>
+                                <p>{errors.isBan}</p>
+                                </div>
+                            ) :
+                            input.isBan ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The Bann is required and must be true or false</i>
+                           
+                            }
                             </div>
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">address</label>
@@ -155,6 +255,18 @@ export default function FormAdmin() {
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                                 />
+                                   {
+                            errors.address ? (
+                                <div>
+                                <p>{errors.address}</p>
+                                </div>
+                            ) :
+                            input.address ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The address is required</i>
+                           
+                            }
                             </div>
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">phone</label>
@@ -168,6 +280,18 @@ export default function FormAdmin() {
                                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-1 px-2 mb-2 leading-tight focus:outline-none focus:bg-white" id="grid-first-name"
 
                                 />
+                                   {
+                            errors.phone ? (
+                                <div>
+                                <p>{errors.phone}</p>
+                                </div>
+                            ) :
+                            input.phone ?
+                            <i style={{color: '#e74c3c'}}></i>
+                            :
+                            <i>The phone is required</i>
+                           
+                            }
                             </div>
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">createdAt</label>
