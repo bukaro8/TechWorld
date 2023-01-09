@@ -164,7 +164,7 @@ export default function ShoppingCart() {
         var orderSummary = []
         for (let i = 0; i < items.length; i++){
             orderSummary.push(items[i].name)
-            orderSummary.push(items[i].quantity)
+            orderSummary.push(`${items[i].quantity} units`)
         }
         var params = {
             name: user.given_name,
