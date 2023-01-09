@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { increaseQuantity, removeOneProduct, decreaseQuantity } from "../../Redux/actions";
+import { useHistory } from "react-router-dom"
 import Swal from "sweetalert2"
 
 const Carrito = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const items = useSelector((state) => state.carts)
     const cantidad = useSelector((state) => state.cartItems)
     const [total, setTotal] = useState(0)
@@ -58,6 +60,11 @@ const Carrito = () => {
 
     const handleMouseMove = () =>{
         setTotal(setTotalPrice())
+    }
+
+    const handleContinuCheckout = () => {
+        history.push("/cart");
+        setShow(true)
     }
 
     const handleOnClick = () => {
@@ -153,9 +160,13 @@ const Carrito = () => {
                                     <p>$0</p>
                                 }
                             </div>
-                            <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                            <div class="mt-6 flex justify-around text-center text-sm text-gray-500">
                                 <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500" onClick={handleOnClick}>
                                     Continue Shopping
+                                    <span aria-hidden="true"> &rarr;</span>
+                                </button>
+                                <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500" onClick={handleContinuCheckout}>
+                                    Continue to Checkout
                                     <span aria-hidden="true"> &rarr;</span>
                                 </button>
                             </div>
