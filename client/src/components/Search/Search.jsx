@@ -2,9 +2,11 @@ import React from "react";
 import { searchByName } from '../../Redux/actions/index'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom"
 // 
 export default function Search() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [name, setName] = useState("");
 
   function handleInputChange(e) {
@@ -16,6 +18,7 @@ export default function Search() {
     e.preventDefault();
     dispatch(searchByName(name));
     setName("");
+    history.push("/products")
   }
   function handleKeyDown(e) {
     if (e.key === "Enter") {
