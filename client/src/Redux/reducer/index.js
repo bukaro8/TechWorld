@@ -27,8 +27,7 @@ import {
     GET_LAST_TRANSACTIONS,
     RESET_DETAIL,
     RESET_FILTERS,
-    PUT_ADMIN_BANNER,
-    POST_REVIEWS
+    SET_CURRENT_PAGE
 } from "../actions/index"
 
 const initialState = {
@@ -47,7 +46,7 @@ const initialState = {
     cartItems: JSON.parse(localStorage.getItem("items")) || [],
     carts: JSON.parse(localStorage.getItem("cart")) || [],
     filterState: [],
-    
+    currentPage: 1,
     transactions: [],
     filteredTransactions: [],
     searchMail: [],
@@ -231,10 +230,6 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             };
-            case PUT_ADMIN_BANNER:
-                return {
-                    ...state,
-                };
         case FILTER_S:
             return {
                 ...state,
@@ -301,12 +296,11 @@ function rootReducer(state = initialState, action) {
                 priceFilter: "all",
                 alphabeticalOrder: "all",
             }
-            case POST_REVIEWS: {
-                return {
-                  ...state,
-                  resultPost: action.payload,
-                };
-              }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload
+            }
         default:
             return state;
     }

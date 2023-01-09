@@ -1,6 +1,6 @@
 [
     {
-        "name": "karen",
+        "name": "Karen",
         "email": "karen@gmail.com",
         "password": "123",
         "isAdmin": "true",
@@ -9,7 +9,7 @@
         "phone": "777"
     },
     {
-        "name": "sneider",
+        "name": "Sneider",
         "email": "sneider@gmail.com",
         "password": "123",
         "isAdmin": "true",
@@ -27,7 +27,7 @@
         "phone": "999"
     },
     {
-        "name": "nahir",
+        "name": "Nahir",
         "email": "nahir.k.sosa@gmail.com",
         "password": "1233",
         "isAdmin": true,
@@ -37,7 +37,7 @@
         "phone": 777333444
     },
     {
-        "name": "sneider",
+        "name": "Sneider",
         "email": "sneider242@gmail.com",
         "password": "25846",
         "isAdmin": true,
@@ -47,7 +47,7 @@
         "phone": 777333444
     },
      {
-        "name": "damian",
+        "name": "Damian",
         "email": "damianf2022@gmail.com",
         "password": "25846",
         "isAdmin": true,
@@ -57,7 +57,7 @@
         "phone": 777333444
         },
     {
-        "name": "snider",
+        "name": "Snider",
         "email": "snidergaona@gmail.com",
         "password": "25846",
         "isAdmin": false,
@@ -65,6 +65,16 @@
         "isBan": false,
         "address": "Siempreviva 321",
         "phone": 777333444
+    },
+    {
+        "name": "Damian",
+        "email": "damianpavser@gmail.com",
+        "password": "777",
+        "isAdmin": true,
+        "rol": "admin",
+        "isBan": false,
+        "address": "Holi 7",
+        "phone": 1122334455
     }
 
 ]

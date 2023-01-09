@@ -1,66 +1,144 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Checkbox, Switch } from 'antd';
-// import { getAllUsers, putAdmin_Banner } from "../../Redux/actions";
-import { Table, Tag } from "antd";
-import Swal from "sweetalert"
+import { useDispatch, useSelector } from "react-redux";
+import { Checkbox, Switch, Button} from 'antd';
+import { getAllUsers, putBan, putAdmin, resetDetail, deleteUser } from "../../Redux/actions";
+import { Table } from "antd";
+import Swal from 'sweetalert2'
 
 
 const Tablas = (record) => {
-
+  let dispatch = useDispatch()
   let data = useSelector((state) => state.users);
 
+  useEffect(() => {
+    dispatch(getAllUsers());
+    dispatch(resetDetail());
+  }, [dispatch]);
 
-  const onChange = (checked) => {
-    // console.log(`switch to ${checked}`);
-    // console.log("CHE",`${checked}`);
-  };
-
-
-  const isBanned = (record, checked) => {
-    console.log("000", checked);//me devuelve true||false seleccionado
-    console.log("001", record._id);//me devuelve el _id del user seleccionado
-    fetch(`http://localhost:3001/api/v1/users/id`, {
-      method: 'PUT',
-      body: JSON.stringify(checked, record),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(resp => resp.json())
-      .then(
-        Swal(
-          ' echo',
-          'the user is Banned',
-        )
-      )
-
+  const handleIsBan = async (record) => {
+    let trueOrFalse = record.isBan
+    if(trueOrFalse){
+      Swal.fire({
+        title: `Desbannear usuario`,
+        text: `Seguro que queres quitar el banneo a ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putBan(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: 'Ha vuelto! :)',
+            })
+          }
+        })
+        }
+    else if(!trueOrFalse){
+      Swal.fire({
+        title: `Bannear usuario`,
+        text: `Seguro que queres bannear a ${record.name} como usuario?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Si! Pa' que aprenda...",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putBan(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: 'Se fue... :(',
+            })
+          }
+        })
+        }
   }
 
-  const isAdmin = (record, checked) => {
-    // record.banOrAdmin = "isAdmin"
-    console.log("000", checked);
-    console.log("001", record._id);
-    fetch(`http://localhost:3001/api/v1/users/id`, {
-      method: 'POST',
-      body: JSON.stringify(checked, record),
-      headers: {
-        'Content-Type': 'application/json'
+  const handleIsAdmin = (record) => {
+    let trueOrFalse = record.isAdmin
+    if(trueOrFalse){
+      Swal.fire({
+        title: `Quitar Administrador`,
+        text: `Seguro que queres quitar los permisos de administrador a ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putAdmin(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: 'Ya no es Admin :(',
+              text: 'No puede hacer más cosas de Admin',
+            })
+          }
+        })
+        }
+    else if(!trueOrFalse){
+      Swal.fire({
+        title: `Nuevo Administrador`,
+        text: `Seguro que queres hacer admin a ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, que sea Admin!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(putAdmin(record._id))
+          dispatch(getAllUsers());
+            Swal.fire({
+              icon: 'success',
+              title: '¡Ahora es Admin! :)',
+              text: 'Un gran poder, conlleva una gran responsabilidad',
+            })
+          }
+        })
+        }
+    }
+
+    const handleDelete = (record) => {
+      Swal.fire({
+        title: `Eliminar Usuario`,
+        text: `No hay vuelta atras.
+        Seguro que queres eliminar al usuario ${record.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then( async (result) => {
+        if (result.isConfirmed) {
+        Swal.fire({
+          title: `Eliminar a ${record.name}`,
+          text: `100% seguro?`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Confirmar'
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await dispatch(deleteUser(record._id))
+            dispatch(getAllUsers());
+              Swal.fire({
+                icon: 'success',
+                title: 'Ya no está en este (Tech)world :(',
+              })
+            }
+          })
+        }
       }
-    })
-      .then(resp => resp.json())
-      .then(
-        Swal(
-          ' echo',
-          'the user was edited',
-        )
       )
-  }
-
-  useEffect((record) => {
-
-  }, []);
-
+    }
 
   const columns = [
     {
@@ -90,22 +168,27 @@ const Tablas = (record) => {
       title: 'Banned',
       dataIndex: 'banned',
       key: 'banned',
-      // render: (_, record) => { return (<Switch onChange={() => onChange(record)} />) }
-      render: (_, record) => { return (<Switch onChange={(checked) => isBanned(record, checked)} />) }
+      render: (_, record) => { return (<Switch disabled={record.isAdmin===true?true:false} checked={record.isBan} onChange={() => handleIsBan(record)} />) }
     },
     {
-      title: 'IsAdmin',
+      title: 'Admin',
       dataIndex: 'isAdmin',
       key: 'isAdmin',
-      // render: (_, record) => { return (<Switch onChange={() => isAdmin(record)} />) }
-      render: (_, record) => { return (<Switch onChange={(checked) => isAdmin(record, checked)} />) }
-
+      render: (_, record) => { return (<Switch checked={record.isAdmin} onChange={() => handleIsAdmin(record)} />) }
     },
     {
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
       tags: ['nice', 'developer'],
+    },
+    {
+      title: 'Delete',
+      dataIndex: '',
+      key: '',
+      render:(_, record) => { return (
+        <button hidden={record.isAdmin===true?true:false} onClick={() => handleDelete(record)}><img width="40px" height="40px" src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
+        )}
     },
   ]
 

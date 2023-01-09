@@ -33,7 +33,7 @@ export const RESET_DETAIL = 'RESET_DETAIL';
 export const RESET_FILTERS = 'RESET_FILTERS';
 export const PUT_ADMIN_BANNER = 'PUT_ADMIN_BANNER';
 export const POST_REVIEWS = 'POST_REVIEWS';
-
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -182,14 +182,6 @@ export const putProdut = (input) => {
      await back_call.post(`/product/editProduct`,input);
     }
 }
-
-export const putAdmin_Banner = (record) => {
-    return async function() {
-     await back_call.post(`/admin/iduser`,record);
-     console.log("oOKOK");
-
-    }
-}
 export const filState = (input) => {
     
     return async function (dispatch) {
@@ -280,3 +272,36 @@ export const postReview = (review, id) => {
         );
     };
   };
+
+export function setCurrentPage(pageNumber) {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: pageNumber
+    }
+}
+
+export function putAdmin (id) {
+    console.log(`Changing Admin state from Actions stage for id: ${id}`)
+    return async function () {
+        await back_call.put(`/users/admin/${id}`
+        );
+    };
+}
+
+export function putBan (id) {
+    console.log(`Changing Ban state from Actions stage for id: ${id}`)
+    return async function () {
+        await back_call.put(`/users/ban/${id}`
+        );
+    };
+
+}
+
+export function deleteUser (id) {
+    console.log(`Deleting id ${id} in actions stage`)
+    return async function () {
+        await back_call.delete(`/users/delete/${id}`
+        );
+    };
+
+}
