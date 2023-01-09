@@ -131,7 +131,7 @@ const Tablas = (record) => {
             dispatch(getAllUsers());
               Swal.fire({
                 icon: 'success',
-                title: 'Ya no está en este mundo (TechWorld) :(',
+                title: 'Ya no está en este (Tech)world :(',
               })
             }
           })
@@ -186,9 +186,9 @@ const Tablas = (record) => {
       title: 'Delete',
       dataIndex: '',
       key: '',
-      render:(_, record) => { return (<Button disabled={record.isAdmin===true?true:false} onClick={() => handleDelete(record)} >
-        {/* <img width="40px" height="40px"src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /> */}
-        </Button>)}
+      render:(_, record) => { return (
+        <button hidden={record.isAdmin===true?true:false} onClick={() => handleDelete(record)}><img width="40px" height="40px" src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /></button>
+        )}
     },
   ]
 
