@@ -115,7 +115,8 @@ const Tablas = (record) => {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Confirmar'
-      }).then(
+      }).then( async (result) => {
+        if (result.isConfirmed) {
         Swal.fire({
           title: `Eliminar a ${record.name}`,
           text: `100% seguro?`,
@@ -134,6 +135,8 @@ const Tablas = (record) => {
               })
             }
           })
+        }
+      }
       )
     }
 
@@ -183,9 +186,9 @@ const Tablas = (record) => {
       title: 'Delete',
       dataIndex: '',
       key: '',
-      render:(_, record) => { return (<button disabled={record.isAdmin===true?true:false} onChange={() => handleDelete(record._id)} >
-        <img src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} />
-        </button>)}
+      render:(_, record) => { return (<Button disabled={record.isAdmin===true?true:false} onClick={() => handleDelete(record)} >
+        {/* <img width="40px" height="40px"src="https://cdn-icons-png.flaticon.com/512/323/323711.png" alt={"delete"} /> */}
+        </Button>)}
     },
   ]
 

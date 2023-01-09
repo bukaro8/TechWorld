@@ -300,7 +300,7 @@ export function putBan (id) {
 export function deleteUser (id) {
     console.log(`Deleting id ${id} in actions stage`)
     return async function () {
-        await back_call.put(`/users/delete/${id}`
+        await back_call.delete(`/users/delete/${id}`
         );
     };
 
