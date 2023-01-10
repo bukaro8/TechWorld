@@ -1,5 +1,7 @@
 const User = require('../models/user.js');
 const Admin = require('../models/admin.js');
+// const  findOrCreate  = require ( ' mangosta-findorcreate ' ) 
+
 
 //* Create new user /api/v1/user/new
 exports.newUser = async (req, res) => {
@@ -38,7 +40,9 @@ exports.putAdmin = async (req, res) => {
 	console.log(`Changing Admin state in BackEnd for id: ${req.params.id}`)
 	try {
 		const actUser = await User.findById(req.params.id);
+
 		// console.log(actUser)
+	
 		if (actUser.isAdmin === true) {
 			console.log(`${req.params.id} was truely an Admin. Changing...`)
 			actUser.isAdmin = "false"
@@ -113,3 +117,18 @@ exports.putFavoriteUser = async (req, res) => {
 	}
 
 };
+
+exports.getUserData = async (req, res, next) => {
+	const { email, address, name } = req.body;
+	const userData = [];
+	const result = await User.find({ email: email })
+	if (result.length) {
+		console.log("11",email)
+		res.status(200).send(result)
+	} else {
+		console.log("12",email)  
+		const newUser= await User.create({email, address, name})
+		res.status(200).send(newUser)
+	}
+}
+

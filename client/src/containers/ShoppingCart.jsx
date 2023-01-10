@@ -21,10 +21,17 @@ export default function ShoppingCart() {
     const register = () => {
         Swal.fire({
             title: "Login to buy items",
-            confirmButtonText: "Ok",
+            showCancelButton: true,
+            cancelButtonText: "Go home",
+            confirmButtonText: "Register",
             icon: "warning"
         }).then((result) => {
-            loginWithRedirect()
+            if (result.isConfirmed){
+                loginWithRedirect()
+            } 
+            else {
+                history.push("/")
+            }
         })
     }
 
@@ -78,9 +85,6 @@ export default function ShoppingCart() {
             if (result.isConfirmed) {
                 history.push("/products")
             }
-            else {
-                window.location.reload()
-            }
         })
     }
 
@@ -88,7 +92,7 @@ export default function ShoppingCart() {
     var transaction
     var stockReload
     function data (status, shipping){
-        if (status == "Approved"){
+        if (status === "Approved"){
             stockReload = items.map(e => {
                 return {
                     _id: e.id,
@@ -96,7 +100,7 @@ export default function ShoppingCart() {
                 }
             })
         }
-        if (status == "Cancelled"){
+        if (status === "Cancelled"){
             stockReload = items.map(e => {
                 return {
                     _id: e.id,

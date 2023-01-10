@@ -159,11 +159,11 @@ const Tablas = (record) => {
       filterSearch: true,
       onFilter: (value, record) => record.email.startsWith(value),
     },
-    {
+    /* {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-    },
+    }, */
     {
       title: 'Banned',
       dataIndex: 'banned',
@@ -176,12 +176,12 @@ const Tablas = (record) => {
       key: 'isAdmin',
       render: (_, record) => { return (<Switch checked={record.isAdmin} onChange={() => handleIsAdmin(record)} />) }
     },
-    {
+  /*   {
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
       tags: ['nice', 'developer'],
-    },
+    }, */
     {
       title: 'Delete',
       dataIndex: '',

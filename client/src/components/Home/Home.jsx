@@ -4,10 +4,7 @@ import Product from '../Cards/Card';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts, resetDetail } from '../../Redux/actions';
-import gif from '../assets/imagenes/gif.png'
 import Carrusel from '../assets/Carrusel/Carrusel';
-import { Link } from "react-router-dom";
-
 import Search from '../Search/Search';
 
 
