@@ -31,7 +31,7 @@
         "email": "nahir.k.sosa@gmail.com",
         "password": "1233",
         "isAdmin": true,
-        "rol": "admin",
+        "role": "admin",
         "isBan": false,
         "address": "Siempreviva 321",
         "phone": 777333444
@@ -41,7 +41,7 @@
         "email": "sneider242@gmail.com",
         "password": "25846",
         "isAdmin": true,
-        "rol": "admin",
+        "role": "admin",
         "isBan": false,
         "address": "Siempreviva 321",
         "phone": 777333444
@@ -51,7 +51,7 @@
         "email": "damianf2022@gmail.com",
         "password": "25846",
         "isAdmin": true,
-        "rol": "admin",
+        "role": "admin",
         "isBan": false,
         "address": "porahi 777",
         "phone": 777333444
@@ -61,7 +61,7 @@
         "email": "ignaciobarrios70@gmail.com",
         "password": "258468",
         "isAdmin": false,
-        "rol": "usuario",
+        "role": "usuario",
         "isBan": false,
         "address": "por 777",
         "phone": 7773334447
@@ -72,7 +72,7 @@
         "email": "damianpavser@gmail.com",
         "password": "777",
         "isAdmin": true,
-        "rol": "admin",
+        "role": "admin",
         "isBan": false,
         "address": "Holi 7",
         "phone": 1122334455
@@ -83,7 +83,7 @@
         "email": "imanolcastro13@gmail.com",
         "password": "777",
         "isAdmin": true,
-        "rol": "admin",
+        "role": "admin",
         "isBan": false,
         "address": "Holi 7",
         "phone": 1122334455
