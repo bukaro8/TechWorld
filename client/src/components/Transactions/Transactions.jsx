@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 
-export default function Transactions() {
+export default function Transactions({closeModal}) {
   let dispatch = useDispatch();
   let searchMail = useSelector((state) => state.searchMail);
   let transactions = useSelector((state) => state.filteredTransactions);
@@ -40,7 +40,7 @@ export default function Transactions() {
       if (result.isConfirmed) {
         emailDelivery(payload);
         dispatch(putTransaction(payload));
-        window.location.reload();
+        closeModal()
       }
     });
   };
@@ -173,7 +173,7 @@ export default function Transactions() {
                   <td class="border-2 border-indigo-500 p-1">${e.price}</td>
                   <td class="border-2 border-indigo-500 p-1">
                     <button
-                      disabled={e.status == "Pending"}
+                      disabled={e.status === "Pending"}
                       onClick={(a) => handleTransactionPending(e)}
                       title="Pending"
                     >
@@ -195,7 +195,7 @@ export default function Transactions() {
                       </svg>
                     </button>
                     <button
-                      disabled={e.status == "Approved"}
+                      disabled={e.status === "Approved"}
                       onClick={(a) => handleTransactionApprove(e)}
                       title="Approved"
                     >
@@ -214,7 +214,7 @@ export default function Transactions() {
                       </svg>
                     </button>
                     <button
-                      disabled={e.status == "Cancelled"}
+                      disabled={e.status === "Cancelled"}
                       onClick={(a) => handleTransactionCancel(e)}
                       title="Cancelled"
                     >
@@ -235,7 +235,7 @@ export default function Transactions() {
                   </td>
                   <td class="border-2 border-indigo-500 p-1">
                     <button
-                      disabled={e.delivered == "Pending"}
+                      disabled={e.delivered === "Pending"}
                       onClick={(a) => handleDeliveryPending(e)}
                       title="Pending"
                     >
@@ -275,7 +275,7 @@ export default function Transactions() {
                       </svg>
                     </button>
                     <button
-                      disabled={e.delivered == "Delivered"}
+                      disabled={e.delivered === "Delivered"}
                       onClick={(a) => handleDelivered(e)}
                       title="Delivered"
                     >
@@ -315,7 +315,7 @@ export default function Transactions() {
                       </svg>
                     </button>
                     <button
-                      disabled={e.delivered == "Cancelled"}
+                      disabled={e.delivered === "Cancelled"}
                       onClick={(a) => handleDeliveryCancelled(e)}
                       title="Cancelled"
                     >

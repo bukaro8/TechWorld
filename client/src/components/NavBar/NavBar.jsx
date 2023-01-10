@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Search from '../Search/Search'
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import logos from '../assets/logos.png'
 import Carrito from '../assets/Carrito.jsx'
-
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Registrar/LoginButton";
 import LogoutButton from "../Registrar/LogoutButton";
 import Profile from './Profile.jsx'
 //import user from "../../../../api/models/user";
-
-import { getUserAdmin, getAllUsers } from "../../Redux/actions";
+import { getAllUsers } from "../../Redux/actions";
 import IsAuthenticated from '../Registrar/IsAuthenticated'
 //Desde IsAuthenticated me traigo la data de como llega 'user' y el booleano
 
@@ -50,7 +46,7 @@ export default function NavBar() {
     // console.log(usersData,'usersData')
 
     //LLama al componente de auth y ejecuta la funcion
-    const dataAuth = IsAuthenticated();
+    //const dataAuth = IsAuthenticated();
     //console.log(dataAuth,'dataAuth')
 
     let data;
@@ -63,7 +59,7 @@ export default function NavBar() {
     // console.log(isAdminTrue,'isAdminTrue')
 
 
-    const verificador = isAdminTrue.filter((e) => e.email == data);
+    const verificador = isAdminTrue.filter((e) => e.email === data);
 
     // console.log("verificador", verificador);
 
