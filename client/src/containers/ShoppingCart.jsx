@@ -95,7 +95,7 @@ export default function ShoppingCart() {
     var transaction
     var stockReload
     function data (status, shipping){
-        if (status == "Approved"){
+        if (status === "Approved"){
             stockReload = items.map(e => {
                 return {
                     _id: e.id,
@@ -103,7 +103,7 @@ export default function ShoppingCart() {
                 }
             })
         }
-        if (status == "Cancelled"){
+        if (status === "Cancelled"){
             stockReload = items.map(e => {
                 return {
                     _id: e.id,

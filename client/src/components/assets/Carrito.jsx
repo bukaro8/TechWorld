@@ -110,7 +110,7 @@ const Carrito = () => {
                                     return (
                                         <div class="mt-8">
                                         <div class="flow-root">
-                                        <ul role="list" class="-my-6 divide-y divide-gray-200">
+                                        <ul class="-my-6 divide-y divide-gray-200">
                                             <li class="flex py-6">
                                             <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                 <img className="max-w-full" src={e.image} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center"/>
@@ -119,7 +119,7 @@ const Carrito = () => {
                                                 <div>
                                                 <div class="flex justify-between text-base font-medium text-gray-900">
                                                     <h3>
-                                                    <a href="#">{e.name}</a>
+                                                    <a href={`/product/${e.id}`}>{e.name}</a>
                                                     </h3>
                                                     <p class="ml-4">${amount(e.price, e.quantity)}</p>
                                                 </div>

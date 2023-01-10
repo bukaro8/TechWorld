@@ -34,6 +34,8 @@ export const RESET_FILTERS = 'RESET_FILTERS';
 export const PUT_ADMIN_BANNER = 'PUT_ADMIN_BANNER';
 export const POST_REVIEWS = 'POST_REVIEWS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const GET_USER_DATA = "GET_USER_DATA";
+
 
 export function getAllProducts() {
     return async function (dispatch) {
@@ -65,6 +67,16 @@ export function getUserAdmin() {
         })
     }
 }
+export function getUserData(user) {
+    return async function (dispatch) {
+        var json = await back_call.post('/user/email', user)
+        return dispatch({
+            type: GET_USER_DATA,
+            payload: json.data
+        })
+    }
+}
+
 
 export function searchByName(name) {
     return async function (dispatch) {

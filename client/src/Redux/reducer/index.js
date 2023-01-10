@@ -27,14 +27,15 @@ import {
     GET_LAST_TRANSACTIONS,
     RESET_DETAIL,
     RESET_FILTERS,
-    SET_CURRENT_PAGE
+    SET_CURRENT_PAGE,
+    GET_USER_DATA
 } from "../actions/index"
 
 const initialState = {
-    users:[],
+    users: [],
     productsFix: [],
     allProducts: [],
-    admin:[],
+    admin: [],
     categoryFilter: "all",
     priceFilter: "all",
     ratingsFilter: "all",
@@ -50,13 +51,14 @@ const initialState = {
     transactions: [],
     filteredTransactions: [],
     searchMail: [],
+    userData: [],
 
     resultPost: {},
 
 }
 
 function rootReducer(state = initialState, action) {
-    
+
 
 
     switch (action.type) {
@@ -72,13 +74,19 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 users: action.payload
-                
+
             };
 
         case GET_USER_ADMIN:
             return {
                 ...state,
                 admin: action.payload
+            };
+
+        case GET_USER_DATA:
+            return {
+                ...state,
+                userData: action.payload
             };
 
 
@@ -241,23 +249,23 @@ function rootReducer(state = initialState, action) {
                 filterState: action.payload,
                 error: undefined,
             };
-        
+
         case SET_ERROR:
-        return {
-            ...state,
-            error: action.payload,
-            allProducts: [],
-            filterState: [],
-        };
-    
+            return {
+                ...state,
+                error: action.payload,
+                allProducts: [],
+                filterState: [],
+            };
+
         case O_STOCK:
-        return {
-            ...state,
-            filterState: action.payload,
-        };
+            return {
+                ...state,
+                filterState: action.payload,
+            };
         case GET_TRANSACTIONS:
             return {
-                ...state, 
+                ...state,
                 transactions: action.payload,
                 filteredTransactions: action.payload,
                 searchMail: action.payload
@@ -269,15 +277,15 @@ function rootReducer(state = initialState, action) {
                 searchMail: action.payload
             }
         case SEARCH_BY_STATUS:
-            if (state.transactions.length == state.filteredTransactions.length){
+            if (state.transactions.length == state.filteredTransactions.length) {
                 state.searchMail = action.payload
             }
             else {
-                if (!action.payload.length){
+                if (!action.payload.length) {
                     state.searchMail = []
                 }
-                else{
-                    state.searchMail = state.filteredTransactions.filter(e => e.userEmail == action.payload[0].userEmail) 
+                else {
+                    state.searchMail = state.filteredTransactions.filter(e => e.userEmail == action.payload[0].userEmail)
                 }
             }
             return {
