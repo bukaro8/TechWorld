@@ -65,17 +65,17 @@ export default function CartItem({ id, name, price, image, quantity, stock }) {
 			</div>
 
 			<div className='' key={id}>
-				<div className='flex w-24'>
+				<div className='flex w-24 items-center'>
 					{cont > 1 ? (
 						<button
-							className='activeMinus bg-transparent hover:border-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded mr-2'
+							className=' font-semibold  py-1 px-2 font-medium text-indigo-600 hover:text-indigo-500 mr-2'
 							onClick={resta}
 						>
 							-
 						</button>
 					) : (
 						<button
-							className='bg-red-500 text-white font-bold py-1  px-2 rounded opacity-50 cursor-not-allowed mr-2'
+							className=' font-bold py-1  px-2  opacity-50 cursor-not-allowed font-medium text-indigo-600 hover:text-indigo-500 mr-2'
 							disabled='true'
 						>
 							-
@@ -84,14 +84,14 @@ export default function CartItem({ id, name, price, image, quantity, stock }) {
 					<h3>{cont}</h3>
 					{cont < stock ? (
 						<button
-							className='activePlus bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-700 rounded ml-2'
+							className='activePlus  font-bold py-1 px-2 font-medium text-indigo-600 hover:text-indigo-500 ml-2'
 							onClick={suma}
 						>
 							+
 						</button>
 					) : (
 						<button
-							className='deactivePlus bg-blue-500 text-white font-bold  py-1 px-2 rounded opacity-50 cursor-not-allowed ml-2'
+							className='deactivePlus  font-bold  py-1 px-2  opacity-50 cursor-not-allowed ml-2 font-medium text-indigo-600 hover:text-indigo-500'
 							disabled='true'
 						>
 							+
@@ -105,7 +105,7 @@ export default function CartItem({ id, name, price, image, quantity, stock }) {
 			</div>
 			<button
 				type='button'
-				className='bg-red-500 hover:bg-red-700 text-white  py-1 px-2 border border-red-700 rounded'
+				className=' font-medium text-indigo-600 hover:text-indigo-500'
 				onClick={remove}
 			>
 				Remove
