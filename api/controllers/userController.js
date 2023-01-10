@@ -1,5 +1,7 @@
 const User = require('../models/user.js');
 const Admin = require('../models/admin.js');
+// const  findOrCreate  = require ( ' mangosta-findorcreate ' ) 
+
 
 //* Create new user /api/v1/user/new
 exports.newUser = async (req, res) => {
@@ -27,7 +29,7 @@ exports.getUsers = async (req, res, next) => {
 };
 
 exports.getUserAdmin = async (req, res, next) => {
-	const userAdmin=[];
+	const userAdmin = [];
 	const result = await User.find({ isAdmin: true })
 	userAdmin.push(result)
 	// console.log(userAdmin);
@@ -39,13 +41,13 @@ exports.putAdmin = async (req, res) => {
 	try {
 		const actUser = await User.findById(req.params.id);
 		console.log(actUser)
-		if(actUser.isAdmin===true){
+		if (actUser.isAdmin === true) {
 			console.log(`${req.params.id} was truely an Admin. Changing...`)
 			actUser.isAdmin = "false"
 			actUser.role = "usuario"
 			console.log(`${actUser} is the new actUser object`)
 		}
-		else if(actUser.isAdmin===false){
+		else if (actUser.isAdmin === false) {
 			console.log(`${req.params.id} was not an Admin. Changing...`)
 			actUser.isAdmin = "true"
 			actUser.role = "admin"
@@ -67,12 +69,12 @@ exports.putBan = async (req, res) => {
 	try {
 		const actUser = await User.findById(req.params.id);
 		console.log(actUser)
-		if(actUser.isBan===true){
+		if (actUser.isBan === true) {
 			console.log(`${req.params.id} was truely banned. Changing...`)
 			actUser.isBan = "false"
 			console.log(`${actUser} is the new actUser object`)
 		}
-		else if(actUser.isBan===false){
+		else if (actUser.isBan === false) {
 			console.log(`${req.params.id} was not an Admin. Changing...`)
 			actUser.isBan = "true"
 			console.log(`${actUser} is the new actUser object`)
@@ -93,4 +95,17 @@ exports.deleteUser = async (req, res) => {
 		success: true,
 		user,
 	});
+}
+exports.getUserData = async (req, res, next) => {
+	const { email } = req.body;
+	const userData = [];
+	const result = await User.find({ email: email })
+	if (result.length) {
+		console.log("11",email)
+		res.status(200).send(result)
+	} else {
+		console.log("12",email)  
+		const newUser= await User.create({email})
+		res.status(200).send(newUser)
+	}
 }
