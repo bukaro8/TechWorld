@@ -166,11 +166,7 @@ const Carrito = () => {
 																		<div class='ml-4 flex flex-1 flex-col'>
 																			<div>
 																				<div class='flex justify-between text-base font-medium text-gray-900'>
-																					<h3>
-																						<Link to={`/product/${e.id}`}>
-																							{e.name}
-																						</Link>
-																					</h3>
+																					<h3>{e.name}</h3>
 																					<p class='ml-4'>
 																						${amount(e.price, e.quantity)}
 																					</p>
