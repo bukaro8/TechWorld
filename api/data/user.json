@@ -77,6 +77,16 @@
         "address": "Holi 7",
         "phone": 1122334455
 
+    },
+    {
+        "name": "Ignacio Barrios",
+        "email": "igna.nazareno.barrios@gmail.com",
+        "password": "4187159",
+        "isAdmin": false,
+        "rol": "usuario",
+        "isBan": false,
+        "address": "C. Boulevar",
+        "phone": 4187159
     }
 
 ]
