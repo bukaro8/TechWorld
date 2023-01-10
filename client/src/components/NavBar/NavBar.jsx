@@ -63,9 +63,9 @@ export default function NavBar() {
     // console.log(isAdminTrue,'isAdminTrue')
 
 
-    const verificador = isAdminTrue.includes(data);
+    const verificador = isAdminTrue.filter((e) => e.email == data);
 
-    // console.log(verificador);
+    // console.log("verificador", verificador);
 
     let dispatch = useDispatch();
 
@@ -98,7 +98,7 @@ export default function NavBar() {
                             <Link to="/products" className="hover:text-red-600">Products</Link>
                             <Link to="/cart" className="hover:text-red-600">Cart</Link>
                             {
-                                verificador ?
+                                verificador.length ?
                                     <Link to="/dashboard" className="hover:text-red-600">Dashboard</Link> :
                                     null
                             }
@@ -106,7 +106,7 @@ export default function NavBar() {
 
 
                             {
-                                isAuthenticated && !verificador ?
+                                isAuthenticated && !verificador.length ?
 
                                         <Link to="/users" className="hover:text-red-600">
                                             Account
@@ -121,7 +121,7 @@ export default function NavBar() {
 
                             <Carrito />
 
-                            {isAuthenticated && !verificador ?
+                            {isAuthenticated ?
                                 <>
                                     <Profile />
                                     <LogoutButton />

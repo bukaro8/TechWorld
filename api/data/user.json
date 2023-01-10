@@ -77,6 +77,17 @@
         "address": "Holi 7",
         "phone": 1122334455
 
+    },
+    {
+        "name": "Imnaol",
+        "email": "imanolcastro13@gmail.com",
+        "password": "777",
+        "isAdmin": true,
+        "rol": "admin",
+        "isBan": false,
+        "address": "Holi 7",
+        "phone": 1122334455
+
     }
 
 ]
