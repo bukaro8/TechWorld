@@ -67,9 +67,9 @@ export function getUserAdmin() {
         })
     }
 }
-export function getUserData() {
+export function getUserData(user) {
     return async function (dispatch) {
-        var json = await back_call.get('/user/email')
+        var json = await back_call.post('/user/email', user)
         return dispatch({
             type: GET_USER_DATA,
             payload: json.data

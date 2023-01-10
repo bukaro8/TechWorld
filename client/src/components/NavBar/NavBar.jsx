@@ -72,7 +72,7 @@ export default function NavBar() {
 
     useEffect(() => {
         if(user){
-            dispatch(getUserData())
+            dispatch(getUserData(user))
         }
         dispatch(getAllUsers());
     }, [dispatch, user ]);
