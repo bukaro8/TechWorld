@@ -12,7 +12,7 @@ import LogoutButton from "../Registrar/LogoutButton";
 import Profile from './Profile.jsx'
 //import user from "../../../../api/models/user";
 
-import { getUserAdmin, getAllUsers } from "../../Redux/actions";
+import { getUserAdmin, getAllUsers,getUserData } from "../../Redux/actions";
 import IsAuthenticated from '../Registrar/IsAuthenticated'
 //Desde IsAuthenticated me traigo la data de como llega 'user' y el booleano
 
@@ -74,9 +74,11 @@ export default function NavBar() {
     //}, [dispatch]);
 
     useEffect(() => {
+        if(user){
+            dispatch(getUserData())
+        }
         dispatch(getAllUsers());
-    }, [dispatch]);
-    // const emailAdmin = userAdmin.map((e) => e.email)
+    }, [dispatch, user ]);
 
     return (
 
