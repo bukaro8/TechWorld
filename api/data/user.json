@@ -54,7 +54,10 @@
         "rol": "admin",
         "isBan": false,
         "address": "porahi 777",
-        "phone": 777333444
+        "phone": 777333444,
+        "misFavoritos":"thinkpad",
+        "misCompras":"auriculares"
+
     },
     {
         "name": "Ignacio Barrios",
@@ -75,7 +78,9 @@
         "rol": "admin",
         "isBan": false,
         "address": "Holi 7",
-        "phone": 1122334455
+        "phone": 1122334455,
+        "misFavoritos":"thinkpad",
+        "misCompras":"auriculares"
 
     },
     {
