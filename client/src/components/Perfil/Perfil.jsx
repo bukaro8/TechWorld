@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux';
 import Spinner from './Spinner';
+import { Link } from 'react-router-dom';
 
 const Perfil = _ => {
     const { user, isAuthenticated } = useAuth0();
@@ -78,6 +79,13 @@ const Perfil = _ => {
                         ⠀
                         ⠀
                         <button className='bg-purple-500 grow h-10 border-4 border-purple-900'>Change Email</button>
+                        ⠀
+                        ⠀
+                        ⠀
+                        ⠀
+                        <Link to="/transactions" className='flex bg-purple-500 grow h-10 border-4 border-purple-900 justify-around'>
+                            <button>Transaction History</button>
+                        </Link>
                     </div>
                    
                 </div>
