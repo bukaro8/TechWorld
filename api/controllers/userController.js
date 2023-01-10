@@ -97,7 +97,7 @@ exports.deleteUser = async (req, res) => {
 	});
 }
 exports.getUserData = async (req, res, next) => {
-	const { email, address } = req.body;
+	const { email, address, name } = req.body;
 	const userData = [];
 	const result = await User.find({ email: email })
 	if (result.length) {
@@ -105,7 +105,7 @@ exports.getUserData = async (req, res, next) => {
 		res.status(200).send(result)
 	} else {
 		console.log("12",email)  
-		const newUser= await User.create({email, address})
+		const newUser= await User.create({email, address, name})
 		res.status(200).send(newUser)
 	}
 }
