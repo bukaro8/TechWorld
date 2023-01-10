@@ -21,10 +21,17 @@ export default function ShoppingCart() {
     const register = () => {
         Swal.fire({
             title: "Login to buy items",
-            confirmButtonText: "Ok",
+            showCancelButton: true,
+            cancelButtonText: "Go home",
+            confirmButtonText: "Register",
             icon: "warning"
         }).then((result) => {
-            loginWithRedirect()
+            if (result.isConfirmed){
+                loginWithRedirect()
+            } 
+            else {
+                history.push("/")
+            }
         })
     }
 
