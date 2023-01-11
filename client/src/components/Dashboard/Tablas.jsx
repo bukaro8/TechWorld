@@ -19,40 +19,40 @@ const Tablas = (record) => {
     let trueOrFalse = record.isBan
     if(trueOrFalse){
       Swal.fire({
-        title: `Desbannear usuario`,
-        text: `Seguro que queres quitar el banneo a ${record.name}?`,
+        title: `Unban user`,
+        text: `Are you sure you want to ban ${record.name}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirmar'
+        confirmButtonText: 'Confirm'
       }).then(async (result) => {
         if (result.isConfirmed) {
           await dispatch(putBan(record._id))
           dispatch(getAllUsers());
             Swal.fire({
               icon: 'success',
-              title: 'Ha vuelto! :)',
+              title: 'You are back!',
             })
           }
         })
         }
     else if(!trueOrFalse){
       Swal.fire({
-        title: `Bannear usuario`,
-        text: `Seguro que queres bannear a ${record.name} como usuario?`,
+        title: `Ban user`,
+        text: `Are you sure you want to ban ${record.name} us a user?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: "Si! Pa' que aprenda...",
+        confirmButtonText: "Confirm",
       }).then(async (result) => {
         if (result.isConfirmed) {
           await dispatch(putBan(record._id))
           dispatch(getAllUsers());
             Swal.fire({
               icon: 'success',
-              title: 'Se fue... :(',
+              title: 'It is gone!',
             })
           }
         })
@@ -63,42 +63,42 @@ const Tablas = (record) => {
     let trueOrFalse = record.isAdmin
     if(trueOrFalse){
       Swal.fire({
-        title: `Quitar Administrador`,
-        text: `Seguro que queres quitar los permisos de administrador a ${record.name}?`,
+        title: `Remove Admin`,
+        text: `Are you sure you want to remove administrator permissions from ${record.name}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirmar'
+        confirmButtonText: 'Confirm'
       }).then(async (result) => {
         if (result.isConfirmed) {
           await dispatch(putAdmin(record._id))
           dispatch(getAllUsers());
             Swal.fire({
               icon: 'success',
-              title: 'Ya no es Admin :(',
-              text: 'No puede hacer más cosas de Admin',
+              title: 'No longer Admin :(',
+              text: 'Cannot do any more Admin actions',
             })
           }
         })
         }
     else if(!trueOrFalse){
       Swal.fire({
-        title: `Nuevo Administrador`,
-        text: `Seguro que queres hacer admin a ${record.name}?`,
+        title: `New Admin`,
+        text: `Are you sure want to make ${record.name} an administrator?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, que sea Admin!'
+        confirmButtonText: 'Yes!'
       }).then(async (result) => {
         if (result.isConfirmed) {
           await dispatch(putAdmin(record._id))
           dispatch(getAllUsers());
             Swal.fire({
               icon: 'success',
-              title: '¡Ahora es Admin! :)',
-              text: 'Un gran poder, conlleva una gran responsabilidad',
+              title: '¡Now it is Admin! :)',
+              text: 'With great power comes great responsibility',
             })
           }
         })
@@ -107,31 +107,31 @@ const Tablas = (record) => {
 
     const handleDelete = (record) => {
       Swal.fire({
-        title: `Eliminar Usuario`,
-        text: `No hay vuelta atras.
-        Seguro que queres eliminar al usuario ${record.name}?`,
+        title: `Remove user`,
+        text: `There is no way back!.
+        Are you sure you want to remove ${record.name}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirmar'
+        confirmButtonText: 'Confirm'
       }).then( async (result) => {
         if (result.isConfirmed) {
         Swal.fire({
-          title: `Eliminar a ${record.name}`,
-          text: `100% seguro?`,
+          title: `Remove ${record.name}`,
+          text: `Are you sure?`,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Confirmar'
+          confirmButtonText: 'Confirm'
         }).then(async (result) => {
           if (result.isConfirmed) {
             await dispatch(deleteUser(record._id))
             dispatch(getAllUsers());
               Swal.fire({
                 icon: 'success',
-                title: 'Ya no está en este (Tech)world :(',
+                title: 'No longer belongs in (Tech)world :(',
               })
             }
           })
