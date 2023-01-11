@@ -3,7 +3,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import icon from '../assets/imagenes/icon.png';
 const Profile = () => {
 	const { user, isAuthenticated } = useAuth0();
-	console.log("image",user);
 	return (
 		isAuthenticated && (
 			<div>
