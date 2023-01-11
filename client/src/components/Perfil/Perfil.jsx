@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import altImg from '../assets/imagenes/icon.png';
 const Perfil = (_) => {
@@ -76,7 +77,7 @@ const Perfil = (_) => {
 								<span className='  font-medium text-center'>
 									{filteredUser.address
 										? filteredUser.address
-										: 'Not added jet'}
+										: 'Not added yet'}
 								</span>
 							</div>
 							<div className='flex  flex-col justify-around    w-48'>
@@ -84,8 +85,18 @@ const Perfil = (_) => {
 									Phone:
 								</h1>
 								<span className='font-medium text-center '>
-									{filteredUser.phone ? filteredUser.phone : 'Not added jet'}
+									{filteredUser.phone ? filteredUser.phone : 'Not added yet'}
 								</span>
+							</div>
+							<div className='flex  flex-col justify-around    w-48'>
+								<h1 className='bg-purple-200 font-bold text-center  rounded-full'>
+									Transactions:
+								</h1>
+								<Link to='/transactions' className='text-center bg-slate-200 rounded-lg'>
+									<span className='font-medium'>
+										Transaction history
+									</span>
+								</Link>
 							</div>
 						</div>
 					</div>
