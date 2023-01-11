@@ -124,7 +124,13 @@ exports.getUserData = async (req, res, next) => {
 	const result = await User.find({ email: email })
 	if (result.length) {
 		console.log("11",email)
-		res.status(200).send(result)
+		if (address) {
+			const change = await User.findByIdAndUpdate(result[0]._id, {address: address})
+			res.status(200).send(change)
+		}
+		else {
+			res.status(200).send(result)
+		}
 	} else {
 		console.log("12",email)  
 		const newUser= await User.create({email, address, name})

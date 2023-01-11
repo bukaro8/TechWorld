@@ -5,7 +5,7 @@ import CartItem from "../components/Cart/CartItem";
 import Swal from 'sweetalert2'
 import { deleteCart } from "../Redux/actions";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { newTransaction, putProdut } from "../Redux/actions";
+import { newTransaction, putProdut, getUserData } from "../Redux/actions";
 import { useAuth0 } from '@auth0/auth0-react';
 import emailjs from "@emailjs/browser"
 
@@ -154,15 +154,15 @@ export default function ShoppingCart() {
         }
     }
 
-    function handleBuyNow(status, shipping) {
+    function handleBuyNow(status, shipping, address) {
         data(status, shipping)
         dispatch(newTransaction(transaction))
+        user.address = address
+        dispatch(getUserData(user))
         for (let a = 0; a < stockReload.length; a++){
             dispatch(putProdut(stockReload[a]))
         }
     }
-
-   
 
     const emailTransaction = () => {
         var orderSummary = []
@@ -239,8 +239,9 @@ export default function ShoppingCart() {
                                 onApprove={async (data, actions) => {
                                     const details = await actions.order.capture();
                                     var shipping = "" + details.purchase_units[0].shipping.address.address_line_1 + ", " + details.purchase_units[0].shipping.address.admin_area_1 + ", " + details.purchase_units[0].shipping.address.country_code + ". Postal code:" + details.purchase_units[0].shipping.address.postal_code
+                                    var address = "" + details.purchase_units[0].shipping.address.address_line_1 + ", " + details.purchase_units[0].shipping.address.admin_area_1
                                     const name = details.payer.name.given_name;
-                                    handleBuyNow("Approved", shipping)
+                                    handleBuyNow("Approved", shipping, address)
                                     cleanCart()
                                     emailTransaction()
                                     successBuy(name)
