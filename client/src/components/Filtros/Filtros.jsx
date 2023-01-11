@@ -74,6 +74,10 @@ export const Filtros = () => {
       dispatch(setCurrentPage(pageNumber));
   }
   let categoryFilter = useSelector((state) => state.categoryFilter);
+  let priceFilter = useSelector((state) => state.ratingsFilter);
+  let ratingsFilter = useSelector((state) => state.ratingsFilter);
+  let alphabeticalOrder = useSelector((state) => state.ratingsFilter);
+
   console.log("Esto es categoryFilter en Filtros: " + categoryFilter)
   
   let categories = [
@@ -124,7 +128,7 @@ export const Filtros = () => {
       Clear Filters
     </button>
 
-    <select onChange={e => {handleCategoryFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
+    <select onChange={e => {handleCategoryFilter(e)}} value={categoryFilter} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
         <option value="all" key="all">Categories</option>
         {
         categories.map(c =>{
@@ -135,7 +139,7 @@ export const Filtros = () => {
         }
     </select>
 
-    <select onChange={e => {handleRatingFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">   
+    <select onChange={e => {handleRatingFilter(e)}} value={ratingsFilter} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">   
         <option value="all" key="all">Rating</option>
         <option value="1s" key="1s">1 Star</option>
         <option value="2s" key="2s">2 Stars</option>
@@ -144,7 +148,7 @@ export const Filtros = () => {
         <option value="5s" key="5s">5 Stars</option>
     </select>
 
-    <select onChange={e => {handlePriceFilter(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
+    <select onChange={e => {handlePriceFilter(e)}} value={priceFilter} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">
         <option value="all" key="all">Price</option>       
         <option value="100" key="100">$0 - $100</option>  
         <option value="500" key="500">$101 - $500</option>
@@ -152,8 +156,8 @@ export const Filtros = () => {
         <option value="5000" key="5000">$1001 - $5000</option>
     </select>
     
-    <select onChange={e => {handleNameOrder(e)}} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">   
-        <option value="all" key="all">Name Order</option>
+    <select onChange={e => {handleNameOrder(e)}} value={alphabeticalOrder} className="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ">   
+        <option value="all" key="all">Order by name</option>
         <option value="ase" key="ase">Ascending</option>
         <option value="des" key="des">Descending</option>
     </select>
