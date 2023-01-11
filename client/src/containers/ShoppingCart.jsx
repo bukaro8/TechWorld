@@ -85,9 +85,6 @@ export default function ShoppingCart() {
             if (result.isConfirmed) {
                 history.push("/products")
             }
-            else {
-                window.location.reload()
-            }
         })
     }
 

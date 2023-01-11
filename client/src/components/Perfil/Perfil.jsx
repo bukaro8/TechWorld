@@ -17,11 +17,11 @@ const Perfil = (_) => {
 
 	let usersData = useSelector((state) => state.users);
 
-	console.log(usersData, 'usersData');
+	// console.log(usersData, 'usersData');
 
 	const filteredUser = usersData.filter((users) => users.email === data)[0];
 
-	console.log(filteredUser, 'filteredUser');
+	// console.log(filteredUser, 'filteredUser');
 
 	return (
 		<>
@@ -122,3 +122,4 @@ const Perfil = (_) => {
 };
 
 export default Perfil;
+

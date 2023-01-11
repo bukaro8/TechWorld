@@ -144,7 +144,7 @@ export default function Transactions({closeModal}) {
         class="bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5"
       >
         <option value="Filter by status" disabled selected defaultValue>
-          Filter by status
+          Filter by pay status
         </option>
         <option value="All">All</option>
         <option value="Approved">Approved</option>
@@ -157,21 +157,25 @@ export default function Transactions({closeModal}) {
         <table class="table-auto border-2 border-indigo-500 m-2">
           <thead class="border-2 border-indigo-500">
             <tr>
-              <th class="border-2 border-indigo-500 p-1">Transaction ID</th>
-              <th class="border-2 border-indigo-500 p-1">Email</th>
-              <th class="border-2 border-indigo-500 p-1">Amount</th>
-              <th class="border-2 border-indigo-500 p-1">Status</th>
-              <th class="border-2 border-indigo-500 p-1">Delivered</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Transaction ID</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Email</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Amount</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Pay Status</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Delivery Status</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Change Pay Status</th>
+              <th class="border-2 border-indigo-500 p-1 text-center">Change Delivery</th>
             </tr>
           </thead>
           <tbody>
             {searchMail.map((e) => {
               return (
                 <tr>
-                  <td class="border-2 border-indigo-500 p-1">{e._id}</td>
-                  <td class="border-2 border-indigo-500 p-1">{e.userEmail}</td>
-                  <td class="border-2 border-indigo-500 p-1">${e.price}</td>
-                  <td class="border-2 border-indigo-500 p-1">
+                  <td class="border-2 border-indigo-500 p-1 text-center">{e._id}</td>
+                  <td class="border-2 border-indigo-500 p-1 text-center">{e.userEmail}</td>
+                  <td class="border-2 border-indigo-500 p-1 text-center">${e.price}</td>
+                  <td class="border-2 border-indigo-500 p-1 text-center">{e.status}</td>
+                  <td class="border-2 border-indigo-500 p-1 text-center">{e.delivered}</td>
+                  <td class="border-2 border-indigo-500 p-1 text-center">
                     <button
                       disabled={e.status === "Pending"}
                       onClick={(a) => handleTransactionPending(e)}
@@ -233,7 +237,7 @@ export default function Transactions({closeModal}) {
                       </svg>
                     </button>
                   </td>
-                  <td class="border-2 border-indigo-500 p-1">
+                  <td class="border-2 border-indigo-500 p-1 text-center">
                     <button
                       disabled={e.delivered === "Pending"}
                       onClick={(a) => handleDeliveryPending(e)}
