@@ -40,7 +40,9 @@ exports.putAdmin = async (req, res) => {
 	console.log(`Changing Admin state in BackEnd for id: ${req.params.id}`)
 	try {
 		const actUser = await User.findById(req.params.id);
-		console.log(actUser)
+
+		// console.log(actUser)
+	
 		if (actUser.isAdmin === true) {
 			console.log(`${req.params.id} was truely an Admin. Changing...`)
 			actUser.isAdmin = "false"
@@ -96,6 +98,26 @@ exports.deleteUser = async (req, res) => {
 		user,
 	});
 }
+
+exports.putFavoriteUser = async (req, res) => {
+	try {
+		const { _id, misFavoritos, misCompras, idProduct } = req.body
+		const arrayAlgo=[];
+		const actualizarFav = await User.findByIdAndUpdate(_id, { misFavoritos: misFavoritos, misCompras: misCompras, idProduct: idProduct });
+		console.log("asass",actualizarFav);
+		arrayAlgo.push(actualizarFav)
+		res.status(200).send(
+			arrayAlgo
+			// success: true,
+			// actUser,
+		);
+
+	} catch (e) {
+		return res.status(500).send('Debe ingresar un ID valido');
+	}
+
+};
+
 exports.getUserData = async (req, res, next) => {
 	const { email, address, name } = req.body;
 	const userData = [];
@@ -109,3 +131,4 @@ exports.getUserData = async (req, res, next) => {
 		res.status(200).send(newUser)
 	}
 }
+

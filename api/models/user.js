@@ -47,9 +47,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
 
-  misFavoritos: {
-    type: String,
-  },
+  misFavoritos: [String],
 
   misCompras: {
     type: String,
