@@ -8,7 +8,7 @@ const {
 	deleteUser,
 	getUserAdmin,
 	putBan,
-	putFavoriteUser
+	putFavoriteUser,
 	getUserData
 
 } = require('../controllers/userController.js');

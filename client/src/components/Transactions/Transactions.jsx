@@ -40,7 +40,7 @@ export default function Transactions({closeModal}) {
       if (result.isConfirmed) {
         emailDelivery(payload);
         dispatch(putTransaction(payload));
-        closeModal()
+        closeModal();
       }
     });
   };
@@ -55,7 +55,7 @@ export default function Transactions({closeModal}) {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(putTransaction(payload));
-        window.location.reload();
+        closeModal();
       }
     });
   };
