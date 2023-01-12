@@ -13,7 +13,7 @@ const Tablas = (record) => {
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(resetDetail());
-  }, [dispatch]);
+  }, [data]);
 
   const handleIsBan = async (record) => {
     let trueOrFalse = record.isBan

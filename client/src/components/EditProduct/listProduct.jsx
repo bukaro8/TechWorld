@@ -34,8 +34,8 @@ export default function List() {
             <div class="grid grid-rows-1 gap-y-5 gap-x-4 sm:grid-rows-2 lg:grid-rows-3 xl:grid-rows-4 xl:gap-x-4 ">
                 <div className="grid grid-cols-5 justify-items-center content-center ">
                     <div>  </div>
-                    <div className="text-lg p-0 font-semibold text-violet-500">Nombre</div>
-                    <div className="text-lg p-0 font-semibold text-violet-500">Precio</div>
+                    <div className="text-lg p-0 font-semibold text-violet-500">Name</div>
+                    <div className="text-lg p-0 font-semibold text-violet-500">Price</div>
                     <div className="text-lg p-0 font-semibold text-violet-500">Stock</div>
                     <div ></div>
                 </div>

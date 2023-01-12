@@ -78,7 +78,7 @@ export const Filtros = () => {
   let ratingsFilter = useSelector((state) => state.ratingsFilter);
   let alphabeticalOrder = useSelector((state) => state.ratingsFilter);
 
-  console.log("Esto es categoryFilter en Filtros: " + categoryFilter)
+  //console.log("Esto es categoryFilter en Filtros: " + categoryFilter)
   
   let categories = [
     'Electronics',

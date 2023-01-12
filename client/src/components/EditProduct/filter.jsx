@@ -20,9 +20,9 @@ export default function Filter (){
         <div>
         
           <select onChange= {(e) => {handlerFilterA(e.target.value)}} className='bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 '>
-            <option value="all">Estado</option>
-            <option value="true">activo</option>
-            <option value="false">inactivo</option>
+            <option value="all">State</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
           </select>
           
           <select onChange={(e) => {handlerOrderN(e.target.value)}}className='bg-gray-50 mt-2 mx-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2.5 ' >
