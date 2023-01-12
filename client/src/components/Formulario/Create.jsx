@@ -4,7 +4,8 @@ import { useDropzone } from 'react-dropzone';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { newProduct, getAllProducts } from '../../Redux/actions/index';
-import Card from '../Cards/Card'
+import Card from '../Cards/Card';
+import Swal from 'sweetalert2';
 
 // import validate from './Validate';
 
@@ -25,7 +26,7 @@ import Card from '../Cards/Card'
 // return errors;
 // }
 
-export default function Create() {
+export default function Create({closeModal}) {
 	const dispatch = useDispatch();
 	const [input, setInput] = useState({
 		name: '',
@@ -41,7 +42,7 @@ export default function Create() {
 
 	const [loading, setLoading] = useState(false);
 
-	const onDrop = useCallback(async (acceptedFile) => {
+	const onDrop = (async (acceptedFile) => {
 		const files = acceptedFile;
 		const data = new FormData();
 		data.append('file', files[0]);
@@ -55,11 +56,10 @@ export default function Create() {
 			}
 		);
 		const file = await res.json();
-
 		setInput({ ...input, images: file.secure_url });
-		// console.log(file.secure_url);
+        // console.log(file.secure_url);
 		setLoading(false);
-	}, []);
+	});
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop,
@@ -72,6 +72,16 @@ export default function Create() {
 
 	const [errors, setErrors] = useState({});
 	const [section, setSection] = useState(1);
+
+    const createdProduct = () => {
+        Swal.fire({
+          title: "Product created successfuly!",
+          confirmButtonText: `Ok`,
+          icon: "success",
+        }).then((result) => {
+            closeModal();
+        });
+    };
 
 	function handleChange(e) {
 		setInput({
@@ -93,7 +103,7 @@ export default function Create() {
 		if (Object.keys(errors).length === 0 && input.name.length) {
 			dispatch(newProduct(input));
 			dispatch(getAllProducts());
-			alert('Ceated successfuly!');
+			createdProduct();
 			setInput({
 				name: '',
 				price: '',

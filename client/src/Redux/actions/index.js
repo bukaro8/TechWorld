@@ -50,7 +50,6 @@ export function getAllUsers() {
     // console.log(getAllUsers)
     return async function (dispatch) {
         var json = await back_call.get('/users')
-        console.log(json.data, 'json.data')
         return dispatch({
             type: GET_USERS,
             payload: json.data
@@ -210,7 +209,7 @@ export const filState = (input) => {
 export function orderStock(order) {
     return async function (dispatch) {
         var json = await back_call.get(`/product/orderProduct/${order}`);
-        console.log(json);
+        //console.log(json);
         return dispatch({
             type: O_STOCK,
             payload: json.data
@@ -294,7 +293,7 @@ export function setCurrentPage(pageNumber) {
 }
 
 export function putAdmin (id) {
-    console.log(`Changing Admin state from Actions stage for id: ${id}`)
+    //console.log(`Changing Admin state from Actions stage for id: ${id}`)
     return async function () {
         await back_call.put(`/users/admin/${id}`
         );
@@ -302,7 +301,7 @@ export function putAdmin (id) {
 }
 
 export function putBan (id) {
-    console.log(`Changing Ban state from Actions stage for id: ${id}`)
+    //console.log(`Changing Ban state from Actions stage for id: ${id}`)
     return async function () {
         await back_call.put(`/users/ban/${id}`
         );
@@ -311,7 +310,7 @@ export function putBan (id) {
 }
 
 export function deleteUser (id) {
-    console.log(`Deleting id ${id} in actions stage`)
+    //console.log(`Deleting id ${id} in actions stage`)
     return async function () {
         await back_call.delete(`/users/delete/${id}`
         );

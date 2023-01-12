@@ -2,7 +2,7 @@ import React,{ useEffect, useState, useCallback} from "react"
 import { useHistory, useParams, Link } from "react-router-dom"
 import {  useDispatch,useSelector } from "react-redux";
 import { putProdut } from "../../Redux/actions";
-import Swal from "sweetalert"
+import Swal from "sweetalert2"
 import { useDropzone } from 'react-dropzone';
 
 export default function EditProduct() {
@@ -57,6 +57,19 @@ export default function EditProduct() {
 		accepts: 'images/*',
 		multiple: false,
 	});
+
+    const updatedProduct = () => {
+        Swal.fire({
+          title: "Product updated successfully!",
+          confirmButtonText: `Ok`,
+          icon: "success",
+          timer: 2000,
+          timerProgressBar: true
+        }).then((result) => {
+            history.push('/list'); 
+        });
+    };
+
     
     function actProduct () {
         const edit = {
@@ -70,15 +83,7 @@ export default function EditProduct() {
         }
         
         dispatch(putProdut(edit)) 
-        
-        Swal(
-            ' sussenfull',
-            'the product was edited',
-            'success'
-        )
-        setTimeout(() => {
-            history.push('/list');
-          }, "1500") 
+        updatedProduct()
     }
      
     return (
@@ -97,7 +102,7 @@ export default function EditProduct() {
                         alt={productEdit[0].name} 
                         className=' h-48 w-50 ' 
                     />
-                     <label className="text-gray-700 font-bold text-2xl">Imagen: </label>
+                     <label className="text-gray-700 font-bold text-2xl">Image: </label>
                         {/* <input
                             className="border w-80 p-2 mt-2  rounded-md text-1xl"
                             type="text"
@@ -128,7 +133,7 @@ export default function EditProduct() {
                 
                 <div className="md:w-auto m-auto  grid justify-items-center">
                     
-                    <label className="text-gray-700 font-bold text-xl">Nombre: </label>
+                    <label className="text-gray-700 font-bold text-xl">Name: </label>
                     <input
                         className="border w-80 p-2 mt-1 rounded-md text-1xl"
                         type="text"
@@ -139,7 +144,7 @@ export default function EditProduct() {
                     ></input>
                 {/* </div>
                 <div className="mb-5 grid justify-items-end"> */}
-                    <label className="text-gray-700 font-bold text-2xl">Precio: </label>
+                    <label className="text-gray-700 font-bold text-2xl">Price: </label>
                     <input
                         className="border w-80 p-2 mt-1 rounded-md text-1xl"
                         type="number"
@@ -160,7 +165,7 @@ export default function EditProduct() {
                 {/* </div>
                 
                 <div className="mb-5 grid justify-items-end"> */}
-                 <label className="text-gray-700 font-bold text-2xl">Descripción: </label>
+                 <label className="text-gray-700 font-bold text-2xl">Description: </label>
                     <textarea
                         className="border w-80 p-2 mt-2  rounded-md text-1xl"
                         type="number"
@@ -168,15 +173,15 @@ export default function EditProduct() {
                         name="name"
                         onChange={(e) => {setDescription (e.target.value)}}
                     ></textarea>
-                    <label className="text-gray-700 font-bold text-2xl">Estado: </label>
-                    <span> {estado === false ? <span className='text-red-500 font-bold text-4xl  '>Inactivo</span>
-                    : <span className='text-lime-500 font-bold text-4xl  '>Activo</span>}</span>
+                    <label className="text-gray-700 font-bold text-2xl">State: </label>
+                    <span> {estado === false ? <span className='text-red-500 font-bold text-4xl  '>Inactive</span>
+                    : <span className='text-lime-500 font-bold text-4xl  '>Active</span>}</span>
                 {/* </div>
                 <div className="mb-5 grid justify-items-end"> */}
                 <select  onChange={(e) => {setEstado(e.target.value)}} className="border w-80 p-2 mt-2 placeholder-gray-400 rounded-md text-xl ">
-                                <option>seleccione un estado</option>
-                                <option value='true' className='text-lime-500 font-bold text-2xl'>activo</option>
-                                <option value='false' className='text-red-500 font-bold text-2xl'>inactivo</option>
+                                <option>Select a state</option>
+                                <option value='true' className='text-lime-500 font-bold text-2xl'>Active</option>
+                                <option value='false' className='text-red-500 font-bold text-2xl'>Inactive</option>
                                 
                     </select>
                 </div>
@@ -188,7 +193,7 @@ export default function EditProduct() {
                         type="submit"
                         onClick={actProduct}
                         >
-                        Guardar Cambios
+                        Save Changes
                 </button> 
             </div>
            

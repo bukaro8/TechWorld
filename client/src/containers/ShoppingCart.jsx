@@ -137,7 +137,9 @@ export default function ShoppingCart() {
     }
     
     const handleOnClick = () =>{
-        setTotal(setTotalPrice())
+        if (items.length) {
+            setTotal(setTotalPrice())
+        }
     }
 
     const cleanCart = () => {

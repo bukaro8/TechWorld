@@ -65,7 +65,9 @@ const Carrito = () => {
 	}
 
 	const handleMouseMove = () => {
-		setTotal(setTotalPrice());
+		if (items.length) {
+			setTotal(setTotalPrice());
+		}
 	};
 
 	const handleContinuCheckout = () => {

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { newUsers, getAllUsers } from '../../Redux/actions/index';
+import Swal from "sweetalert2";
 import Card from '../Cards/Card'
 import { Switch } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
-export default function FormAdmin() {
+export default function FormAdmin({closeModal}) {
 
     const dispatch = useDispatch();
 
@@ -29,6 +30,15 @@ export default function FormAdmin() {
 
     })
 
+    const createdUser = () => {
+        Swal.fire({
+          title: "User created successfuly!",
+          confirmButtonText: `Ok`,
+          icon: "success",
+        }).then((result) => {
+            closeModal();
+        });
+    };
 
     function handleChange(e) {
         setInput({
@@ -43,7 +53,7 @@ export default function FormAdmin() {
         if (Object.keys(errors).length === 0 && input.name.length) {
             dispatch(newUsers(input));
             dispatch(getAllUsers());
-            alert("Ceated successfuly!");
+            createdUser()
             setInput({
                 name: "",
                 email: "",
