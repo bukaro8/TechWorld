@@ -113,7 +113,7 @@ const Perfil = (_) => {
 					</div>
 					<br />
 					<h1 className='flex justify-center font-black py-14'>
-						Please Wait :{')'}
+						Please Wait :
 					</h1>
 				</div>
 			)}
@@ -122,4 +122,3 @@ const Perfil = (_) => {
 };
 
 export default Perfil;
-
