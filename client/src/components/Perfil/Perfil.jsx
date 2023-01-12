@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getAllUsers } from '../../Redux/actions';
 import Spinner from './Spinner';
 import altImg from '../assets/imagenes/icon.png';
 const Perfil = (_) => {
 	const { user, isAuthenticated } = useAuth0();
+	const dispatch = useDispatch()
 	//Obtengo el user registrado de auth0 y la función isAuth-
 
 	// Me traigo el contenido de users que es lo que trae la ruta de getUsers desde la action
@@ -23,6 +25,10 @@ const Perfil = (_) => {
 	const filteredUser = usersData.filter((users) => users.email === data)[0];
 
 	// console.log(filteredUser, 'filteredUser');
+
+	useEffect(() => {
+		dispatch(getAllUsers())
+	}, [usersData])
 
 	return (
 		<>
