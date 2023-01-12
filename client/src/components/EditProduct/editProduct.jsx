@@ -63,10 +63,10 @@ export default function EditProduct() {
           title: "Product updated successfully!",
           confirmButtonText: `Ok`,
           icon: "success",
+          timer: 2000,
+          timerProgressBar: true
         }).then((result) => {
-            setTimeout(() => {
-                history.push('/list');
-            }, "1500") 
+            history.push('/list'); 
         });
     };
 
